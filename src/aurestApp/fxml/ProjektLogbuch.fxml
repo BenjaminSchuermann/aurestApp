@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" VBox.vgrow="ALWAYS">
+    <children>
+        <HBox>
+            <children>
+                <!--
+                <fx:define>
+                       <ToggleGroup fx:id="myToggleGroup"/>
+                   </fx:define>
+
+                       <RadioButton id="rbprojektoffen" fx:id="rbprojektoffen" toggleGroup="$myToggleGroup" layoutX="300.0" layoutY="10.0" mnemonicParsing="false" selected="true" text="Projekt ist archiviert" disable="true"/>
+                       <RadioButton id="rbprojektarchiviert" fx:id="rbprojektarchiviert" toggleGroup="$myToggleGroup" layoutX="300.0" layoutY="30.0" mnemonicParsing="false" text="Projekt ist offen" disable="true"/>
+                   -->
+                <Label text="Ursprungsprojekt"/>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+
+                        <Label id="beispiellabel" text="Beispiel : 8562"/>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+
+        <TextField id="plurprojekt" fx:id="plurprojekt">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <HBox>
+            <children>
+                <Label text="Projektnummer"/>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label id="beispiellabel" text="Beispiel : 8562_1"/>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+        <TextField id="plprojekt" fx:id="plprojekt">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <HBox>
+            <children>
+                <VBox>
+                    <children>
+                        <Label text="Datum"/>
+                        <DatePicker id="pldatum" fx:id="pldatum" prefHeight="25.0" prefWidth="200.0" showWeekNumbers="true">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </DatePicker>
+                    </children>
+                </VBox>
+                <VBox HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Mitarbeiter"/>
+                        <TextField id="plmitarbeiter" fx:id="plmitarbeiter">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </VBox>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+        <Label text="Anlagenteil/Ort">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <TextField id="planlagenteil" fx:id="planlagenteil">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <Label text="Beschreibung / Auftrag">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <VBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+            <children>
+                <TextArea id="plbeschreibung" fx:id="plbeschreibung" minHeight="240.0" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets top="5.0"/>
+                    </VBox.margin>
+                </TextArea>
+
+                <Button id="erstelleProjektLogbuch" fx:id="erstellepl" mnemonicParsing="false" onAction="#handelProjektLogbuch" text="Projekt-Logeintrag anlegen">
+                    <VBox.margin>
+                        <Insets top="15.0"/>
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

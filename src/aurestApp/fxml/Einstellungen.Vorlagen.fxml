@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" VBox.vgrow="ALWAYS">
+    <children>
+
+        <Label id="info" text="Projektvorlagen :"/>
+        <HBox>
+            <children>
+
+                <TextField id="projektvorlagen" fx:id="projektvorlagen" editable="false" HBox.hgrow="ALWAYS"/>
+
+                <Button id="projektvorlagenordnerwaehlen" fx:id="projektvorlagenordnerwaehlen" mnemonicParsing="false" onAction="#waehlenProjektvorlagenOrdner" text="Ordner wählen">
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </HBox>
+        <Label id="info" text="Servicevorlage :">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <HBox>
+            <children>
+                <TextField id="servicevorlage" fx:id="servicevorlage" editable="false" HBox.hgrow="ALWAYS"/>
+                <Button id="servicevorlageordnerwaehlen" fx:id="servicevorlageordnerwaehlen" mnemonicParsing="false" onAction="#waehlenServicevorlageOrdner" text="Ordner wählen">
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </HBox>
+        <VBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+            <children>
+
+                <Button id="speichern" fx:id="speichern" mnemonicParsing="false" onAction="#speicherEinstellungen" text="Speichern"/>
+            </children>
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+        </VBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

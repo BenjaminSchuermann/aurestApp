@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" VBox.vgrow="ALWAYS">
+    <children>
+
+        <RadioButton id="rbeigenfertigung" fx:id="rbeigenfertigung" mnemonicParsing="false" selected="true" text="Eigenfertigung">
+            <toggleGroup>
+                <ToggleGroup fx:id="myToggleGroup"/>
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton id="rbfremdfertigung" fx:id="rbfremdfertigung" mnemonicParsing="false" text="Fremdfertigung" toggleGroup="$myToggleGroup">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </RadioButton>
+        <HBox>
+            <children>
+
+                <Label text="Projektnummer">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </Label>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+
+                        <Label id="beispiellabel" alignment="CENTER_RIGHT" text="Beispiel : 7432" textAlignment="RIGHT"/>
+                    </children>
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets top="20.0"/>
+            </VBox.margin>
+        </HBox>
+
+        <TextField id="projektnummer" fx:id="projektnummer">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <HBox>
+            <children>
+                <Label text="Kunde">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </Label>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label id="beispiellabel" alignment="CENTER_RIGHT" text="Beispiel : EFTEC">
+                            <HBox.margin>
+                                <Insets/>
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+        <TextField id="projektkunde" fx:id="projektkunde">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <HBox>
+            <children>
+                <Label text="Beschreibung">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </Label>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label id="beispiellabel" alignment="CENTER_RIGHT" text="Beispiel : Umbau Reaktor 300">
+                            <HBox.margin>
+                                <Insets/>
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+        <TextField id="projektbeschreibung" fx:id="projektbeschreibung">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <HBox>
+            <children>
+                <Label text="Offerte">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </Label>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label id="beispiellabel" alignment="CENTER_RIGHT" text="Beispiel : 11550"/>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+        <TextField id="projektofferte" fx:id="projektofferte">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <HBox>
+            <children>
+                <Label text="Ursprungsprojekt">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </Label>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label id="beispiellabel" alignment="CENTER_RIGHT" text="Beispiel : 6066"/>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+        <TextField id="projektursprung" fx:id="projektursprung">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <VBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+            <children>
+
+                <Button id="erstelleProjekt" fx:id="erstelleProjekt" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handelErstelleProjekt" text="Projektordner anlegen"/>
+            </children>
+        </VBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

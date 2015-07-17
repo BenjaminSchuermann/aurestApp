@@ -1,0 +1,33 @@
+#erstelleProjekt{
+    -fx-graphic: url("../img/mActionEditPaste.png");
+}
+
+#erstelleService {
+    -fx-graphic: url("../img/mActionEditPaste.png");
+}
+
+#erstelleProjektLogbuch{
+    -fx-graphic: url("../img/mActionOpenTable.png");
+}
+
+#erstelleServiceLogbuch {
+    -fx-graphic: url("../img/mActionOpenTable.png");
+}
+
+#emailsumbennen {
+    -fx-graphic: url("../img/e-mail-97624.png");
+}
+
+#speichern {
+    -fx-graphic: url("../img/mActionFileSave.png");
+}
+
+#beispiellabel{
+    -fx-text-fill: darkgray;
+    -fx-alignment: center-right;
+    -fx-pref-width: 160px;
+}
+#infohead {
+    -fx-font-size: 30px;
+    -fx-effect: dropshadow(gaussian, blue, 20, 0.2, 0, 0);
+}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40">
+    <children>
+        <HBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS">
+            <children>
+
+                <ImageView id="logo" fx:id="logo"/>
+            </children>
+        </HBox>
+        <VBox alignment="BOTTOM_LEFT" VBox.vgrow="ALWAYS">
+            <children>
+                <HBox alignment="BOTTOM_LEFT">
+                    <children>
+                        <Label id="info" text="Version:"/>
+                        <Label id="info" fx:id="version">
+                            <HBox.margin>
+                                <Insets left="5.0"/>
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="15.0"/>
+                    </VBox.margin>
+                </HBox>
+                <HBox alignment="BOTTOM_LEFT">
+                    <children>
+                        <Label id="info" text="eMail: "/>
+                        <Label id="info" text="benjamin.schuermann@aurest24.com">
+                            <HBox.margin>
+                                <Insets left="5.0"/>
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                </HBox>
+                <Label id="info" text="Copyright© 2014-2015 by"/>
+                <Label id="info" text="Benjamin Schürmann"/>
+            </children>
+        </VBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

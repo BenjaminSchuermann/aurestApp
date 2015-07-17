@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" VBox.vgrow="ALWAYS">
+    <children>
+        <HBox>
+            <children>
+                <!--
+                   <RadioButton id="rbprojektoffen" fx:id="rbprojektoffen" layoutX="300.0" layoutY="10.0" mnemonicParsing="false" selected="true" text="Projekt ist archiviert" disable="true">
+                         <toggleGroup>
+                            <ToggleGroup fx:id="myToggleGroup"/>
+                         </toggleGroup>
+                      </RadioButton>
+                      <RadioButton id="rbprojektarchiviert" fx:id="rbprojektarchiviert" layoutX="300.0" layoutY="30.0" mnemonicParsing="false" text="Projekt ist offen" toggleGroup="$myToggleGroup" disable="true"/>
+                   -->
+                <Label text="Ursprungsprojekt"/>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+
+                        <Label id="beispiellabel" text="Beispiel : 8562"/>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+
+        <TextField id="slurprojekt" fx:id="slurprojekt" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <HBox>
+            <children>
+                <VBox HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox VBox.vgrow="ALWAYS">
+                            <children>
+                                <Label text="Servicenummer"/>
+                                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label id="beispiellabel" text="Beispiel : 1550"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox VBox.vgrow="ALWAYS">
+                            <children>
+                                <TextField id="servicejahr" fx:id="servicejahr" prefWidth="50.0" HBox.hgrow="NEVER"/>
+                                <TextField id="servicenummer" fx:id="servicenummer" HBox.hgrow="ALWAYS"/>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </HBox>
+                    </children>
+                </VBox>
+                <VBox alignment="BOTTOM_CENTER">
+                    <children>
+                        <HBox>
+                            <children>
+                                <CheckBox id="checkbox" fx:id="checkbox" onAction="#handelCheckbox"/>
+                                <Label text="ohne Servicenummer"/>
+                            </children>
+                            <padding>
+                                <Insets bottom="4.0"/>
+                            </padding>
+                        </HBox>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </VBox>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+        <HBox>
+            <children>
+                <VBox HBox.hgrow="NEVER">
+                    <children>
+                        <Label text="Datum"/>
+                        <DatePicker id="sldatum" fx:id="sldatum" prefWidth="170.0" showWeekNumbers="true">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </DatePicker>
+                    </children>
+                </VBox>
+                <VBox HBox.hgrow="NEVER">
+                    <children>
+                        <Label text="Mitarbeiter"/>
+                        <TextField id="slmitarbeiter" fx:id="slmitarbeiter" prefWidth="130.0">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </VBox>
+                <VBox HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Kontakt"/>
+                        <TextField id="slkontakt" fx:id="slkontakt">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </VBox>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+        <Label text="Anlagenteil">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+
+        <TextField id="slanlagenteil" fx:id="slanlagenteil">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <Label text="Problem">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <TextField id="slproblem" fx:id="slproblem">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <Label text="Ursache">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <TextField id="slursache" fx:id="slursache">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <Label text="Lösung">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <TextArea id="slloesung" fx:id="slloesung" minHeight="100.0" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextArea>
+        <Label text="Bemerkung / Hardware Austausch">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <TextField id="slbemerkung" fx:id="slbemerkung">
+            <VBox.margin>
+                <Insets top="2.0"/>
+            </VBox.margin>
+        </TextField>
+        <VBox alignment="BOTTOM_RIGHT">
+            <children>
+
+                <Button id="erstelleServiceLogbuch" fx:id="erstellesl" mnemonicParsing="false" onAction="#handelServiceLogbuch" text="Service-Logeintrag anlegen">
+                    <VBox.margin>
+                        <Insets top="15.0"/>
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

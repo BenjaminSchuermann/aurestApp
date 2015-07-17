@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" VBox.vgrow="ALWAYS">
+    <children>
+        <HBox>
+            <children>
+                <!--
+                 <fx:define>
+                                             <ToggleGroup fx:id="myToggleGroup"/>
+                                         </fx:define>
+                                           <RadioButton id="rbarchiv" fx:id="rbarchiv" toggleGroup="$myToggleGroup" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" selected="true" text="Projekt ist archiviert" disable="true"/>
+                                         <RadioButton id="rboffen" fx:id="rboffen" toggleGroup="$myToggleGroup" layoutX="15.0" layoutY="35.0" mnemonicParsing="false" text="Projekt ist offen" disable="true"/>
+                                         -->
+
+                <Label text="Servicenummer"/>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+
+                        <Label id="beispiellabel" text="Beispiel : 1550"/>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <HBox>
+            <children>
+                <TextField id="servicejahr" fx:id="servicejahr" prefWidth="50.0"/>
+
+                <TextField id="servicenummer" fx:id="servicenummer" HBox.hgrow="ALWAYS"/>
+            </children>
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </HBox>
+        <HBox>
+            <children>
+                <Label text="Kunde"/>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label id="beispiellabel" text="Beispiel : EFTEC"/>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+        <TextField id="servicekunde" fx:id="servicekunde" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <HBox>
+            <children>
+                <Label text="Beschreibung"/>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label id="beispiellabel" text="Beispiel : Störung Reaktor 300"/>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+        <TextField id="servicebeschreibung" fx:id="servicebeschreibung" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <HBox>
+            <children>
+                <Label text="Projekt"/>
+                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label id="beispiellabel" text="Beispiel : 7432"/>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </HBox>
+        <TextField id="serviceprojekt" fx:id="serviceprojekt" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <VBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+            <children>
+
+                <Button id="erstelleService" fx:id="erstelleService" mnemonicParsing="false" onAction="#erstelleService" text="Serviceordner anlegen"/>
+            </children>
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+        </VBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

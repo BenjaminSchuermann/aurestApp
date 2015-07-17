@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" minHeight="700.0" minWidth="800.0" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.40">
+    <MenuBar>
+        <Menu text="Menü">
+            <MenuItem onAction="#handelProjekt" text="Projekt"/>
+            <MenuItem onAction="#handelService" text="Service"/>
+                <!-- <MenuItem onAction="#handelProjektArchivieren" text="archivieren"/>  -->
+
+            <MenuItem onAction="#handelEmail" text="eMails umbennen"/>
+            <SeparatorMenuItem/>
+            <MenuItem onAction="#handelExit" text="Beenden"/>
+        </Menu>
+
+        <Menu text="Einstellungen">
+            <MenuItem onAction="#handelEmailEinstellungen" text="eMails umbennen"/>
+            <MenuItem onAction="#handelServiceEinstellungen" text="Servicejahr"/>
+            <MenuItem onAction="#handelVorlagenEinstellungen" text="Ordnervorlagen"/>
+            <MenuItem onAction="#handelKundenEinstellungen" text="Kunden"/>
+        </Menu>
+        <Menu text="Über">
+            <MenuItem onAction="#handelInfo" text="Info"/>
+        </Menu>
+    </MenuBar>
+    <VBox fx:id="programmInhalt" VBox.vgrow="ALWAYS"/>
+</VBox>

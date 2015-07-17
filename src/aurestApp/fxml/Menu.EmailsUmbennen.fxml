@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40">
+    <children>
+        <Label text="eMail Ordner auswählen"/>
+        <Button id="emailordnerwaehlen" fx:id="emailordnerwaehlen" mnemonicParsing="false" onAction="#waehlenOrdner" text="Ordner wählen">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </Button>
+
+        <Separator VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+        </Separator>
+
+        <Label fx:id="pfad" text="Gefundene eMails im Pfad" visible="false">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <TextField id="pfadtext" fx:id="pfadtext" editable="false" visible="false" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <ListView fx:id="listView" visible="false" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </ListView>
+        <HBox alignment="BOTTOM_RIGHT" VBox.vgrow="ALWAYS">
+            <children>
+
+                <Button id="emailsumbennen" fx:id="emailsumbennen" mnemonicParsing="false" onAction="#umbennenEmails" text="eMails umbennen"/>
+            </children>
+            <opaqueInsets>
+                <Insets/>
+            </opaqueInsets>
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

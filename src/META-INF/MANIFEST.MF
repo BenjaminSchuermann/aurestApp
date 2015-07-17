@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Class-Path: libs/poi-excelant-3.11-20141221.jar libs/commons-logging-1
+ .2.jar libs/poi-ooxml-3.11-20141221.jar libs/poi-3.11-20141221.jar li
+ bs/xmlbeans-2.6.0.jar libs/poi-scratchpad-3.11-20141221.jar libs/comm
+ ons-lang3-3.3.2.jar libs/poi-ooxml-schemas-3.11-20141221.jar libs/com
+ mons-io-2.4.jar libs/controlsfx-8.40.9.jar libs/swt.jar
+Main-Class: aurestApp.Main
+
