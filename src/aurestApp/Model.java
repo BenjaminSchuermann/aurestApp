@@ -9,7 +9,6 @@ import java.util.Date;
 public class Model {
     private final String aktuellerBenutzer;
     private final String aktuellesDatum;
-    private int testwert = 22;
     private String servicejahr;
     private ArrayList<String> mitarbeiterListe;
     private File[] emailListe;
@@ -48,14 +47,6 @@ public class Model {
     public Model() {
         this.aktuellesDatum = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
         this.aktuellerBenutzer = System.getProperty("user.name");
-    }
-
-    public int getTestwert() {
-        return testwert;
-    }
-
-    public void setTestwert(int testwert) {
-        this.testwert = testwert;
     }
 
     public String getVersion() {
