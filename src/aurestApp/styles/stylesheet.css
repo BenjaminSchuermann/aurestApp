@@ -18,10 +18,6 @@
     -fx-graphic: url("../img/e-mail-97624.png");
 }
 
-#speichern {
-    -fx-graphic: url("../img/mActionFileSave.png");
-}
-
 #beispiellabel{
     -fx-text-fill: darkgray;
     -fx-alignment: center-right;

@@ -1,21 +1,20 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.Tools.Settings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.ListView;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class EinstellungenEmailController implements Initializable {
     private final Model m;
     @FXML
-    private TextArea mitarbeiter;
+    private ListView<String> mitarbeiter;
 
     public EinstellungenEmailController(Model m) {
         this.m = m;
@@ -26,14 +25,18 @@ public class EinstellungenEmailController implements Initializable {
         String mitarbeiterListe = "";
         for (String mitarbeiter : m.getMitarbeiterListe())
             mitarbeiterListe += mitarbeiter + System.getProperty("line.separator");
-        mitarbeiter.setText(mitarbeiterListe);
+
+        ObservableList<String> names = FXCollections.observableArrayList(m.getMitarbeiterListe());
+        mitarbeiter.setItems(names);
+
+        //mitarbeiter.setText(mitarbeiterListe);
     }
 
     @FXML
     private void speicherEinstellungen(ActionEvent actionEvent) {
-        ArrayList<String> myList = new ArrayList<>(Arrays.asList(mitarbeiter.getText().split("\\n")));
-        m.setMitarbeiterListe(myList);
-        Settings.saveSettings(m);
+        //ArrayList<String> myList = new ArrayList<>(Arrays.asList(mitarbeiter.getText().split("\\n")));
+        //m.setMitarbeiterListe(myList);
+        //Settings.saveSettings(m);
     }
 
     /* Test und Vorbereitung zum eMail versenden mit Outlook

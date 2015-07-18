@@ -9,6 +9,10 @@ import java.util.Date;
 public class Model {
     private final String aktuellerBenutzer;
     private final String aktuellesDatum;
+    final private String SERVERADRESSE = "192.168.0.56";
+    final private String DATENBANK = "~/aurestApp";
+    final private String DBLOGIN = "h2";
+    final private String DBPASSWORT = "aurestApp";
     private String servicejahr;
     private ArrayList<String> mitarbeiterListe;
     private File[] emailListe;
@@ -43,6 +47,7 @@ public class Model {
     private String projektKunde;
     private String projektUrprojekt;
     private boolean projektToLog;
+    private String vorlagenOfferte;
 
     public Model() {
         this.aktuellesDatum = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
@@ -50,7 +55,7 @@ public class Model {
     }
 
     public String getVersion() {
-        return "1.1.0";
+        return "1.1.1";
     }
 
     public String getServicejahr() {
@@ -88,6 +93,7 @@ public class Model {
     public void setVorlagen(ArrayList<String> vorlagen) {
         this.vorlagenProjekt = vorlagen.get(0);
         this.vorlagenService = vorlagen.get(1);
+        this.vorlagenOfferte = vorlagen.get(2);
     }
 
     public String getVorlagenProjekt() {
@@ -96,6 +102,10 @@ public class Model {
 
     public String getVorlagenService() {
         return vorlagenService;
+    }
+
+    public String getVorlagenOfferte() {
+        return vorlagenOfferte;
     }
 
     public LocalDate getProjektLogDatum() {
@@ -332,5 +342,21 @@ public class Model {
 
     public void setProjektToLog(boolean projektToLog) {
         this.projektToLog = projektToLog;
+    }
+
+    public String getSERVERADRESSE() {
+        return SERVERADRESSE;
+    }
+
+    public String getDBPASSWORT() {
+        return DBPASSWORT;
+    }
+
+    public String getDBLOGIN() {
+        return DBLOGIN;
+    }
+
+    public String getDATENBANK() {
+        return DATENBANK;
     }
 }
