@@ -382,7 +382,8 @@ public class Model {
                 pWriter.println("Login");
                 pWriter.println("Passwort");
                 pWriter.close();
-
+                Dialoge.InfoAnzeigen("Bitte tragen sie die Datenbankeinstellungen in der Datei cfg/dbconnect.ini ein");
+                return;
             } catch (IOException e) {
                 Dialoge.exceptionDialog(e, "Fehler beim anlegen der Konfigurationsdatei");
                 return;
@@ -397,7 +398,7 @@ public class Model {
             DBPASSWORT = in.readLine();
             in.close();
         } catch (IOException e) {
-            Dialoge.exceptionDialog(e, "Die Datenbankeinstellungen können nicht gefunden werden");
+            Dialoge.exceptionDialog(e, "Die Datenbankeinstellungen können nicht gefunden werden \n Bitte tragen sie die Datenbankeinstellungen in der Datei cfg/dbconnect.ini ein");
         }
     }
 
