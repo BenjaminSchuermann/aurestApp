@@ -51,7 +51,7 @@ public class ProjektAnlegenController implements Initializable {
         projektkunde.setOnKeyPressed(ke -> {
             switch (ke.getCode()) {
                 case ENTER:
-                    Settings.saveKunde(projektkunde.getText());
+                    Settings.speicherKunde(m, projektkunde.getText());
                     autoCompletionLearnWord(projektkunde.getText());
                     break;
                 default:
@@ -68,7 +68,8 @@ public class ProjektAnlegenController implements Initializable {
                 .text("Projekt wird angelegt")
                 .showInformation();
         Generator.erstelleProjekt(projektnummer.getText(), projektkunde.getText(), projektbeschreibung.getText(), rbeigenfertigung.isSelected(), projektofferte.getText(), projektursprung.getText(), m, tabPane);
-        Settings.saveKunde(projektkunde.getText());
+        Settings.speicherKunde(m, projektkunde.getText());
+
     }
 
 

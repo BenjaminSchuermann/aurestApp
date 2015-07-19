@@ -22,26 +22,37 @@ import java.util.Iterator;
 // * </ul>
 // *
 // */
-class OutlookMessage
-{
+class OutlookMessage {
     private static final Log LOG = LogFactory.getLog(OutlookMessage.class);
 
-    /** id for the mapi property "subject" */
+    /**
+     * id for the mapi property "subject"
+     */
     private static final int PROP_SUBJECT = 0x0037;
 
-    /** id for the mapi property "display from" */
+    /**
+     * id for the mapi property "display from"
+     */
     private static final int PROP_DISPLAY_FROM = 0x0C1A;
 
-    /** id for the mapi property "display to" */
+    /**
+     * id for the mapi property "display to"
+     */
     private static final int PROP_DISPLAY_TO = 0x0E04;
 
-    /** id for the mapi property "display cc" */
+    /**
+     * id for the mapi property "display cc"
+     */
     private static final int PROP_DISPLAY_CC = 0x0E03;
 
-    /** reversed endian format of the property id "client submit time" */
+    /**
+     * reversed endian format of the property id "client submit time"
+     */
     private static final byte[] PROP_CLIENT_SUBMIT_TIME = {0x40, 0x00, 0x39, 0x00};
 
-    /** reversed endian format of the property id "message delivery time" */
+    /**
+     * reversed endian format of the property id "message delivery time"
+     */
     private static final byte[] PROP_MESSAGE_DELIVERY_TIME = {0x40, 0x00, 0x06, 0x0E};
 
     private String subject = null;
@@ -56,13 +67,11 @@ class OutlookMessage
 
     private Date messageDeliveryTime;
 
-    public OutlookMessage(String filename) throws IOException
-    {
+    public OutlookMessage(String filename) throws IOException {
         this(new FileInputStream(new File(filename)));
     }
 
-    private OutlookMessage(InputStream in)
-    {
+    private OutlookMessage(InputStream in) {
         try {
             POIFSFileSystem fs = new POIFSFileSystem(in);
             initMapiProperties(fs);
@@ -79,12 +88,11 @@ class OutlookMessage
         }
     }
 
-    private void initMapiProperties(POIFSFileSystem fs) throws IOException
-    {
+    private void initMapiProperties(POIFSFileSystem fs) throws IOException {
         DirectoryEntry root = fs.getRoot();
 
         for (@SuppressWarnings("rawtypes")
-             Iterator iter = root.getEntries(); iter.hasNext();) {
+             Iterator iter = root.getEntries(); iter.hasNext(); ) {
             Entry entry = (Entry) iter.next();
             if (!(entry instanceof DocumentEntry)) {
                 continue;
@@ -137,8 +145,7 @@ class OutlookMessage
         }
     }
 
-    private byte[] getBytes(DocumentEntry docEntry) throws IOException
-    {
+    private byte[] getBytes(DocumentEntry docEntry) throws IOException {
         DocumentInputStream dis = new DocumentInputStream(docEntry);
         byte[] propBytes = new byte[dis.available()];
 
@@ -157,8 +164,7 @@ class OutlookMessage
         return propBytes;
     }
 
-    private String getString(byte[] bytes, boolean isUnicode)
-    {
+    private String getString(byte[] bytes, boolean isUnicode) {
         if (ArrayUtils.isEmpty(bytes)) {
             return null;
         }
@@ -191,29 +197,25 @@ class OutlookMessage
         return null;
     }
 
-    private boolean isUnicodeString(int type)
-    {
+    private boolean isUnicodeString(int type) {
         return (type == 0x001F); // for not unicode string type = 0x001E
     }
 
-    private byte[] read4(byte[] data, int offset)
-    {
+    private byte[] read4(byte[] data, int offset) {
         byte[] readBytes = new byte[4];
         System.arraycopy(data, offset, readBytes, 0, 4);
 
         return readBytes;
     }
 
-    private byte[] read8(byte[] data, int offset)
-    {
+    private byte[] read8(byte[] data, int offset) {
         byte[] readBytes = new byte[8];
         System.arraycopy(data, offset, readBytes, 0, 8);
 
         return readBytes;
     }
 
-    private boolean compare(byte[] b1, byte[] b2)
-    {
+    private boolean compare(byte[] b1, byte[] b2) {
         for (int i = 0; i < b1.length; ++i) {
             if (b1[i] != b2[i]) {
                 return false;
@@ -223,8 +225,7 @@ class OutlookMessage
         return true;
     }
 
-    private Date getDate(byte[] propBytes, int offset)
-    {
+    private Date getDate(byte[] propBytes, int offset) {
         // read value
         byte[] value = read8(propBytes, offset + 8);
 
@@ -240,15 +241,27 @@ class OutlookMessage
 
     // getter
 
-    public String getSubject() {return subject;}
+    public String getSubject() {
+        return subject;
+    }
 
-    public String getDisplayFrom() {return displayFrom;}
+    public String getDisplayFrom() {
+        return displayFrom;
+    }
 
-    public String getDisplayTo() {return displayTo;}
+    public String getDisplayTo() {
+        return displayTo;
+    }
 
-    public String getDisplayCc() {return displayCc;}
+    public String getDisplayCc() {
+        return displayCc;
+    }
 
-    public Date getClientSubmitTime() {return clientSubmitTime;}
+    public Date getClientSubmitTime() {
+        return clientSubmitTime;
+    }
 
-    public Date getMessageDeliveryTime() {return messageDeliveryTime;}
+    public Date getMessageDeliveryTime() {
+        return messageDeliveryTime;
+    }
 }

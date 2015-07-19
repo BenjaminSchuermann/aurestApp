@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 
-public class Email{
+public class Email {
     private final Model m;
     private final boolean debug = false;
     private int doppelcount = 0;
@@ -16,20 +16,20 @@ public class Email{
     private int anzahlDoppelt = 0;
     private int error = 0;
 
-    public Email(Model m){
+    public Email(Model m) {
         this.m = m;
     }
 
     public void renameMail(File file) {
 
-        if(debug)System.out.println("Das ist File:"+file);
+        if (debug) System.out.println("Das ist File:" + file);
 //		System.out.println("Dateiparent:"+file.getParent());
 //		System.out.println("Dateiname:"+file.getName());
 //        System.out.println("Dateiname:"+getFileName(file).replaceAll("\t", " "));
         boolean res = false;
         anzahlGesamt++;
         try {
-            res = file.renameTo(new File(file.getParent()+"//"+getFileName(file)+".msg"));
+            res = file.renameTo(new File(file.getParent() + "//" + getFileName(file) + ".msg"));
             if (!res) {
                 checkNameDoppelt(new File(file.getParent() + "//" + getFileName(file) + ".msg"), file);
             } else
@@ -41,21 +41,21 @@ public class Email{
             e.printStackTrace();
 
         }
-        if(debug)System.out.println("Datei umbennant:"+res);
+        if (debug) System.out.println("Datei umbennant:" + res);
     }
 
-    public String getStatus(){
+    public String getStatus() {
         String text;
-        String textDoppelt="";
-        if(anzahlDoppelt>1)
-            textDoppelt = anzahlDoppelt+" sind doppelt";
-        else if(anzahlDoppelt==1)
+        String textDoppelt = "";
+        if (anzahlDoppelt > 1)
+            textDoppelt = anzahlDoppelt + " sind doppelt";
+        else if (anzahlDoppelt == 1)
             textDoppelt = "1 ist doppelt";
 
-        if(anzahlGesamt>1)
-        text = "Es wurden "+anzahlGesamt+" eMails gefunden. "+anzahlOk+" wurden umbennant. "+textDoppelt;
+        if (anzahlGesamt > 1)
+            text = "Es wurden " + anzahlGesamt + " eMails gefunden. " + anzahlOk + " wurden umbennant. " + textDoppelt;
         else
-            text = "Es wurde 1 eMail gefunden. "+anzahlOk+" wurde umbennant. "+textDoppelt;
+            text = "Es wurde 1 eMail gefunden. " + anzahlOk + " wurde umbennant. " + textDoppelt;
         if (error == 1)
             text += "\nEs wurde ein Fehler bei der Bearbeitung festgestellt, ist eine Datei noch geöffnet ?";
         if (error > 1)
@@ -90,7 +90,7 @@ public class Email{
 
         //erste Daten parsen und initialisieren
         String betreff = "";
-        if(eMail.getSubject() != null)
+        if (eMail.getSubject() != null)
             betreff = eMail.getSubject().replaceAll("[:*?\"<>|\\\\/]", "");
         //Tabs aus dem Betreff entfernen.. wer auch immer sowas macht...
         betreff = betreff.replaceAll("\t", " ");
@@ -102,7 +102,7 @@ public class Email{
         else if (!eMail.getDisplayFrom().isEmpty())
             from = eMail.getDisplayFrom();
 
-        String einaus ="E";
+        String einaus = "E";
 
         //Kalender anlegen und mit Datum aus eMail bestücken
         Calendar cal = Calendar.getInstance();
@@ -127,37 +127,37 @@ public class Email{
 
 
         //Die Kalenderdaten auslesen
-        Integer year       = cal.get(Calendar.YEAR)-2000;
-        Integer month      = cal.get(Calendar.MONTH)+1; // Jan = 0, dec = 11
+        Integer year = cal.get(Calendar.YEAR) - 2000;
+        Integer month = cal.get(Calendar.MONTH) + 1; // Jan = 0, dec = 11
         Integer dayOfMonth = cal.get(Calendar.DAY_OF_MONTH);
-        Integer hourOfDay  = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
-        Integer minute     = cal.get(Calendar.MINUTE);
-        Integer second     = cal.get(Calendar.SECOND);
+        Integer hourOfDay = cal.get(Calendar.HOUR_OF_DAY); // 24 hour clock
+        Integer minute = cal.get(Calendar.MINUTE);
+        Integer second = cal.get(Calendar.SECOND);
 
         //Und entsprechend zusammensetzte, hier die führenden 0 bei Zahlen <10 anfügen
         String Omonth = month.toString();
-        if(month<10) Omonth = "0"+ Omonth;
+        if (month < 10) Omonth = "0" + Omonth;
 
         String OdayOfMonth = dayOfMonth.toString();
-        if(dayOfMonth<10) OdayOfMonth = "0"+ OdayOfMonth;
+        if (dayOfMonth < 10) OdayOfMonth = "0" + OdayOfMonth;
 
         String OhourOfDay = hourOfDay.toString();
-        if(hourOfDay<10) OhourOfDay = "0"+ OhourOfDay;
+        if (hourOfDay < 10) OhourOfDay = "0" + OhourOfDay;
 
         String Ominute = minute.toString();
-        if(minute<10) Ominute = "0"+ Ominute;
+        if (minute < 10) Ominute = "0" + Ominute;
 
         String Osecond = second.toString();
-        if(second<10) Osecond = "0"+ Osecond;
+        if (second < 10) Osecond = "0" + Osecond;
 
         //Den laaangen Dateinamen erzeugen
         //System.out.println(dateiname);
 
         //Und ausgeben
-        return year.toString()+Omonth+OdayOfMonth+"_"+einaus+"_"+betreff+" "+OhourOfDay+"_"+Ominute+"_"+Osecond;
+        return year.toString() + Omonth + OdayOfMonth + "_" + einaus + "_" + betreff + " " + OhourOfDay + "_" + Ominute + "_" + Osecond;
     }
 
-    private String getProjektPfad(String Projektnummer){
+    private String getProjektPfad(String Projektnummer) {
         String pfadsp;
         String spshort;
         String spkomplett;
@@ -165,23 +165,23 @@ public class Email{
         spshort = Projektnummer.substring(0, 2);
         //System.out.print(spshort);
         File test;
-        if(Integer.parseInt(spshort) <= 60){
-            test = new File("Q:/"+spshort+"__/");
-        }else{
-            test = new File("Q:/"+spshort+"_/");
+        if (Integer.parseInt(spshort) <= 60) {
+            test = new File("Q:/" + spshort + "__/");
+        } else {
+            test = new File("Q:/" + spshort + "_/");
         }
-        spkomplett = searchFile(test,Projektnummer);
+        spkomplett = searchFile(test, Projektnummer);
 
         //System.out.print(test.toString());
         //System.out.println(spkomplett);
 
-        if(Integer.parseInt(spshort) <= 60){
-            pfadsp = "Q:/"+spshort+"__/"+spkomplett+"/Dok/E-Mail/";
-        }else{
-            pfadsp = "Q:/"+spshort+"_/"+spkomplett+"/Dok/E-Mail/";
+        if (Integer.parseInt(spshort) <= 60) {
+            pfadsp = "Q:/" + spshort + "__/" + spkomplett + "/Dok/E-Mail/";
+        } else {
+            pfadsp = "Q:/" + spshort + "_/" + spkomplett + "/Dok/E-Mail/";
         }
-        pfadsp=pfadsp.replace("/", "\\");
-        if(debug)System.out.println(pfadsp);
+        pfadsp = pfadsp.replace("/", "\\");
+        if (debug) System.out.println(pfadsp);
         return pfadsp;
     }
 
@@ -196,7 +196,7 @@ public class Email{
                     // übereinstimmt. Groß-/Kleinschreibung wird
                     // ignoriert.
                     matches = file.getName();
-                    if(debug)System.out.println(file.getName());
+                    if (debug) System.out.println(file.getName());
                     break;
                 }
             }

@@ -18,7 +18,9 @@ import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.glyphfont.GlyphFont;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Optional;
 
 public class Login {
@@ -93,17 +95,8 @@ public class Login {
             Dialoge.exceptionDialog(e, "Der Datenbanktreiber kann nicht geladen werden");
             return 0;
         }
-        //Verbindungsparameter
-        Connection conn = null;
-        try {
-            conn = DriverManager.
-                    getConnection("jdbc:h2:tcp://" + m.getSERVERADRESSE() + "/" + m.getDATENBANK() + "", m.getDBLOGIN(), m.getDBPASSWORT());
-        } catch (SQLException e) {
-            Dialoge.exceptionDialog(e, "Die Datenbank kann nicht erreicht werden");
-            return 0;
-        }
         //Ein "Statement" erzeugen
-        Statement stmt = conn.createStatement();
+        Statement stmt = m.getConn().createStatement();
 
         //Solange kein gültiger Login eingegeben wurde, wiederhole die Eingabemöglichkeit
         do {
@@ -116,20 +109,24 @@ public class Login {
                     String user = usernamePassword.getKey();
                     String pw = usernamePassword.getValue();
 
-                    //todo entfernen - Hintertür zum testen
-                    if (user.equals("backdoor") && pw.equals("backdoor")) {
-                        loginok = true;
-                        userid = 1000;
-                        return;
-                    }
-
                     //... dann in der Datenbank prüfen ob es die Kombination aus Login und PW gibt....
-                    ResultSet rs = stmt.executeQuery("select * from LOGINS where LOGINNAME='" + user + "' and PASSWORT='" + pw + "'");
+                    ResultSet rs = stmt.executeQuery("select * from LOGINS where LOGINNAME='" + user + "' and PASSWORT='" + pw + "' and AKTIV");
                     while (rs.next()) {
                         //...wenn ja, dann setze den Login auf ok und speicher die UserID
                         loginok = true;
                         userid = rs.getInt("ID");
                     }
+                    if (loginok) {
+                        //Benutzerdaten laden
+                        rs = stmt.executeQuery("select * from MITARBEITER where ID='" + userid + "';");
+                        while (rs.next()) {
+                            m.setNutzername(rs.getString("NAME"));
+                            m.setEmail(rs.getString("EMAIL"));
+                            m.setKuerzel(rs.getString("KURZ"));
+                            m.setIsadmin(rs.getBoolean("ISADMIN"));
+                        }
+                    }
+
                 } catch (SQLException e) {
                     Dialoge.exceptionDialog(e, "Fehler bei der Datenbankabfrage");
                 }
@@ -148,12 +145,6 @@ public class Login {
             stmt.close();
         } catch (SQLException e) {
             Dialoge.exceptionDialog(e, "Statement kann nicht geschlossen werden");
-            return 0;
-        }
-        try {
-            conn.close();
-        } catch (SQLException e) {
-            Dialoge.exceptionDialog(e, "Die Datenbankverbindung kann nicht abgebaut werden");
             return 0;
         }
         //Die userid des eingeloggten Benutzers zurückgeben

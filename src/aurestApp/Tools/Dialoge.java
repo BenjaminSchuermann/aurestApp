@@ -55,7 +55,8 @@ public class Dialoge {
     public static void AnzeigeClose() {
         infoAnzeige.close();
     }
-    public static void showWartebalken(String text){
+
+    public static void showWartebalken(String text) {
 
         stage.getIcons().add(new Image("file:src/aurestApp/img/a128x128.png"));
 
@@ -81,12 +82,13 @@ public class Dialoge {
         vBox.setSpacing(10);
         vBox.setPadding(new Insets(10, 0, 0, 10));
         vBox.setAlignment(Pos.TOP_CENTER);
-        vBox.getChildren().addAll(infotext,progressBar);
+        vBox.getChildren().addAll(infotext, progressBar);
 
         //add all nodes to main root group
         rootGroup.getChildren().addAll(vBox);
     }
-    public static void closeWartebalken(){
+
+    public static void closeWartebalken() {
         stage.close();
     }
 

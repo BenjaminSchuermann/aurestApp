@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" VBox.vgrow="ALWAYS">
+<VBox xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40">
     <children>
 
         <Label id="info" text="Projektvorlagen :"/>
@@ -32,6 +31,24 @@
             <children>
                 <TextField id="servicevorlage" fx:id="servicevorlage" editable="false" HBox.hgrow="ALWAYS"/>
                 <Button id="servicevorlageordnerwaehlen" fx:id="servicevorlageordnerwaehlen" mnemonicParsing="false" onAction="#waehlenServicevorlageOrdner" text="Ordner wählen">
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </HBox>
+        <Label id="info" layoutX="25.0" layoutY="86.0" text="Offertenvorlage :">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <HBox layoutX="25.0" layoutY="109.0">
+            <children>
+                <TextField id="offertevorlage" fx:id="offertevorlage" editable="false" HBox.hgrow="ALWAYS"/>
+                <Button id="offertevorlageordnerwaehlen" fx:id="offertevorlageordnerwaehlen" mnemonicParsing="false" onAction="#waehlenOffertevorlageOrdner" text="Ordner wählen">
                     <HBox.margin>
                         <Insets left="15.0"/>
                     </HBox.margin>

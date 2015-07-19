@@ -5,6 +5,7 @@ import aurestApp.Tools.Login;
 import aurestApp.Tools.Settings;
 import aurestApp.interfaces.Seiten;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -12,7 +13,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Main extends Application implements Seiten {
@@ -24,8 +24,15 @@ public class Main extends Application implements Seiten {
 
     @Override
     public void start(Stage stage) throws Exception {
+        stage.setOnCloseRequest(e -> {
+            m.closeDB();
+            Platform.exit();
+            System.exit(0);
+        });
+
         //als erstes das Loginfeld anzeigen und die userid holen
         int userid = Login.login(m);
+
 
         //hat ein Login stattgefunden dann starte das eigentliche Programm
         if (userid != 0) {
@@ -42,7 +49,8 @@ public class Main extends Application implements Seiten {
             stage.setScene(erstelleScene(m));
 
             stage.show();
-        }
+        } else
+            m.closeDB();
     }
 
     private Scene erstelleScene(Model m) throws IOException {
@@ -62,13 +70,9 @@ public class Main extends Application implements Seiten {
     }
 
     private void initialisierung() throws SQLException {
-        Settings.checkSettings();
-
-        Connection conn = Settings.connectDB(m);
-        m.setKundennamen(Settings.ladeKunden(conn));
-        m.setServicejahr(Settings.getServiceJahr(conn));
-        m.setVorlagen(Settings.getVorlagen(conn));
-        m.setMitarbeiterListe(Settings.getNamesFrom(conn));
-        Settings.closeDB(conn);
+        Settings.ladeKunden(m);
+        Settings.ladeServiceJahr(m);
+        Settings.ladeVorlagen(m);
+        Settings.ladeMitarbeiter(m);
     }
 }

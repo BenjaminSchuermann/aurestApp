@@ -7,7 +7,7 @@
         <Menu text="Menü">
             <MenuItem onAction="#handelProjekt" text="Projekt"/>
             <MenuItem onAction="#handelService" text="Service"/>
-                <!-- <MenuItem onAction="#handelProjektArchivieren" text="archivieren"/>  -->
+            <!-- <MenuItem onAction="#handelProjektArchivieren" text="archivieren"/>  -->
 
             <MenuItem onAction="#handelEmail" text="eMails umbennen"/>
             <SeparatorMenuItem/>
@@ -15,10 +15,11 @@
         </Menu>
 
         <Menu text="Einstellungen">
-            <MenuItem onAction="#handelEmailEinstellungen" text="eMails umbennen"/>
-            <MenuItem onAction="#handelServiceEinstellungen" text="Servicejahr"/>
-            <MenuItem onAction="#handelVorlagenEinstellungen" text="Ordnervorlagen"/>
-            <MenuItem onAction="#handelKundenEinstellungen" text="Kunden"/>
+            <MenuItem fx:id="setEmailEinstellungen" onAction="#handelEmailEinstellungen" text="eMails umbennen"/>
+            <MenuItem fx:id="setServiceEinstellungen" onAction="#handelServiceEinstellungen" text="Servicejahr"/>
+            <MenuItem fx:id="setVorlagenEinstellungen" onAction="#handelVorlagenEinstellungen" text="Ordnervorlagen"/>
+            <MenuItem fx:id="setKundenEinstellungen" onAction="#handelKundenEinstellungen" text="Kunden"/>
+            <MenuItem fx:id="setLoginEinstellungen" onAction="#handelLoginEinstellungen" text="Logindaten"/>
         </Menu>
         <Menu text="Über">
             <MenuItem onAction="#handelInfo" text="Info"/>

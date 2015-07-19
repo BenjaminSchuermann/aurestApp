@@ -1,4 +1,4 @@
-#erstelleProjekt{
+#erstelleProjekt {
     -fx-graphic: url("../img/mActionEditPaste.png");
 }
 
@@ -6,7 +6,7 @@
     -fx-graphic: url("../img/mActionEditPaste.png");
 }
 
-#erstelleProjektLogbuch{
+#erstelleProjektLogbuch {
     -fx-graphic: url("../img/mActionOpenTable.png");
 }
 
@@ -18,11 +18,12 @@
     -fx-graphic: url("../img/e-mail-97624.png");
 }
 
-#beispiellabel{
+#beispiellabel {
     -fx-text-fill: darkgray;
     -fx-alignment: center-right;
     -fx-pref-width: 160px;
 }
+
 #infohead {
     -fx-font-size: 30px;
     -fx-effect: dropshadow(gaussian, blue, 20, 0.2, 0, 0);

@@ -6,31 +6,56 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-class MainController implements Seiten {
+class MainController implements Seiten, Initializable {
     private final Model m;
     @FXML
     private VBox programmInhalt;
+    @FXML
+    private MenuItem setEmailEinstellungen;
+    @FXML
+    private MenuItem setServiceEinstellungen;
+    @FXML
+    private MenuItem setVorlagenEinstellungen;
+    @FXML
+    private MenuItem setKundenEinstellungen;
+    @FXML
+    private MenuItem setLoginEinstellungen;
 
     public MainController(Model m) {
         this.m = m;
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if (!m.isadmin()) {
+            setEmailEinstellungen.setVisible(false);
+            setServiceEinstellungen.setVisible(false);
+            setVorlagenEinstellungen.setVisible(false);
+            setKundenEinstellungen.setVisible(false);
+        }
+    }
+
     public void startBild() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(UEBERINFO));
         loader.setController(new UeberInfoController(m));
-            Node mainNode = loader.load();
-            setInhalt(mainNode);
+        Node mainNode = loader.load();
+        setInhalt(mainNode);
     }
 
     private void setInhalt(Node node) {
         programmInhalt.getChildren().setAll(node);
 
     }
+
     @FXML
     private void handelProjekt(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(PROJEKT));
@@ -38,6 +63,7 @@ class MainController implements Seiten {
         Node mainNode = loader.load();
         setInhalt(mainNode);
     }
+
     @FXML
     private void handelProjektArchivieren(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(PROJEKTARCHIVIEREN));
@@ -45,13 +71,15 @@ class MainController implements Seiten {
         Node mainNode = loader.load();
         setInhalt(mainNode);
     }
+
     @FXML
     private void handelService(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(SERVICE));
         loader.setController(new ServiceSeiteController(m));
-            Node mainNode = loader.load();
-            setInhalt(mainNode);
+        Node mainNode = loader.load();
+        setInhalt(mainNode);
     }
+
     @FXML
     private void handelEmail(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(EMAILSBEARBEITEN));
@@ -59,6 +87,7 @@ class MainController implements Seiten {
         Node mainNode = loader.load();
         setInhalt(mainNode);
     }
+
     @FXML
     private void handelEmailEinstellungen(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(EINSTELLUNGENEMAILS));
@@ -66,6 +95,7 @@ class MainController implements Seiten {
         Node mainNode = loader.load();
         setInhalt(mainNode);
     }
+
     @FXML
     private void handelServiceEinstellungen(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(EINSTELLUNGENSERVICE));
@@ -73,6 +103,7 @@ class MainController implements Seiten {
         Node mainNode = loader.load();
         setInhalt(mainNode);
     }
+
     @FXML
     private void handelVorlagenEinstellungen(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(EINSTELLUNGENVORLAGEN));
@@ -90,14 +121,26 @@ class MainController implements Seiten {
     }
 
     @FXML
+    private void handelLoginEinstellungen(ActionEvent actionEvent) throws IOException {
+        //todo eigenes LoginPW ändern
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource(EINSTELLUNGENKUNDEN));
+        //loader.setController(new EinstellungenKundenController(m));
+        //Node mainNode = loader.load();
+        //setInhalt(mainNode);
+    }
+
+
+    @FXML
     private void handelInfo(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(UEBERINFO));
         loader.setController(new UeberInfoController(m));
         Node mainNode = loader.load();
         setInhalt(mainNode);
     }
+
     @FXML
     private void handelExit(ActionEvent actionEvent) {
+        m.closeDB();
         Platform.exit();
     }
 }

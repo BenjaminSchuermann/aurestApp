@@ -1,6 +1,11 @@
 package aurestApp;
 
-import java.io.File;
+import aurestApp.Tools.Dialoge;
+
+import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,10 +14,10 @@ import java.util.Date;
 public class Model {
     private final String aktuellerBenutzer;
     private final String aktuellesDatum;
-    final private String SERVERADRESSE = "192.168.0.56";
-    final private String DATENBANK = "~/aurestApp";
-    final private String DBLOGIN = "h2";
-    final private String DBPASSWORT = "aurestApp";
+    private String SERVERADRESSE;
+    private String DATENBANK;
+    private String DBLOGIN;
+    private String DBPASSWORT;
     private String servicejahr;
     private ArrayList<String> mitarbeiterListe;
     private File[] emailListe;
@@ -48,14 +53,21 @@ public class Model {
     private String projektUrprojekt;
     private boolean projektToLog;
     private String vorlagenOfferte;
+    private Connection conn;
+    private String nutzername;
+    private String kuerzel;
+    private String email;
+    private boolean isadmin;
 
     public Model() {
+        ladeDatenbankEinstellungen();
+        connectDB();
         this.aktuellesDatum = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
         this.aktuellerBenutzer = System.getProperty("user.name");
     }
 
     public String getVersion() {
-        return "1.1.1";
+        return "1.1.2";
     }
 
     public String getServicejahr() {
@@ -358,5 +370,94 @@ public class Model {
 
     public String getDATENBANK() {
         return DATENBANK;
+    }
+
+    private void ladeDatenbankEinstellungen() {
+        File file = new File("../cfg/dbconnect.ini");
+        if (!file.exists()) {
+            try {
+                PrintWriter pWriter = new PrintWriter("../cfg/dbconnect.ini", "UTF-8");
+                pWriter.println("Adresse");
+                pWriter.println("Datenbank");
+                pWriter.println("Login");
+                pWriter.println("Passwort");
+                pWriter.close();
+
+            } catch (IOException e) {
+                Dialoge.exceptionDialog(e, "Fehler beim anlegen der Konfigurationsdatei");
+                return;
+            }
+        }
+        try {
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    new FileInputStream("../cfg/dbconnect.ini"), "UTF-8"));
+            SERVERADRESSE = in.readLine();
+            DATENBANK = in.readLine();
+            DBLOGIN = in.readLine();
+            DBPASSWORT = in.readLine();
+            in.close();
+        } catch (IOException e) {
+            Dialoge.exceptionDialog(e, "Die Datenbankeinstellungen können nicht gefunden werden");
+        }
+    }
+
+    private void connectDB() {
+        //Und ab zur Datenbank, den Datenbanktreiber laden
+        try {
+            Class.forName("org.h2.Driver");
+        } catch (ClassNotFoundException e) {
+            Dialoge.exceptionDialog(e, "Der Datenbanktreiber kann nicht geladen werden");
+        }
+        //Verbindungsparameter
+        try {
+            conn = DriverManager.
+                    getConnection("jdbc:h2:tcp://" + getSERVERADRESSE() + "/" + getDATENBANK() + "", getDBLOGIN(), getDBPASSWORT());
+        } catch (SQLException e) {
+            Dialoge.exceptionDialog(e, "Die Datenbank kann nicht erreicht werden");
+        }
+    }
+
+    public void closeDB() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            Dialoge.exceptionDialog(e, "Datenbankverbindung konnte nicht geschlossen werden");
+        }
+    }
+
+    public Connection getConn() {
+        return conn;
+    }
+
+    public String getNutzername() {
+        return nutzername;
+    }
+
+    public void setNutzername(String nutzername) {
+        this.nutzername = nutzername;
+    }
+
+    public String getKuerzel() {
+        return kuerzel;
+    }
+
+    public void setKuerzel(String kuerzel) {
+        this.kuerzel = kuerzel;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isadmin() {
+        return isadmin;
+    }
+
+    public void setIsadmin(boolean isadmin) {
+        this.isadmin = isadmin;
     }
 }

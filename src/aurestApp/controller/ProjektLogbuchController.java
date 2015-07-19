@@ -43,7 +43,7 @@ public class ProjektLogbuchController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         pldatum.setPromptText(m.getAktuellesDatum());
-        plmitarbeiter.setPromptText(m.getAktuellerBenutzer());
+        plmitarbeiter.setPromptText(m.getKuerzel());
         if (m.isProjektToLog()) {
             plurprojekt.setText(m.getProjektUrprojekt());
             plprojekt.setText(m.getProjektNummer());
@@ -53,7 +53,7 @@ public class ProjektLogbuchController implements Initializable {
     }
 
     @FXML
-    private void handelProjektLogbuch(ActionEvent actionEvent){
+    private void handelProjektLogbuch(ActionEvent actionEvent) {
         Notifications.create().darkStyle()
                 .title("Neuer Lobbucheintrag")
                 .text("Bitte warten während der Logbucheintrag erstellt wird")
@@ -64,7 +64,7 @@ public class ProjektLogbuchController implements Initializable {
         m.setProjektLogAnlagenteil(planlagenteil.getText());
 
         LocalDate date = pldatum.getValue();
-        if(date == null) {
+        if (date == null) {
             date = LocalDate.now();
         }
         m.setProjektLogDatum(date);

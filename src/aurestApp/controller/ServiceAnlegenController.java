@@ -57,7 +57,7 @@ public class ServiceAnlegenController implements Initializable {
         servicekunde.setOnKeyPressed(ke -> {
             switch (ke.getCode()) {
                 case ENTER:
-                    Settings.saveKunde(servicekunde.getText());
+                    Settings.speicherKunde(m, servicekunde.getText());
                     autoCompletionLearnWord(servicekunde.getText());
                     break;
                 default:
@@ -76,7 +76,7 @@ public class ServiceAnlegenController implements Initializable {
         String serviceJahr = servicejahr.getText();
         if (serviceJahr.isEmpty())
             serviceJahr = servicejahr.getPromptText();
-        Settings.saveKunde(servicekunde.getText());
+        Settings.speicherKunde(m, servicekunde.getText());
         Generator.erstelleService(serviceJahr + "." + servicenummer.getText(), servicekunde.getText(), servicebeschreibung.getText(), false, serviceprojekt.getText(), m, tabPane);
 
     }

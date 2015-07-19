@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 
 import java.io.File;
 import java.net.URL;
@@ -23,9 +24,13 @@ public class EinstellungenVorlagenController implements Initializable {
     @FXML
     private TextField servicevorlage;
     @FXML
+    private TextField offertevorlage;
+    @FXML
     private Button projektvorlagenordnerwaehlen;
     @FXML
     private Button servicevorlageordnerwaehlen;
+    @FXML
+    private Button offertevorlageordnerwaehlen;
 
     public EinstellungenVorlagenController(Model m) {
         this.m = m;
@@ -35,6 +40,8 @@ public class EinstellungenVorlagenController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         projektvorlagen.setText(m.getVorlagenProjekt());
         servicevorlage.setText(m.getVorlagenService());
+        offertevorlage.setText(m.getVorlagenOfferte());
+
     }
 
     @FXML
@@ -56,8 +63,11 @@ public class EinstellungenVorlagenController implements Initializable {
                 //wenn ja dann als in das Textfeld geben
                 projektvorlagen.setText(projektVorlagen.toString());
         } else
-            //Meldung falls abgebrochen wurde
-            Dialoge.DialogAnzeigeBox("fehler", "Es wurde kein Ordner gewählt");
+            //Meldung rausgeben
+            Notifications.create().darkStyle()
+                    .title("Abbruch")
+                    .text("Es wurde kein Ordner gewählt")
+                    .showError();
 
     }
 
@@ -74,7 +84,31 @@ public class EinstellungenVorlagenController implements Initializable {
         if (serviceVorlage != null) {
             servicevorlage.setText(serviceVorlage.toString());
         } else
-            Dialoge.DialogAnzeigeBox("fehler", "Es wurde kein Ordner gewählt");
+            //Meldung rausgeben
+            Notifications.create().darkStyle()
+                    .title("Abbruch")
+                    .text("Es wurde kein Ordner gewählt")
+                    .showError();
+    }
+
+    @FXML
+    private void waehlenOffertevorlageOrdner(ActionEvent actionEvent) {
+        //Ordner auswählen
+        DirectoryChooser dirChooser = new DirectoryChooser();
+        dirChooser.setTitle("Offertenvorlageordner auswählen");
+
+        Stage stage = (Stage) offertevorlageordnerwaehlen.getScene().getWindow();
+        //Ordnerauswahl anzeigen
+        File offerteVorlage = dirChooser.showDialog(stage);
+        //Prüfen ob ein Ordner gewählt wurde
+        if (offerteVorlage != null) {
+            offertevorlage.setText(offerteVorlage.toString());
+        } else
+            //Meldung rausgeben
+            Notifications.create().darkStyle()
+                    .title("Abbruch")
+                    .text("Es wurde kein Ordner gewählt")
+                    .showError();
     }
 
     @FXML
@@ -82,7 +116,8 @@ public class EinstellungenVorlagenController implements Initializable {
         ArrayList<String> list = new ArrayList<>();
         list.add(projektvorlagen.getText());
         list.add(servicevorlage.getText());
-        m.setVorlagen(list);
-        Settings.saveSettings(m);
+        list.add(offertevorlage.getText());
+
+        Settings.speicherVorlagen(m, list);
     }
 }

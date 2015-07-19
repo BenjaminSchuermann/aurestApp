@@ -57,8 +57,8 @@ public class ServiceLogbuchController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         servicejahr.setPromptText(m.getServicejahr());
         sldatum.setPromptText(m.getAktuellesDatum());
-        slmitarbeiter.setPromptText(m.getAktuellerBenutzer());
-        //nun völlig unnütz
+        slmitarbeiter.setPromptText(m.getKuerzel());
+
         if (m.isServiceToLog()) {
             slurprojekt.setText(m.getServiceUrprojekt());
             servicenummer.setText(m.getServiceNummer());

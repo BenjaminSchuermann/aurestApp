@@ -26,7 +26,6 @@ public class EinstellungenServiceController implements Initializable {
 
     @FXML
     private void speicherEinstellungen(ActionEvent actionEvent) {
-        m.setServicejahr(servicejahr.getText());
-        Settings.saveSettings(m);
+        Settings.speicherServicejahr(m, servicejahr.getText());
     }
 }
