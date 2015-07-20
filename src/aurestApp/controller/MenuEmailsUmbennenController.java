@@ -7,18 +7,24 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class MenuEmailsUmbennenController {
+public class MenuEmailsUmbennenController implements Initializable {
     private final Model m;
     private File selectedDirectory;
     private boolean emailsVorhanden;
@@ -35,6 +41,12 @@ public class MenuEmailsUmbennenController {
 
     public MenuEmailsUmbennenController(Model m) {
         this.m = m;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        emailsumbennen.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.ENVELOPE_ALT).size(25.0).color(Color.BLUE));
+        emailsumbennen.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML
@@ -128,9 +140,9 @@ public class MenuEmailsUmbennenController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.EMAILPROGRESS));
         loader.setController(new eMailProgress(selectedDirectory, listView, m));
 
-        Pane mainPane = loader.load();
+        VBox mainVbox = loader.load();
 
-        return new Scene(mainPane);
+        return new Scene(mainVbox);
 
     }
 }

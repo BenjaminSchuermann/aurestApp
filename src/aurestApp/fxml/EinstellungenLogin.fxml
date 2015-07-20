@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" VBox.vgrow="ALWAYS">
+    <children>
+        <Label text="Logindetails">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Label>
+        <Label text="Login">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <CustomTextField fx:id="login">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </CustomTextField>
+        <Label text="Passwort">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <CustomTextField fx:id="passwort">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </CustomTextField>
+        <HBox VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+            <children>
+                <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Button fx:id="speichern" mnemonicParsing="false" onAction="#speicherLogin" text="Speichern"/>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

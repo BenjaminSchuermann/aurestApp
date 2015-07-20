@@ -7,10 +7,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
 
 import java.io.File;
 import java.net.URL;
@@ -31,6 +35,8 @@ public class EinstellungenVorlagenController implements Initializable {
     private Button servicevorlageordnerwaehlen;
     @FXML
     private Button offertevorlageordnerwaehlen;
+    @FXML
+    private Button speichern;
 
     public EinstellungenVorlagenController(Model m) {
         this.m = m;
@@ -42,6 +48,8 @@ public class EinstellungenVorlagenController implements Initializable {
         servicevorlage.setText(m.getVorlagenService());
         offertevorlage.setText(m.getVorlagenOfferte());
 
+        speichern.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SAVE).size(25.0).color(Color.BLUE));
+        speichern.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

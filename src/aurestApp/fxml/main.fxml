@@ -15,7 +15,7 @@
         </Menu>
 
         <Menu text="Einstellungen">
-            <MenuItem fx:id="setEmailEinstellungen" onAction="#handelEmailEinstellungen" text="eMails umbennen"/>
+            <MenuItem fx:id="setMitarbeiterEinstellungen" onAction="#handelMitarbeiterEinstellungen" text="Mitarbeiter"/>
             <MenuItem fx:id="setServiceEinstellungen" onAction="#handelServiceEinstellungen" text="Servicejahr"/>
             <MenuItem fx:id="setVorlagenEinstellungen" onAction="#handelVorlagenEinstellungen" text="Ordnervorlagen"/>
             <MenuItem fx:id="setKundenEinstellungen" onAction="#handelKundenEinstellungen" text="Kunden"/>

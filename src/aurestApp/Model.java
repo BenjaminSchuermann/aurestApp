@@ -1,6 +1,7 @@
 package aurestApp;
 
 import aurestApp.Tools.Dialoge;
+import aurestApp.Tools.Mitarbeiter;
 
 import java.io.*;
 import java.sql.Connection;
@@ -19,7 +20,7 @@ public class Model {
     private String DBLOGIN;
     private String DBPASSWORT;
     private String servicejahr;
-    private ArrayList<String> mitarbeiterListe;
+    private ArrayList<Mitarbeiter> mitarbeiterListe;
     private File[] emailListe;
     private String vorlagenProjekt;
     private String vorlagenService;
@@ -57,7 +58,10 @@ public class Model {
     private String nutzername;
     private String kuerzel;
     private String email;
+    private int userid;
     private boolean isadmin;
+    private String login;
+    private String passwort;
 
     public Model() {
         ladeDatenbankEinstellungen();
@@ -67,7 +71,7 @@ public class Model {
     }
 
     public String getVersion() {
-        return "1.1.2";
+        return "1.1.3";
     }
 
     public String getServicejahr() {
@@ -78,11 +82,11 @@ public class Model {
         this.servicejahr = servicejahr;
     }
 
-    public ArrayList<String> getMitarbeiterListe() {
+    public ArrayList<Mitarbeiter> getMitarbeiterListe() {
         return mitarbeiterListe;
     }
 
-    public void setMitarbeiterListe(ArrayList<String> mitarbeiter) {
+    public void setMitarbeiterListe(ArrayList<Mitarbeiter> mitarbeiter) {
         this.mitarbeiterListe = mitarbeiter;
     }
 
@@ -405,14 +409,14 @@ public class Model {
     private void connectDB() {
         //Und ab zur Datenbank, den Datenbanktreiber laden
         try {
-            Class.forName("org.h2.Driver");
-        } catch (ClassNotFoundException e) {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             Dialoge.exceptionDialog(e, "Der Datenbanktreiber kann nicht geladen werden");
         }
         //Verbindungsparameter
         try {
-            conn = DriverManager.
-                    getConnection("jdbc:h2:tcp://" + getSERVERADRESSE() + "/" + getDATENBANK() + "", getDBLOGIN(), getDBPASSWORT());
+            conn = DriverManager.getConnection("jdbc:mysql://" + getSERVERADRESSE() + "/" + getDATENBANK() + "?user=" + getDBLOGIN() + "&password=" + getDBPASSWORT());
+            //conn = DriverManager.getConnection("jdbc:h2:tcp://" + getSERVERADRESSE() + "/" + getDATENBANK() + "", getDBLOGIN(), getDBPASSWORT());
         } catch (SQLException e) {
             Dialoge.exceptionDialog(e, "Die Datenbank kann nicht erreicht werden");
         }
@@ -454,11 +458,35 @@ public class Model {
         this.email = email;
     }
 
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
     public boolean isadmin() {
         return isadmin;
     }
 
     public void setIsadmin(boolean isadmin) {
         this.isadmin = isadmin;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPasswort() {
+        return passwort;
+    }
+
+    public void setPasswort(String passwort) {
+        this.passwort = passwort;
     }
 }

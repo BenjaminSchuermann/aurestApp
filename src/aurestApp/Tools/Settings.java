@@ -11,23 +11,106 @@ import java.util.ArrayList;
 public class Settings {
 
     public static void ladeMitarbeiter(Model m) {
-        ArrayList<String> mitarbeiter = new ArrayList<>();
+        ArrayList<Mitarbeiter> mitarbeiter = new ArrayList<>();
         //Ein "Statement" erzeugen
         Statement stmt;
+        Statement stmt2;
         try {
             stmt = m.getConn().createStatement();
+            stmt2 = m.getConn().createStatement();
             //Statement mit der Abfrage füllen und ein Result erstellen
-            ResultSet rs = stmt.executeQuery("SELECT altname FROM ((SELECT m.NAME, a.NAME AS altname, 1 AS isalt FROM MITARBEITER  M JOIN ALTNAME  A ON M.ID = A.MITARBEITERID ) UNION ALL (SELECT m.NAME, m.NAME, 0 FROM MITARBEITER  m WHERE m.TELEAKTIV )) n ORDER BY altname ASC;");
+            //ResultSet rs = stmt.executeQuery("SELECT mitarbeitername FROM ((SELECT m.Name, a.Name AS mitarbeitername, 1 AS isalt FROM Mitarbeiter m JOIN Altname a ON m.id = a.MitarbeiterID WHERE m.eMailAktiv) UNION ALL (SELECT m.Name, m.Name, 0 FROM Mitarbeiter m WHERE m.eMailAktiv ))n ORDER BY mitarbeitername, isalt;");
+            ResultSet rs = stmt.executeQuery("SELECT m.*, l.* FROM Mitarbeiter m LEFT JOIN Logins l ON m.id = l.MitarbeiterID ORDER BY m.Name ASC");
             //Lade die Mitarbeiternamen und alternativen Namen
             while (rs.next()) {
-                mitarbeiter.add(rs.getString("ALTNAME"));
+                int userid = rs.getInt("ID");
+                ResultSet rsalts = stmt2.executeQuery("SELECT Name FROM Altname a WHERE a.id = " + userid + " ORDER BY a.Name ASC");
+                ArrayList<String> altnamen = new ArrayList<>();
+                while (rsalts.next()) {
+                    altnamen.add(rsalts.getString("Name"));
+                }
+                mitarbeiter.add(new Mitarbeiter(userid, rs.getString("Name"), rs.getString("eMail"), rs.getString("Kurz"), rs.getBoolean("TeleAktiv"), rs.getBoolean("eMailAktiv"), rs.getBoolean("isAdmin"), rs.getBoolean("Aktiv"), rs.getString("Login"), rs.getString("Passwort"), altnamen));
             }
+            //fertig
+            stmt.close();
+            stmt2.close();
         } catch (SQLException e) {
             Dialoge.exceptionDialog(e, "Fehler beim laden der Mitarbeiterliste");
             return;
         }
         m.setMitarbeiterListe(mitarbeiter);
     }
+
+    public static void updateMitarbeiter(Model m, Mitarbeiter mitarbeiter) {
+        Statement stmt;
+        try {
+            stmt = m.getConn().createStatement();
+            //Speichern der Personendaten
+            stmt.execute("UPDATE Mitarbeiter SET " +
+                    "Name ='" + mitarbeiter.getName() + "', " +
+                    "Kurz ='" + mitarbeiter.getKurz() + "'," +
+                    "eMail ='" + mitarbeiter.getEmail() + "'," +
+                    "TeleAktiv ='" + (mitarbeiter.getTeleAktiv() ? 1 : 0) + "'," +
+                    "eMailAktiv ='" + (mitarbeiter.geteMailAktiv() ? 1 : 0) + "'," +
+                    "isAdmin ='" + (mitarbeiter.getIsAdmin() ? 1 : 0) + "'" +
+                    " WHERE id ='" + mitarbeiter.getUserID() + "';");
+            //Speichern der Logindaten
+            stmt.execute("UPDATE Logins SET " +
+                    "Login ='" + mitarbeiter.getLogin() + "', " +
+                    "Passwort ='" + mitarbeiter.getPasswort() + "'," +
+                    "Aktiv ='" + (mitarbeiter.getLoginAktiv() ? 1 : 0) + "'" +
+                    " WHERE MitarbeiterID ='" + mitarbeiter.getUserID() + "';");
+
+            //Die alternativen Namen für den Mitarbeiter löschen....
+            stmt.execute("DELETE FROM Altname WHERE MitarbeiterID = '" + mitarbeiter.getUserID() + "';");
+
+            //...und dann wieder hinzufügen
+            for (String s : mitarbeiter.getAltnamen()) {
+                stmt.execute("REPLACE INTO Altname (MitarbeiterID, Name) VALUES ('" + mitarbeiter.getUserID() + "','" + s + "');");
+            }
+            stmt.close();
+
+        } catch (SQLException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim speichern der Einstellungen");
+            return;
+        }
+        //und neu laden
+        ladeMitarbeiter(m);
+        //Meldung rausgeben
+        Notifications.create().darkStyle()
+                .title("Speichern")
+                .text("Die Einstellungen wurden gespeichert")
+                .showInformation();
+
+    }
+
+    public static void deleteMitarbeiter(Model m, Mitarbeiter mitarbeiter) {
+        Statement stmt;
+        try {
+            stmt = m.getConn().createStatement();
+            //Löschen der Personendaten
+            stmt.execute("DELETE FROM Mitarbeiter WHERE id ='" + mitarbeiter.getUserID() + "';");
+            //Löschen der Logindaten
+            stmt.execute("DELETE FROM Logins WHERE MitarbeiterID ='" + mitarbeiter.getUserID() + "';");
+
+            //Die alternativen Namen für den Mitarbeiter löschen....
+            stmt.execute("DELETE FROM Altname WHERE MitarbeiterID = '" + mitarbeiter.getUserID() + "';");
+
+            stmt.close();
+
+        } catch (SQLException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim löschen des Mitarbeiters");
+            return;
+        }
+        //und neu laden
+        ladeMitarbeiter(m);
+        //Meldung rausgeben
+        Notifications.create().darkStyle()
+                .title("Mitarbeiter löschen")
+                .text("Der Mitarbeiter wurde erfolgreich gelöscht")
+                .showInformation();
+    }
+
 
     public static void ladeVorlagen(Model m) {
         ArrayList<String> vorlagen = new ArrayList<>();
@@ -37,20 +120,20 @@ public class Settings {
             stmt = m.getConn().createStatement();
 
             //Statement mit der Abfrage füllen und ein Result erstellen
-            ResultSet rs = stmt.executeQuery("SELECT WERT FROM EINSTELLUNGEN WHERE CONFIG = 'projektvorlage' LIMIT 1;");
+            ResultSet rs = stmt.executeQuery("SELECT wert FROM Einstellungen WHERE config = 'projektvorlage' LIMIT 1;");
             //Lade die Projektvorlage
             while (rs.next()) {
-                vorlagen.add(rs.getString("WERT"));
+                vorlagen.add(rs.getString("wert"));
             }
-            rs = stmt.executeQuery("SELECT WERT FROM EINSTELLUNGEN WHERE CONFIG = 'servicevorlage' LIMIT 1;");
+            rs = stmt.executeQuery("SELECT wert FROM Einstellungen WHERE config = 'servicevorlage' LIMIT 1;");
             //Lade die Servicevorlage
             while (rs.next()) {
-                vorlagen.add(rs.getString("WERT"));
+                vorlagen.add(rs.getString("wert"));
             }
-            rs = stmt.executeQuery("SELECT WERT FROM EINSTELLUNGEN WHERE CONFIG = 'offertenvorlage' LIMIT 1;");
+            rs = stmt.executeQuery("SELECT wert FROM Einstellungen WHERE config = 'offertenvorlage' LIMIT 1;");
             //Lade die Offertenvorlage
             while (rs.next()) {
-                vorlagen.add(rs.getString("WERT"));
+                vorlagen.add(rs.getString("wert"));
             }
             //fertig
             stmt.close();
@@ -67,11 +150,11 @@ public class Settings {
         try {
             stmt = m.getConn().createStatement();
             //Speicher die Projektvorlage
-            stmt.execute("UPDATE EINSTELLUNGEN SET WERT ='" + vorlagen.get(0) + "' WHERE CONFIG ='projektvorlage';");
+            stmt.execute("UPDATE Einstellungen SET wert ='" + vorlagen.get(0) + "' WHERE config ='projektvorlage';");
             //Speicher die Servicevorlage
-            stmt.execute("UPDATE EINSTELLUNGEN SET WERT ='" + vorlagen.get(1) + "' WHERE CONFIG ='servicevorlage';");
+            stmt.execute("UPDATE Einstellungen SET wert ='" + vorlagen.get(1) + "' WHERE config ='servicevorlage';");
             //Speicher die Offertenvorlage
-            stmt.execute("UPDATE EINSTELLUNGEN SET WERT ='" + vorlagen.get(2) + "' WHERE CONFIG ='offertenvorlage';");
+            stmt.execute("UPDATE Einstellungen SET wert ='" + vorlagen.get(2) + "' WHERE config ='offertenvorlage';");
             //fertig
             stmt.close();
         } catch (SQLException e) {
@@ -96,11 +179,11 @@ public class Settings {
         try {
             stmt = m.getConn().createStatement();
             //Statement mit der Abfrage füllen und ein Result erstellen
-            ResultSet rs = stmt.executeQuery("SELECT WERT FROM EINSTELLUNGEN WHERE CONFIG = 'servicejahr' LIMIT 1;");
+            ResultSet rs = stmt.executeQuery("SELECT wert FROM Einstellungen WHERE config = 'servicejahr' LIMIT 1;");
             //Alle Results ausgeben
 
             while (rs.next()) {
-                servicejahr = rs.getString("WERT");
+                servicejahr = rs.getString("wert");
             }
             //fertig
             stmt.close();
@@ -117,7 +200,7 @@ public class Settings {
         try {
             stmt = m.getConn().createStatement();
             //Speicher die Projektvorlage
-            stmt.execute("UPDATE EINSTELLUNGEN SET WERT ='" + jahr.trim() + "' WHERE CONFIG ='servicejahr';");
+            stmt.execute("UPDATE Einstellungen SET wert ='" + jahr.trim() + "' WHERE config ='servicejahr';");
             //fertig
             stmt.close();
         } catch (SQLException e) {
@@ -142,10 +225,10 @@ public class Settings {
         try {
             stmt = m.getConn().createStatement();
             //Statement mit der Abfrage füllen und ein Result erstellen
-            ResultSet rs = stmt.executeQuery("SELECT KUNDE FROM KUNDEN ORDER BY KUNDE ASC;");
+            ResultSet rs = stmt.executeQuery("SELECT Kunde FROM Kunden ORDER BY Kunde ASC;");
             //Alle Results ausgeben
             while (rs.next()) {
-                kunden.add(rs.getString("KUNDE"));
+                kunden.add(rs.getString("Kunde"));
             }
             //fertig
             stmt.close();
@@ -163,7 +246,7 @@ public class Settings {
             stmt = m.getConn().createStatement();
             //Statement mit Insert erstellen
             for (String kunde : kundeliste) {
-                stmt.execute("INSERT INTO KUNDEN ( KUNDE ) SELECT * FROM (SELECT '" + kunde + "') AS tmp WHERE NOT EXISTS ( SELECT KUNDE FROM KUNDEN  WHERE KUNDE  = '" + kunde + "') LIMIT 1;");
+                stmt.execute("INSERT INTO Kunden ( Kunde ) SELECT * FROM (SELECT '" + kunde + "') AS tmp WHERE NOT EXISTS ( SELECT Kunde FROM Kunden  WHERE Kunde  = '" + kunde + "') LIMIT 1;");
             }
             //fertig
             stmt.close();
@@ -189,7 +272,7 @@ public class Settings {
             try {
                 stmt = m.getConn().createStatement();
                 //Statement mit Insert erstellen
-                stmt.execute("INSERT INTO KUNDEN ( KUNDE ) SELECT * FROM (SELECT '" + kunde.trim() + "') AS tmp WHERE NOT EXISTS ( SELECT KUNDE FROM KUNDEN  WHERE KUNDE  = '" + kunde.trim() + "') LIMIT 1;");
+                stmt.execute("INSERT INTO Kunden ( Kunde ) SELECT * FROM (SELECT '" + kunde.trim() + "') AS tmp WHERE NOT EXISTS ( SELECT Kunde FROM Kunden  WHERE Kunde  = '" + kunde.trim() + "') LIMIT 1;");
                 //fertig
                 stmt.close();
             } catch (SQLException e) {
@@ -204,6 +287,30 @@ public class Settings {
                     .text("Der neue Kunde wurde gespeichert")
                     .showInformation();
         }
+    }
+
+    public static void speicherLogin(Model m, String passwort) {
+        if (passwort.isEmpty())
+            return;
+
+        Statement stmt;
+        try {
+            stmt = m.getConn().createStatement();
+            //Statement mit Insert erstellen
+            stmt.execute("UPDATE Logins SET Passwort='" + passwort + "' WHERE MitarbeiterID ='" + m.getUserid() + "';");
+            //fertig
+            stmt.close();
+        } catch (SQLException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim speichern des Kunden");
+            return;
+        }
+        //und neu laden
+        ladeKunden(m);
+        //Meldung rausgeben
+        Notifications.create().darkStyle()
+                .title("Logindaten")
+                .text("Die Daten wurden gespeichert")
+                .showInformation();
     }
 }
 

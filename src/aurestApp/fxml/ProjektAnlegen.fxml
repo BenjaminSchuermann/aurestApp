@@ -145,8 +145,7 @@
                 <Insets top="15.0"/>
             </VBox.margin>
             <children>
-
-                <Button id="erstelleProjekt" fx:id="erstelleProjekt" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handelErstelleProjekt" text="Projektordner anlegen"/>
+                <Button id="erstelleProjekt" fx:id="erstelleProjekt" mnemonicParsing="false" onAction="#handelErstelleProjekt" text="Projektordner anlegen"/>
             </children>
         </VBox>
     </children>

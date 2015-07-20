@@ -6,12 +6,17 @@ import aurestApp.Tools.Settings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
 
 import java.net.URL;
 import java.util.HashSet;
@@ -35,8 +40,8 @@ public class ServiceAnlegenController implements Initializable {
     private TextField servicekunde;
     @FXML
     private TextField servicebeschreibung;
-    //@FXML
-    //private RadioButton rbarchiv;
+    @FXML
+    private Button erstelleService;
     @FXML
     private TextField serviceprojekt;
     private AutoCompletionBinding<String> autoCompletionBinding;
@@ -64,6 +69,9 @@ public class ServiceAnlegenController implements Initializable {
                     break;
             }
         });
+
+        erstelleService.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FILE_TEXT_ALT).size(25.0).color(Color.BLACK));
+        erstelleService.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

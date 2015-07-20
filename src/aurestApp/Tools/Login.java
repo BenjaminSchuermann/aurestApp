@@ -25,7 +25,6 @@ import java.util.Optional;
 
 public class Login {
     private static Boolean loginok = false;
-    private static int userid = 0;
 
     public static int login(Model m) throws SQLException {
         // Logindialog erstellen
@@ -88,13 +87,6 @@ public class Login {
             return null;
         });
 
-        //Und ab zur Datenbank, den Datenbanktreiber laden
-        try {
-            Class.forName("org.h2.Driver");
-        } catch (ClassNotFoundException e) {
-            Dialoge.exceptionDialog(e, "Der Datenbanktreiber kann nicht geladen werden");
-            return 0;
-        }
         //Ein "Statement" erzeugen
         Statement stmt = m.getConn().createStatement();
 
@@ -110,15 +102,17 @@ public class Login {
                     String pw = usernamePassword.getValue();
 
                     //... dann in der Datenbank prüfen ob es die Kombination aus Login und PW gibt....
-                    ResultSet rs = stmt.executeQuery("select * from LOGINS where LOGINNAME='" + user + "' and PASSWORT='" + pw + "' and AKTIV");
+                    ResultSet rs = stmt.executeQuery("select * from Logins where Login='" + user + "' and Passwort='" + pw + "' and Aktiv");
                     while (rs.next()) {
                         //...wenn ja, dann setze den Login auf ok und speicher die UserID
                         loginok = true;
-                        userid = rs.getInt("ID");
+                        m.setUserid(rs.getInt("ID"));
+                        m.setLogin(user);
+                        m.setPasswort(pw);
                     }
                     if (loginok) {
                         //Benutzerdaten laden
-                        rs = stmt.executeQuery("select * from MITARBEITER where ID='" + userid + "';");
+                        rs = stmt.executeQuery("select * from Mitarbeiter where id='" + m.getUserid() + "';");
                         while (rs.next()) {
                             m.setNutzername(rs.getString("NAME"));
                             m.setEmail(rs.getString("EMAIL"));
@@ -148,6 +142,6 @@ public class Login {
             return 0;
         }
         //Die userid des eingeloggten Benutzers zurückgeben
-        return userid;
+        return m.getUserid();
     }
 }

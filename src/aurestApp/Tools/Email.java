@@ -117,13 +117,15 @@ public class Email {
         if (from.equals("Entwurf"))
             einaus = "Entwurf";
         else
-            for (String fromMail : m.getMitarbeiterListe()) {
-                //System.out.println("fromsettings:"+fromMails[i]);
-                if (fromMail.equals(from)) {
-                    einaus = "A";
-                    break;
-                }
-            }
+            ;
+        //todo
+        //for (String fromMail : m.getMitarbeiterListe()) {
+        //    //System.out.println("fromsettings:"+fromMails[i]);
+        //    if (fromMail.equals(from)) {
+        //        einaus = "A";
+        //        break;
+        //    }
+        //}
 
 
         //Die Kalenderdaten auslesen

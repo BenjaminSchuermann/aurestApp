@@ -4,7 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.40">
+<?import org.controlsfx.control.CheckListView?>
+<?import org.controlsfx.control.textfield.CustomTextField?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="vbox" xmlns="http://javafx.com/javafx/8.0.40" VBox.vgrow="ALWAYS">
     <children>
         <Label text="Mitarbeiter Details">
             <font>
@@ -88,7 +90,7 @@
                 <VBox>
                     <children>
                         <Label text="Liste alternativer Namen"/>
-                        <ListView fx:id="listaltnamen" prefHeight="200.0" VBox.vgrow="ALWAYS"/>
+                        <CheckListView fx:id="listaltnamen" prefHeight="200.0" VBox.vgrow="ALWAYS"/>
                         <HBox>
                             <VBox.margin>
                                 <Insets top="10.0"/>
@@ -107,21 +109,21 @@
                             </VBox.margin>
                         </Separator>
                         <Label text="Login"/>
-                        <TextField fx:id="login">
+                        <CustomTextField fx:id="login">
                             <VBox.margin>
                                 <Insets top="5.0"/>
                             </VBox.margin>
-                        </TextField>
+                        </CustomTextField>
                         <Label layoutX="10.0" layoutY="241.0" text="Passwort">
                             <VBox.margin>
                                 <Insets top="10.0"/>
                             </VBox.margin>
                         </Label>
-                        <PasswordField fx:id="passwort">
+                        <CustomTextField fx:id="passwort">
                             <VBox.margin>
                                 <Insets top="5.0"/>
                             </VBox.margin>
-                        </PasswordField>
+                        </CustomTextField>
                     </children>
                     <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>

@@ -7,7 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -47,6 +50,8 @@ public class ServiceLogbuchController implements Initializable {
     private TextArea slloesung;
     @FXML
     private TextField slbemerkung;
+    @FXML
+    private Button erstellesl;
 
     public ServiceLogbuchController(Model m, TabPane tabPane) {
         this.m = m;
@@ -65,6 +70,9 @@ public class ServiceLogbuchController implements Initializable {
             m.setServiceToLog(false);
             Platform.runLater(slkontakt::requestFocus);
         }
+
+        erstellesl.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.BOOK).size(25.0).color(Color.BROWN).useGradientEffect());
+        erstellesl.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

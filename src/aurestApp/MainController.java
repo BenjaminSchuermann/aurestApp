@@ -20,7 +20,7 @@ class MainController implements Seiten, Initializable {
     @FXML
     private VBox programmInhalt;
     @FXML
-    private MenuItem setEmailEinstellungen;
+    private MenuItem setMitarbeiterEinstellungen;
     @FXML
     private MenuItem setServiceEinstellungen;
     @FXML
@@ -37,7 +37,7 @@ class MainController implements Seiten, Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (!m.isadmin()) {
-            setEmailEinstellungen.setVisible(false);
+            setMitarbeiterEinstellungen.setVisible(false);
             setServiceEinstellungen.setVisible(false);
             setVorlagenEinstellungen.setVisible(false);
             setKundenEinstellungen.setVisible(false);
@@ -89,9 +89,9 @@ class MainController implements Seiten, Initializable {
     }
 
     @FXML
-    private void handelEmailEinstellungen(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(EINSTELLUNGENEMAILS));
-        loader.setController(new EinstellungenEmailController(m));
+    private void handelMitarbeiterEinstellungen(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(EINSTELLUNGENMITARBEITER));
+        loader.setController(new EinstellungenMitarbeiterController(m));
         Node mainNode = loader.load();
         setInhalt(mainNode);
     }
@@ -122,11 +122,10 @@ class MainController implements Seiten, Initializable {
 
     @FXML
     private void handelLoginEinstellungen(ActionEvent actionEvent) throws IOException {
-        //todo eigenes LoginPW ändern
-        //FXMLLoader loader = new FXMLLoader(getClass().getResource(EINSTELLUNGENKUNDEN));
-        //loader.setController(new EinstellungenKundenController(m));
-        //Node mainNode = loader.load();
-        //setInhalt(mainNode);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(EINSTELLUNGENLOGIN));
+        loader.setController(new EinstellungenLoginDetailsController(m));
+        Node mainNode = loader.load();
+        setInhalt(mainNode);
     }
 
 

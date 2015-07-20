@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TextArea;
 import javafx.scene.paint.Color;
+import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 
 import java.net.URL;
@@ -35,7 +36,7 @@ public class EinstellungenKundenController implements Initializable {
             kundenListe += kunde + System.getProperty("line.separator");
         kundenFeld.setText(kundenListe);
 
-        speichern.setGraphic(new Glyph("FontAwesome", "SAVE").size(25.0).color(Color.BLUE).useGradientEffect());
+        speichern.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SAVE).size(25.0).color(Color.BLUE));
         speichern.setContentDisplay(ContentDisplay.LEFT);
     }
 

@@ -7,7 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -44,12 +47,16 @@ public class ProjektLogbuchController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         pldatum.setPromptText(m.getAktuellesDatum());
         plmitarbeiter.setPromptText(m.getKuerzel());
+
         if (m.isProjektToLog()) {
             plurprojekt.setText(m.getProjektUrprojekt());
             plprojekt.setText(m.getProjektNummer());
             m.setProjektToLog(false);
             Platform.runLater(planlagenteil::requestFocus);
         }
+
+        erstellepl.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.BOOK).size(25.0).color(Color.BROWN).useGradientEffect());
+        erstellepl.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

@@ -5,13 +5,13 @@ import aurestApp.Tools.Generator;
 import aurestApp.Tools.Settings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
 
 import java.net.URL;
 import java.util.HashSet;
@@ -36,6 +36,9 @@ public class ProjektAnlegenController implements Initializable {
     private ToggleGroup myToggleGroup;
     @FXML
     private RadioButton rbeigenfertigung;
+    @FXML
+    private Button erstelleProjekt;
+
     private AutoCompletionBinding<String> autoCompletionBinding;
 
     public ProjektAnlegenController(Model m, TabPane tabPane) {
@@ -59,6 +62,8 @@ public class ProjektAnlegenController implements Initializable {
             }
         });
 
+        erstelleProjekt.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FILE_POWERPOINT_ALT).size(25.0).color(Color.BLACK));
+        erstelleProjekt.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML
