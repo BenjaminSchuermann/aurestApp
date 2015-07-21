@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class MitarbeiterDetailsController implements Initializable {
+public class MitarbeiterAnlegenController implements Initializable {
     private Model m;
     private int userid;
     private Mitarbeiter mitarbeiter;
@@ -65,23 +65,15 @@ public class MitarbeiterDetailsController implements Initializable {
     @FXML
     private Button speichern;
 
-    public MitarbeiterDetailsController(Model m, Mitarbeiter mitarbeiter) {
+    public MitarbeiterAnlegenController(Model m) {
         this.m = m;
-        this.mitarbeiter = mitarbeiter;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        name.setText(mitarbeiter.getName());
-        email.setText(mitarbeiter.getEmail());
-        kuerzel.setText(mitarbeiter.getKurz());
-        emailaktiv.setSelected(mitarbeiter.geteMailAktiv());
-        telenotizaktiv.setSelected(mitarbeiter.getTeleAktiv());
-        loginaktiv.setSelected(mitarbeiter.getLoginAktiv());
-        admin.setSelected(mitarbeiter.getIsAdmin());
-        listaltnamen.setItems(FXCollections.observableArrayList(mitarbeiter.getAltnamen()));
-        login.setText(mitarbeiter.getLogin());
-        passwort.setText(mitarbeiter.getPasswort());
+
+        //Neuen Mitarbeiter mit nichts anlegen
+        mitarbeiter = new Mitarbeiter(0, "", "", "", false, false, false, false, "", "", new ArrayList<>(listaltnamen.getItems()));
 
         btn_addaltname.setDisable(true);
         //wenn etwas im Benutzernamefeld eingeben wurde, dann den Loginbutton aktivieren
@@ -89,28 +81,25 @@ public class MitarbeiterDetailsController implements Initializable {
             btn_addaltname.setDisable(newValue.trim().isEmpty());
         });
 
-        emailaktiv.setDisable(email.getText().trim().isEmpty());
+        emailaktiv.setDisable(true);
         //wenn etwas im Benutzernamefeld eingeben wurde, dann den Loginbutton aktivieren
         email.textProperty().addListener((observable, oldValue, newValue) -> {
             emailaktiv.setDisable(newValue.trim().isEmpty());
-            if(newValue.trim().isEmpty())
-                emailaktiv.setSelected(false);
+            emailaktiv.setSelected(!newValue.trim().isEmpty());
         });
 
-        telenotizaktiv.setDisable(kuerzel.getText().trim().isEmpty());
+        telenotizaktiv.setDisable(true);
         //wenn etwas im Benutzernamefeld eingeben wurde, dann den Loginbutton aktivieren
         kuerzel.textProperty().addListener((observable, oldValue, newValue) -> {
             telenotizaktiv.setDisable(newValue.trim().isEmpty());
-            if(newValue.trim().isEmpty())
-                telenotizaktiv.setSelected(false);
+            telenotizaktiv.setSelected(!newValue.trim().isEmpty());
         });
 
-        loginaktiv.setDisable(login.getText().trim().isEmpty());
+        loginaktiv.setDisable(true);
         //wenn etwas im Benutzernamefeld eingeben wurde, dann den Loginbutton aktivieren
         login.textProperty().addListener((observable, oldValue, newValue) -> {
             loginaktiv.setDisable(newValue.trim().isEmpty());
-            if(newValue.trim().isEmpty())
-                loginaktiv.setSelected(false);
+            loginaktiv.setSelected(!newValue.trim().isEmpty());
         });
 
         GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
@@ -120,6 +109,7 @@ public class MitarbeiterDetailsController implements Initializable {
 
         loeschemitarbeiter.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.TRASH_ALT).size(25.0).color(Color.RED));
         loeschemitarbeiter.setContentDisplay(ContentDisplay.LEFT);
+        loeschemitarbeiter.setVisible(false);
 
         abbruch.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.REMOVE).size(25.0).color(Color.BLACK));
         abbruch.setContentDisplay(ContentDisplay.LEFT);
@@ -134,7 +124,7 @@ public class MitarbeiterDetailsController implements Initializable {
         if (altname.isEmpty()) {
             //Meldung rausgeben
             Notifications.create().darkStyle()
-                    .title("Ungültig")
+                    .title("Ungueltig")
                     .text("Es wurde kein alternativer Name eingetragen")
                     .showError();
             return;
@@ -164,23 +154,7 @@ public class MitarbeiterDetailsController implements Initializable {
 
     @FXML
     public void loeschemitarbeiter(ActionEvent actionEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Mitarbeiter entfernen");
-        alert.setHeaderText("Mitarbeiter entfernen");
-        alert.setContentText("Soll " + mitarbeiter.getName() + " wirklich entfernt werden?");
-
-        ButtonType buttonTypeJa = new ButtonType("Ja");
-        ButtonType buttonTypeNein = new ButtonType("Nein, Schlie�en", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        alert.getButtonTypes().setAll(buttonTypeJa, buttonTypeNein);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeJa) {
-            Settings.deleteMitarbeiter(m, mitarbeiter);
-        }
-        Stage stage = (Stage) loeschemitarbeiter.getScene().getWindow();
-        stage.close();
-
+        //hier nicht genutzt
     }
 
     @FXML
@@ -201,17 +175,9 @@ public class MitarbeiterDetailsController implements Initializable {
                 return;
             }
         }
-        mitarbeiter.setName(name.getText());
-        mitarbeiter.setEmail(email.getText());
-        mitarbeiter.setKurz(kuerzel.getText());
-        mitarbeiter.seteMailAktiv(emailaktiv.isSelected());
-        mitarbeiter.setTeleAktiv(telenotizaktiv.isSelected());
-        mitarbeiter.setLoginAktiv(loginaktiv.isSelected());
-        mitarbeiter.setIsAdmin(admin.isSelected());
-        mitarbeiter.setAltnamen(new ArrayList<>(listaltnamen.getItems()));
-        mitarbeiter.setLogin(login.getText());
-        mitarbeiter.setPasswort(passwort.getText());
+        mitarbeiter = new Mitarbeiter(0, name.getText(), email.getText(),kuerzel.getText(),telenotizaktiv.isSelected(),emailaktiv.isSelected(),
+                admin.isSelected(),loginaktiv.isSelected(),login.getText(),passwort.getText(),new ArrayList<>(listaltnamen.getItems()));
 
-        Settings.updateMitarbeiter(m, mitarbeiter);
+        Settings.addMitarbeiter(m, mitarbeiter);
     }
 }

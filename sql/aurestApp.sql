@@ -35,6 +35,19 @@ CREATE TABLE IF NOT EXISTS `Einstellungen` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci ;
 
+INSERT INTO  `aurestApp`.`Einstellungen` (
+  `id` ,
+  `config` ,
+  `wert`
+)
+VALUES (
+  NULL ,  'projektvorlage',  'P:\\Projekteinteilung'
+), (
+  NULL ,  'servicevorlage',  'P:\\Servicevorlage'
+), (
+  NULL ,  'offertenvorlage',  'P:\\Offertenvorlage'
+);
+
 -- --------------------------------------------------------
 
 --

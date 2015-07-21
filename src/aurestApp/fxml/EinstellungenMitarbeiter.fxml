@@ -1,42 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40">
+
+<VBox VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
     <children>
 
-        <Label id="info" text="Mitarbeiter :"/>
+        <Label id="info" text="Mitarbeiter :" />
         <HBox VBox.vgrow="ALWAYS">
             <VBox.margin>
-                <Insets top="5.0"/>
+                <Insets top="5.0" />
             </VBox.margin>
             <children>
 
                 <TableView id="mitarbeiter" fx:id="mitarbeiter" HBox.hgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="columnID" editable="false" minWidth="30.0" prefWidth="30.0" resizable="false" text="ID"/>
-                        <TableColumn fx:id="columnMitarbeiter" editable="false" minWidth="200.0" prefWidth="300.0" text="Mitarbeiter"/>
-                        <TableColumn fx:id="columnKurz" prefWidth="75.0" text="Kürzel"/>
-                        <TableColumn fx:id="columnLogin" editable="false" prefWidth="85.0" resizable="false" text="Login aktiv"/>
-                        <TableColumn fx:id="columnTele" prefWidth="65.0" text="Tele"/>
-                        <TableColumn fx:id="columnEmail" prefWidth="65.0" text="eMail"/>
-                        <TableColumn fx:id="columnAdmin" prefWidth="85.0" text="Ist Admin"/>
+                        <TableColumn fx:id="columnID" editable="false" minWidth="30.0" prefWidth="30.0" resizable="false" text="ID" />
+                        <TableColumn fx:id="columnMitarbeiter" editable="false" minWidth="200.0" prefWidth="300.0" text="Mitarbeiter" />
+                        <TableColumn fx:id="columnKurz" prefWidth="75.0" text="Kürzel" />
+                        <TableColumn fx:id="columnLogin" editable="false" prefWidth="85.0" resizable="false" text="Login aktiv" />
+                        <TableColumn fx:id="columnTele" prefWidth="65.0" text="Tele" />
+                        <TableColumn fx:id="columnEmail" prefWidth="65.0" text="eMail" />
+                        <TableColumn fx:id="columnAdmin" prefWidth="65.0" text="Admin" />
                     </columns>
                 </TableView>
             </children>
         </HBox>
         <VBox alignment="BOTTOM_RIGHT">
             <children>
-
-                <Button id="bearbeite" fx:id="bearbeite" mnemonicParsing="false" onAction="#handelbearbeiteMitarbeiter" text="Bearbeiten"/>
+            <HBox>
+               <children>
+                  <Button fx:id="addMitarbeiter" mnemonicParsing="false" onAction="#handelAddMitarbeiter" text="Neuen Mitarbeiter" />
+                  <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+            
+                            <Button id="bearbeite" fx:id="bearbeite" mnemonicParsing="false" onAction="#handelbearbeiteMitarbeiter" text="Mitarbeiter bearbeiten" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
             </children>
             <VBox.margin>
-                <Insets top="15.0"/>
+                <Insets top="15.0" />
             </VBox.margin>
         </VBox>
     </children>
     <padding>
-        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
     </padding>
 </VBox>

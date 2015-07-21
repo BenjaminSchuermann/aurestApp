@@ -84,6 +84,55 @@ public class Settings {
 
     }
 
+    public static void addMitarbeiter(Model m, Mitarbeiter mitarbeiter) {
+        Statement stmt;
+        try {
+            stmt = m.getConn().createStatement();
+
+            //Speichern der Personendaten
+            stmt.execute("INSERT INTO `aurestApp`.`Mitarbeiter`(`Name`, `Kurz`, `eMail`, `TeleAktiv`, `eMailAktiv`, `isAdmin`) VALUES (" +
+                    "'" + mitarbeiter.getName() + "'," +
+                    "'" + mitarbeiter.getKurz() + "'," +
+                    "'" + mitarbeiter.getEmail() + "'," +
+                    "'" + (mitarbeiter.getTeleAktiv() ? 1 : 0) + "'," +
+                    "'" + (mitarbeiter.geteMailAktiv() ? 1 : 0) + "'," +
+                    "'" + (mitarbeiter.getIsAdmin() ? 1 : 0) + "');");
+
+            //Statement mit der Abfrage füllen und ein Result erstellen
+            ResultSet rs = stmt.executeQuery("SELECT `id` FROM `aurestApp`.`Mitarbeiter` WHERE `Name` ='"+mitarbeiter.getName()+"';");
+            //Holen der userID des Mitarbeiters
+            while (rs.next()) {
+                mitarbeiter.setUserID(rs.getInt("id"));
+            }
+
+            //Speichern der Logindaten
+            stmt.execute("INSERT INTO `aurestApp`.`Logins`(`Login`, `Passwort`, `MitarbeiterID`, `Aktiv`) VALUES ("+
+                    "'" + mitarbeiter.getLogin() + "'," +
+                    "'" + mitarbeiter.getPasswort() + "'," +
+                    "'" + mitarbeiter.getUserID() + "'," +
+                    "'" + (mitarbeiter.getLoginAktiv() ? 1 : 0) + "');");
+
+            //Mitarbeiter alternative Namen hinzufügen
+            for (String s : mitarbeiter.getAltnamen()) {
+                stmt.execute("INSERT INTO `aurestApp`.`Altname` (`MitarbeiterID`, `Name`) VALUES (" +
+                        "'" + mitarbeiter.getUserID() + "'," +
+                        "'" + s + "');");
+            }
+            stmt.close();
+
+        } catch (SQLException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim speichern der Daten");
+            return;
+        }
+        //und neu laden
+        ladeMitarbeiter(m);
+        //Meldung rausgeben
+        Notifications.create().darkStyle()
+                .title("Speichern")
+                .text("Der neue Mitarbeiter wurde angelegt")
+                .showInformation();
+    }
+
     public static void deleteMitarbeiter(Model m, Mitarbeiter mitarbeiter) {
         Statement stmt;
         try {

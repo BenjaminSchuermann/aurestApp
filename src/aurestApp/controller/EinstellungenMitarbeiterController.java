@@ -45,6 +45,8 @@ public class EinstellungenMitarbeiterController implements Initializable {
 
     @FXML
     private Button bearbeite;
+    @FXML
+    private Button addMitarbeiter;
 
     public EinstellungenMitarbeiterController(Model m) {
         this.m = m;
@@ -79,7 +81,7 @@ public class EinstellungenMitarbeiterController implements Initializable {
 
         mitarbeiter.setItems(data);
 
-        //Beim Doppelklick die Detailsseite öffnen
+        //Beim Doppelklick die Detailsseite ï¿½ffnen
         mitarbeiter.setRowFactory(tv -> {
             TableRow<Mitarbeiter> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -100,6 +102,11 @@ public class EinstellungenMitarbeiterController implements Initializable {
         bearbeiteMitarbeiter(einzelnerMitarbeiter);
     }
 
+    @FXML
+    private void handelAddMitarbeiter(ActionEvent actionEvent){
+        anlegenMitarbeiter();
+    }
+
     private void bearbeiteMitarbeiter(Mitarbeiter einzelnerMitarbeiter) {
         System.out.println(einzelnerMitarbeiter.userIDProperty().getValue());
 
@@ -115,7 +122,26 @@ public class EinstellungenMitarbeiterController implements Initializable {
             stage.setScene(new Scene(mainVbox));
 
         } catch (IOException e) {
-            Dialoge.exceptionDialog(e, "Fehler beim erstellend er Detailseite");
+            Dialoge.exceptionDialog(e, "Fehler beim erstellen der Detailseite");
+            return;
+        }
+        stage.show();
+    }
+
+    private void anlegenMitarbeiter() {
+        Stage stage = new Stage();
+        stage.setTitle("aurestApp v" + m.getVersion());
+        stage.getIcons().add(new Image(EinstellungenMitarbeiterController.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.MITARBEITERDETAILS));
+        loader.setController(new MitarbeiterAnlegenController(m));
+
+        try {
+            VBox mainVbox = loader.load();
+            stage.setScene(new Scene(mainVbox));
+
+        } catch (IOException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim erstellen der Detailseite");
             return;
         }
         stage.show();
