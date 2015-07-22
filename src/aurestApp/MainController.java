@@ -94,6 +94,8 @@ class MainController implements Seiten, Initializable {
         loader.setController(new EinstellungenMitarbeiterController(m));
         Node mainNode = loader.load();
         setInhalt(mainNode);
+        if (programmInhalt.getScene().getWindow().getWidth() < 970.0)
+            programmInhalt.getScene().getWindow().setWidth(970.0);
     }
 
     @FXML

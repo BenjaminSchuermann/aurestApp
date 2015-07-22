@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.controlsfx.control.Notifications;
 import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 
@@ -27,11 +28,15 @@ import java.util.ResourceBundle;
 public class EinstellungenMitarbeiterController implements Initializable {
     private final Model m;
     @FXML
+    private VBox vbox;
+    @FXML
     private TableView<Mitarbeiter> mitarbeiter;
     @FXML
     private TableColumn<Mitarbeiter, String> columnID;
     @FXML
     private TableColumn<Mitarbeiter, String> columnMitarbeiter;
+    @FXML
+    private TableColumn<Mitarbeiter, String> columnEmailAdresse;
     @FXML
     private TableColumn<Mitarbeiter, String> columnKurz;
     @FXML
@@ -40,8 +45,6 @@ public class EinstellungenMitarbeiterController implements Initializable {
     private TableColumn<Mitarbeiter, String> columnTele;
     @FXML
     private TableColumn<Mitarbeiter, String> columnEmail;
-    @FXML
-    private TableColumn<Mitarbeiter, String> columnAdmin;
 
     @FXML
     private Button bearbeite;
@@ -54,6 +57,7 @@ public class EinstellungenMitarbeiterController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         ObservableList<Mitarbeiter> data =
                 FXCollections.observableArrayList(m.getMitarbeiterListe()
                 );
@@ -63,6 +67,9 @@ public class EinstellungenMitarbeiterController implements Initializable {
 
         columnMitarbeiter.setCellValueFactory(
                 new PropertyValueFactory<>("name"));
+
+        columnEmailAdresse.setCellValueFactory(
+                new PropertyValueFactory<>("email"));
 
         columnKurz.setCellValueFactory(
                 new PropertyValueFactory<>("kurz"));
@@ -76,12 +83,9 @@ public class EinstellungenMitarbeiterController implements Initializable {
         columnEmail.setCellValueFactory(
                 new PropertyValueFactory<>("eMailAktiv"));
 
-        columnAdmin.setCellValueFactory(
-                new PropertyValueFactory<>("isAdmin"));
-
         mitarbeiter.setItems(data);
 
-        //Beim Doppelklick die Detailsseite �ffnen
+        //Beim Doppelklick die Detailsseite ï¿½ffnen
         mitarbeiter.setRowFactory(tv -> {
             TableRow<Mitarbeiter> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -91,6 +95,9 @@ public class EinstellungenMitarbeiterController implements Initializable {
             });
             return row;
         });
+
+        addMitarbeiter.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.USER_PLUS).size(25.0).color(Color.GREEN));
+        addMitarbeiter.setContentDisplay(ContentDisplay.LEFT);
 
         bearbeite.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.EDIT).size(25.0).color(Color.ORANGE));
         bearbeite.setContentDisplay(ContentDisplay.LEFT);
@@ -108,6 +115,14 @@ public class EinstellungenMitarbeiterController implements Initializable {
     }
 
     private void bearbeiteMitarbeiter(Mitarbeiter einzelnerMitarbeiter) {
+        if (einzelnerMitarbeiter == null) {
+            Notifications.create().darkStyle()
+                    .title("Mitarbeiter bearbeiten")
+                    .text("Es wurde kein Mitarbeiter zum bearbeiten gewählt")
+                    .showInformation();
+            return;
+
+        }
         System.out.println(einzelnerMitarbeiter.userIDProperty().getValue());
 
         Stage stage = new Stage();
@@ -119,12 +134,15 @@ public class EinstellungenMitarbeiterController implements Initializable {
 
         try {
             VBox mainVbox = loader.load();
-            stage.setScene(new Scene(mainVbox));
+            Scene scene = new Scene(mainVbox);
+            scene.getStylesheets().setAll(getClass().getResource("/aurestApp/styles/stylesheet.css").toExternalForm());
+            stage.setScene(scene);
 
         } catch (IOException e) {
             Dialoge.exceptionDialog(e, "Fehler beim erstellen der Detailseite");
             return;
         }
+
         stage.show();
     }
 
@@ -138,7 +156,9 @@ public class EinstellungenMitarbeiterController implements Initializable {
 
         try {
             VBox mainVbox = loader.load();
-            stage.setScene(new Scene(mainVbox));
+            Scene scene = new Scene(mainVbox);
+            scene.getStylesheets().setAll(getClass().getResource("/aurestApp/styles/stylesheet.css").toExternalForm());
+            stage.setScene(scene);
 
         } catch (IOException e) {
             Dialoge.exceptionDialog(e, "Fehler beim erstellen der Detailseite");

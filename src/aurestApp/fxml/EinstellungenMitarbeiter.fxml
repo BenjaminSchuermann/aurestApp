@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<VBox VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40" fx:id="vbox">
     <children>
 
         <Label id="info" text="Mitarbeiter :" />
@@ -20,11 +17,15 @@
                     <columns>
                         <TableColumn fx:id="columnID" editable="false" minWidth="30.0" prefWidth="30.0" resizable="false" text="ID" />
                         <TableColumn fx:id="columnMitarbeiter" editable="false" minWidth="200.0" prefWidth="300.0" text="Mitarbeiter" />
+                        <TableColumn fx:id="columnEmailAdresse" editable="false" minWidth="200.0" prefWidth="300.0" text="eMail Adresse"/>
                         <TableColumn fx:id="columnKurz" prefWidth="75.0" text="Kürzel" />
+                        <TableColumn prefWidth="75.0" text="Auswertungen">
+                            <columns>
+                                <TableColumn fx:id="columnTele" prefWidth="65.0" text="Tele"/>
+                                <TableColumn fx:id="columnEmail" prefWidth="65.0" text="eMail"/>
+                            </columns>
+                        </TableColumn>
                         <TableColumn fx:id="columnLogin" editable="false" prefWidth="85.0" resizable="false" text="Login aktiv" />
-                        <TableColumn fx:id="columnTele" prefWidth="65.0" text="Tele" />
-                        <TableColumn fx:id="columnEmail" prefWidth="65.0" text="eMail" />
-                        <TableColumn fx:id="columnAdmin" prefWidth="65.0" text="Admin" />
                     </columns>
                 </TableView>
             </children>

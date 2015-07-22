@@ -8,7 +8,10 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -22,7 +25,6 @@ import org.controlsfx.glyphfont.GlyphFontRegistry;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MitarbeiterAnlegenController implements Initializable {
@@ -85,21 +87,24 @@ public class MitarbeiterAnlegenController implements Initializable {
         //wenn etwas im Benutzernamefeld eingeben wurde, dann den Loginbutton aktivieren
         email.textProperty().addListener((observable, oldValue, newValue) -> {
             emailaktiv.setDisable(newValue.trim().isEmpty());
-            emailaktiv.setSelected(!newValue.trim().isEmpty());
+            if (newValue.trim().isEmpty())
+                emailaktiv.setSelected(false);
         });
 
         telenotizaktiv.setDisable(true);
         //wenn etwas im Benutzernamefeld eingeben wurde, dann den Loginbutton aktivieren
         kuerzel.textProperty().addListener((observable, oldValue, newValue) -> {
             telenotizaktiv.setDisable(newValue.trim().isEmpty());
-            telenotizaktiv.setSelected(!newValue.trim().isEmpty());
+            if (newValue.trim().isEmpty())
+                telenotizaktiv.setSelected(false);
         });
 
         loginaktiv.setDisable(true);
         //wenn etwas im Benutzernamefeld eingeben wurde, dann den Loginbutton aktivieren
         login.textProperty().addListener((observable, oldValue, newValue) -> {
             loginaktiv.setDisable(newValue.trim().isEmpty());
-            loginaktiv.setSelected(!newValue.trim().isEmpty());
+            if (newValue.trim().isEmpty())
+                loginaktiv.setSelected(false);
         });
 
         GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");

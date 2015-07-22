@@ -93,7 +93,7 @@ public class MitarbeiterDetailsController implements Initializable {
         //wenn etwas im Benutzernamefeld eingeben wurde, dann den Loginbutton aktivieren
         email.textProperty().addListener((observable, oldValue, newValue) -> {
             emailaktiv.setDisable(newValue.trim().isEmpty());
-            if(newValue.trim().isEmpty())
+            if (newValue.trim().isEmpty())
                 emailaktiv.setSelected(false);
         });
 
@@ -101,7 +101,7 @@ public class MitarbeiterDetailsController implements Initializable {
         //wenn etwas im Benutzernamefeld eingeben wurde, dann den Loginbutton aktivieren
         kuerzel.textProperty().addListener((observable, oldValue, newValue) -> {
             telenotizaktiv.setDisable(newValue.trim().isEmpty());
-            if(newValue.trim().isEmpty())
+            if (newValue.trim().isEmpty())
                 telenotizaktiv.setSelected(false);
         });
 
@@ -118,7 +118,7 @@ public class MitarbeiterDetailsController implements Initializable {
         login.setLeft(fontAwesome.create("USER"));
         passwort.setLeft(fontAwesome.create("LOCK"));
 
-        loeschemitarbeiter.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.TRASH_ALT).size(25.0).color(Color.RED));
+        loeschemitarbeiter.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.USER_TIMES).size(25.0).color(Color.RED));
         loeschemitarbeiter.setContentDisplay(ContentDisplay.LEFT);
 
         abbruch.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.REMOVE).size(25.0).color(Color.BLACK));
@@ -170,16 +170,16 @@ public class MitarbeiterDetailsController implements Initializable {
         alert.setContentText("Soll " + mitarbeiter.getName() + " wirklich entfernt werden?");
 
         ButtonType buttonTypeJa = new ButtonType("Ja");
-        ButtonType buttonTypeNein = new ButtonType("Nein, Schlie�en", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonTypeNein = new ButtonType("Nein, Schließen", ButtonBar.ButtonData.CANCEL_CLOSE);
 
         alert.getButtonTypes().setAll(buttonTypeJa, buttonTypeNein);
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeJa) {
             Settings.deleteMitarbeiter(m, mitarbeiter);
+            Stage stage = (Stage) loeschemitarbeiter.getScene().getWindow();
+            stage.close();
         }
-        Stage stage = (Stage) loeschemitarbeiter.getScene().getWindow();
-        stage.close();
 
     }
 
