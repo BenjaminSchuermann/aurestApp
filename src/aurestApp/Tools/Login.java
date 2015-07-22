@@ -89,7 +89,6 @@ public class Login {
 
         //Ein "Statement" erzeugen
         Statement stmt = m.getConn().createStatement();
-
         //Solange kein gültiger Login eingegeben wurde, wiederhole die Eingabemöglichkeit
         do {
             //Loginfeld anzeugen und Ergebnis zurückliefern

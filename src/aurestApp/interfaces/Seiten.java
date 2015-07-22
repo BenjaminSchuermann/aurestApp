@@ -6,6 +6,7 @@ public interface Seiten {
     String PROJEKTERSTELLEN = "/aurestApp/fxml/ProjektAnlegen.fxml";
     String PROJEKTARCHIVIEREN = "/aurestApp/fxml/MenuProjektArchivieren.fxml";
     String PROJEKTLOGBUCH = "/aurestApp/fxml/ProjektLogbuch.fxml";
+    String PROJEKTOFFEN = "/aurestApp/fxml/ProjektOffene.fxml";
     String SERVICE = "/aurestApp/fxml/ServiceSeite.fxml";
     String SERVICEERSTELLEN = "/aurestApp/fxml/ServiceAnlegen.fxml";
     String SERVICELOGBUCH = "/aurestApp/fxml/ServiceLogbuch.fxml";

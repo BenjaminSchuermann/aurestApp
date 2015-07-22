@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import aurestApp.Tools.CheckBoxCellFactory?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" id="vbox" fx:id="vbox" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40">
+    <children>
+        <Label text="Offene Projekte in P:\"/>
+        <HBox VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+            <children>
+                <TableView fx:id="offeneProjekte" editable="true" HBox.hgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="checkBoxTableColumn" maxWidth="34.0" minWidth="26.0" prefWidth="34.0" resizable="false" sortable="false">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="checked"/>
+                            </cellValueFactory>
+                            <cellFactory>
+                                <CheckBoxCellFactory/>
+                            </cellFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="columnProjekt" prefWidth="60.0" text="Projekt"/>
+                        <TableColumn fx:id="columnKunde" prefWidth="100.0" text="Kunde"/>
+                        <TableColumn fx:id="columnBezeichnung" prefWidth="300.0" text="Bezeichnung"/>
+                        <TableColumn fx:id="columnOfferte" prefWidth="100.0" text="Offerte"/>
+                        <TableColumn fx:id="columnUrProjekt" prefWidth="100.0" text="UrProjekt"/>
+                    </columns>
+                </TableView>
+            </children>
+        </HBox>
+        <HBox>
+            <children>
+                <Button fx:id="projektLoeschen" mnemonicParsing="false" onAction="#handelProjektLoeschen" text="Projekt löschen"/>
+                <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Button fx:id="projektArchivieren" mnemonicParsing="false" onAction="#handelProjektArchivieren" text="Projekt archivieren"/>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

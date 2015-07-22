@@ -2,6 +2,7 @@ package aurestApp.controller;
 
 import aurestApp.Model;
 import aurestApp.Tools.Generator;
+import aurestApp.Tools.Kunde;
 import aurestApp.Tools.Settings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,23 +14,21 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import org.controlsfx.control.Notifications;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.stream.Collectors;
 
-/**
- * Created by Benjamin on 16.07.2015.
- */
 public class ServiceAnlegenController implements Initializable {
     private final Model m;
-    Set<String> possibleSuggestions;
+    ArrayList<String> kundenAlsStrings = new ArrayList<>();
     private TabPane tabPane;
+
     @FXML
     private Pane menuServiceAnlegen;
     @FXML
@@ -44,7 +43,6 @@ public class ServiceAnlegenController implements Initializable {
     private Button erstelleService;
     @FXML
     private TextField serviceprojekt;
-    private AutoCompletionBinding<String> autoCompletionBinding;
 
     public ServiceAnlegenController(Model m, TabPane tabPane) {
         this.m = m;
@@ -53,22 +51,10 @@ public class ServiceAnlegenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         servicejahr.setPromptText(m.getServicejahr());
 
-        possibleSuggestions = new HashSet<>(m.getKundennamen());
-        autoCompletionBinding = TextFields.bindAutoCompletion(servicekunde, possibleSuggestions);
-
-        servicekunde.setOnKeyPressed(ke -> {
-            switch (ke.getCode()) {
-                case ENTER:
-                    Settings.speicherKunde(m, servicekunde.getText());
-                    autoCompletionLearnWord(servicekunde.getText());
-                    break;
-                default:
-                    break;
-            }
-        });
+        kundenAlsStrings.addAll(m.getKunden().stream().map(Kunde::getName).collect(Collectors.toList()));
+        TextFields.bindAutoCompletion(servicekunde, new HashSet<>(kundenAlsStrings));
 
         erstelleService.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FILE_TEXT_ALT).size(25.0).color(Color.BLACK));
         erstelleService.setContentDisplay(ContentDisplay.LEFT);
@@ -84,19 +70,11 @@ public class ServiceAnlegenController implements Initializable {
         String serviceJahr = servicejahr.getText();
         if (serviceJahr.isEmpty())
             serviceJahr = servicejahr.getPromptText();
-        Settings.speicherKunde(m, servicekunde.getText());
+
         Generator.erstelleService(serviceJahr + "." + servicenummer.getText(), servicekunde.getText(), servicebeschreibung.getText(), false, serviceprojekt.getText(), m, tabPane);
-
-    }
-
-    private void autoCompletionLearnWord(String newWord) {
-        possibleSuggestions.add(newWord);
-
-        // we dispose the old binding and recreate a new binding
-        if (autoCompletionBinding != null) {
-            autoCompletionBinding.dispose();
-        }
-        autoCompletionBinding = TextFields.bindAutoCompletion(servicekunde, possibleSuggestions);
-        m.addKunde(newWord.trim());
+        //Sollte der Kunde noch nicht vorhanden sein, dann speichern
+        if (kundenAlsStrings.contains(servicekunde.getText().trim()))
+            return;
+        Settings.speicherKunde(m, new Kunde(0, servicekunde.getText().trim()));
     }
 }

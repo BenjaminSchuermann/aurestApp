@@ -30,9 +30,12 @@ public class Main extends Application implements Seiten {
             System.exit(0);
         });
 
+        //Wenn keine Datenbankverbindung hergestellt werden kann, direkt beenden.
+        if (m.getConn() == null)
+            return;
+
         //als erstes das Loginfeld anzeigen und die userid holen
         int userid = Login.login(m);
-
 
         //hat ein Login stattgefunden dann starte das eigentliche Programm
         if (userid != 0) {
@@ -74,5 +77,6 @@ public class Main extends Application implements Seiten {
         Settings.ladeServiceJahr(m);
         Settings.ladeVorlagen(m);
         Settings.ladeMitarbeiter(m);
+        Settings.ladeProjekte(m);
     }
 }

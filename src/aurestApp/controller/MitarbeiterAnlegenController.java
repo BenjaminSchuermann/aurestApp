@@ -112,7 +112,8 @@ public class MitarbeiterAnlegenController implements Initializable {
         login.setLeft(fontAwesome.create("USER"));
         passwort.setLeft(fontAwesome.create("LOCK"));
 
-        loeschemitarbeiter.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.TRASH_ALT).size(25.0).color(Color.RED));
+        //Hier nicht genutzt
+        loeschemitarbeiter.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.USER_TIMES).size(25.0).color(Color.RED));
         loeschemitarbeiter.setContentDisplay(ContentDisplay.LEFT);
         loeschemitarbeiter.setVisible(false);
 

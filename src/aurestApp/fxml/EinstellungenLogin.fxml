@@ -18,7 +18,7 @@
                 <Insets top="10.0"/>
             </VBox.margin>
         </Label>
-        <CustomTextField fx:id="login">
+        <CustomTextField disable="true" fx:id="login">
             <VBox.margin>
                 <Insets top="5.0"/>
             </VBox.margin>

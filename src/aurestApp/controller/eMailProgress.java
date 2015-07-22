@@ -85,7 +85,7 @@ public class eMailProgress implements Initializable {
                                 i++;
                             }
                         }
-                        messageQueue.put("eMails werden mit verarbeitet ...");
+                        messageQueue.put("eMails werden verarbeitet ...");
                         //dann neu auflisten und nach eMail Betreff umbennen
                         files = selectedDirectory.listFiles();
                         if (files != null) {

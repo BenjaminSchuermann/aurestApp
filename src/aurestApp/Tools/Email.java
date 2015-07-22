@@ -23,9 +23,6 @@ public class Email {
     public void renameMail(File file) {
 
         if (debug) System.out.println("Das ist File:" + file);
-//		System.out.println("Dateiparent:"+file.getParent());
-//		System.out.println("Dateiname:"+file.getName());
-//        System.out.println("Dateiname:"+getFileName(file).replaceAll("\t", " "));
         boolean res = false;
         anzahlGesamt++;
         try {
@@ -116,17 +113,23 @@ public class Email {
         //Ist der Absender in der Konfiguration aufgeführt, dann als Ausgang deklarieren
         if (from.equals("Entwurf"))
             einaus = "Entwurf";
-        else
-            ;
-        //todo
-        //for (String fromMail : m.getMitarbeiterListe()) {
-        //    //System.out.println("fromsettings:"+fromMails[i]);
-        //    if (fromMail.equals(from)) {
-        //        einaus = "A";
-        //        break;
-        //    }
-        //}
 
+        //Ein Label setzten um ganz aus den Schleifen raus zu kommen, wenn ein Treffer gefunden wurde
+        //Mitarbeiter Namen vergleichen
+        schleife:
+        for (Mitarbeiter mitarbeiter : m.getMitarbeiterListe()) {
+            if (mitarbeiter.getName().equals(from)) {
+                einaus = "A";
+                break;
+            }
+            //Für jeden Mitarbeiter die Altnamen vergleichen
+            for (String altname : mitarbeiter.getAltnamen()) {
+                if (altname.equals(from)) {
+                    einaus = "A";
+                    break schleife;
+                }
+            }
+        }
 
         //Die Kalenderdaten auslesen
         Integer year = cal.get(Calendar.YEAR) - 2000;

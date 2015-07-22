@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Settings {
 
-    public static void ladeMitarbeiter(Model m) {
+    public static boolean ladeMitarbeiter(Model m) {
         ArrayList<Mitarbeiter> mitarbeiter = new ArrayList<>();
         //Ein "Statement" erzeugen
         Statement stmt;
@@ -36,9 +36,10 @@ public class Settings {
             stmt2.close();
         } catch (SQLException e) {
             Dialoge.exceptionDialog(e, "Fehler beim laden der Mitarbeiterliste");
-            return;
+            return false;
         }
         m.setMitarbeiterListe(mitarbeiter);
+        return true;
     }
 
     public static void updateMitarbeiter(Model m, Mitarbeiter mitarbeiter) {
@@ -75,7 +76,8 @@ public class Settings {
             return;
         }
         //und neu laden
-        ladeMitarbeiter(m);
+        if (!ladeMitarbeiter(m))
+            return;
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Speichern")
@@ -125,7 +127,8 @@ public class Settings {
             return;
         }
         //und neu laden
-        ladeMitarbeiter(m);
+        if (!ladeMitarbeiter(m))
+            return;
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Speichern")
@@ -152,7 +155,8 @@ public class Settings {
             return;
         }
         //und neu laden
-        ladeMitarbeiter(m);
+        if (!ladeMitarbeiter(m))
+            return;
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Mitarbeiter löschen")
@@ -160,8 +164,7 @@ public class Settings {
                 .showInformation();
     }
 
-
-    public static void ladeVorlagen(Model m) {
+    public static boolean ladeVorlagen(Model m) {
         ArrayList<String> vorlagen = new ArrayList<>();
         //Ein "Statement" erzeugen
         Statement stmt;
@@ -188,13 +191,13 @@ public class Settings {
             stmt.close();
         } catch (SQLException e) {
             Dialoge.exceptionDialog(e, "Fehler beim laden der Vorlagenpfade");
-            return;
+            return false;
         }
         m.setVorlagen(vorlagen);
+        return true;
     }
 
     public static void speicherVorlagen(Model m, ArrayList<String> vorlagen) {
-
         Statement stmt;
         try {
             stmt = m.getConn().createStatement();
@@ -211,7 +214,8 @@ public class Settings {
             return;
         }
         //und neu laden
-        ladeVorlagen(m);
+        if (!ladeVorlagen(m))
+            return;
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Speichern")
@@ -220,8 +224,7 @@ public class Settings {
 
     }
 
-    public static void ladeServiceJahr(Model m) {
-
+    public static boolean ladeServiceJahr(Model m) {
         //Ein "Statement" erzeugen
         Statement stmt;
         String servicejahr = "";
@@ -238,13 +241,14 @@ public class Settings {
             stmt.close();
         } catch (SQLException e) {
             Dialoge.exceptionDialog(e, "Fehler beim laden des Servicejahres");
-            return;
+            return false;
         }
         m.setServicejahr(servicejahr);
+        return true;
     }
 
     public static void speicherServicejahr(Model m, String jahr) {
-
+        //Ein "Statement" erzeugen
         Statement stmt;
         try {
             stmt = m.getConn().createStatement();
@@ -257,7 +261,8 @@ public class Settings {
             return;
         }
         //und neu laden
-        ladeServiceJahr(m);
+        if (!ladeServiceJahr(m))
+            return;
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Speichern")
@@ -266,36 +271,42 @@ public class Settings {
 
     }
 
-    public static void ladeKunden(Model m) {
-
+    public static boolean ladeKunden(Model m) {
         //Ein "Statement" erzeugen
         Statement stmt;
-        ArrayList<String> kunden = new ArrayList<>();
+        ArrayList<Kunde> kunden = new ArrayList<>();
         try {
             stmt = m.getConn().createStatement();
             //Statement mit der Abfrage füllen und ein Result erstellen
-            ResultSet rs = stmt.executeQuery("SELECT Kunde FROM Kunden ORDER BY Kunde ASC;");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Kunden ORDER BY Name ASC;");
             //Alle Results ausgeben
             while (rs.next()) {
-                kunden.add(rs.getString("Kunde"));
+                kunden.add(new Kunde(rs.getInt("id"), rs.getString("Name")));
             }
             //fertig
             stmt.close();
         } catch (SQLException e) {
             Dialoge.exceptionDialog(e, "Fehler beim laden der Kundendaten");
-            return;
+            return false;
         }
-        m.setKundennamen(kunden);
+        m.setKunden(kunden);
+        return true;
     }
 
-    public static void speicherKunden(Model m, ArrayList<String> kundeliste) {
-
+    public static void speicherKunden(Model m, ArrayList<Kunde> kundeliste) {
         Statement stmt;
         try {
             stmt = m.getConn().createStatement();
+
+            for (Kunde zuLoeschenderKunde : m.getZuLoeschendeKunden()) {
+                stmt.execute("DELETE FROM `aurestApp`.`Kunden` WHERE `Kunden`.`id` = " + zuLoeschenderKunde.getId() + ";");
+            }
+
             //Statement mit Insert erstellen
-            for (String kunde : kundeliste) {
-                stmt.execute("INSERT INTO Kunden ( Kunde ) SELECT * FROM (SELECT '" + kunde + "') AS tmp WHERE NOT EXISTS ( SELECT Kunde FROM Kunden  WHERE Kunde  = '" + kunde + "') LIMIT 1;");
+            for (Kunde kunde : kundeliste) {
+                if (kunde.getId() == 0)
+                    stmt.execute("INSERT INTO `aurestApp`.`Kunden` ( Name ) VALUES ('" + kunde.getName() + "');");
+                //stmt.execute("INSERT INTO Kunden ( Kunde ) SELECT * FROM (SELECT '" + kunde.getKunde() + "') AS tmp WHERE NOT EXISTS ( SELECT Kunde FROM Kunden  WHERE Kunde  = '" + kunde.getKunde() + "') LIMIT 1;");
             }
             //fertig
             stmt.close();
@@ -303,7 +314,8 @@ public class Settings {
             Dialoge.exceptionDialog(e, "Fehler beim Speichern");
         }
         //und neu laden
-        ladeKunden(m);
+        if (!ladeKunden(m))
+            return;
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Speichern")
@@ -311,31 +323,35 @@ public class Settings {
                 .showInformation();
     }
 
-    public static void speicherKunde(Model m, String kunde) {
-
-        if (kunde.isEmpty())
+    public static void speicherKunde(Model m, Kunde kunde) {
+        if (kunde.getName().isEmpty())
             return;
 
-        if (!m.getKundennamen().contains(kunde.trim())) {
-            Statement stmt;
-            try {
-                stmt = m.getConn().createStatement();
-                //Statement mit Insert erstellen
-                stmt.execute("INSERT INTO Kunden ( Kunde ) SELECT * FROM (SELECT '" + kunde.trim() + "') AS tmp WHERE NOT EXISTS ( SELECT Kunde FROM Kunden  WHERE Kunde  = '" + kunde.trim() + "') LIMIT 1;");
-                //fertig
-                stmt.close();
-            } catch (SQLException e) {
-                Dialoge.exceptionDialog(e, "Fehler beim speichern des Kunden");
+        //Zur Sicherheit das ganze noch mal checken
+        for (Kunde kundedetail : m.getKunden()) {
+            if (kundedetail.getName().equals(kunde.getName()))
                 return;
-            }
-            //und neu laden
-            ladeKunden(m);
-            //Meldung rausgeben
-            Notifications.create().darkStyle()
-                    .title("Neuer Kunde gefunden")
-                    .text("Der neue Kunde wurde gespeichert")
-                    .showInformation();
         }
+
+        Statement stmt;
+        try {
+            stmt = m.getConn().createStatement();
+            //Statement mit Insert erstellen
+            stmt.execute("INSERT INTO Kunden ( Name ) SELECT * FROM (SELECT '" + kunde.getName().trim() + "') AS tmp WHERE NOT EXISTS ( SELECT Name FROM Kunden  WHERE Name  = '" + kunde.getName().trim() + "') LIMIT 1;");
+            //fertig
+            stmt.close();
+        } catch (SQLException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim speichern des Kunden");
+            return;
+        }
+        //und neu laden
+        if (!ladeKunden(m))
+            return;
+        //Meldung rausgeben
+        Notifications.create().darkStyle()
+                .title("Neuer Kunde gefunden")
+                .text("Der neue Kunde wurde gespeichert")
+                .showInformation();
     }
 
     public static void speicherLogin(Model m, String passwort) {
@@ -354,12 +370,35 @@ public class Settings {
             return;
         }
         //und neu laden
-        ladeKunden(m);
+        if (!ladeMitarbeiter(m))
+            return;
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Logindaten")
                 .text("Die Daten wurden gespeichert")
                 .showInformation();
+    }
+
+    public static boolean ladeProjekte(Model m) {
+        ArrayList<Projekt> projekte = new ArrayList<>();
+        //Ein "Statement" erzeugen
+        Statement stmt;
+        try {
+            stmt = m.getConn().createStatement();
+            //Statement mit der Abfrage füllen und ein Result erstellen
+            ResultSet rs = stmt.executeQuery("SELECT p.*, k.Name FROM Projekte p LEFT JOIN Kunden k ON p.KundeID = k.id WHERE p.StatusOffen ORDER BY p.Projekt ASC");
+            //Lade die Mitarbeiternamen und alternativen Namen
+            while (rs.next()) {
+                projekte.add(new Projekt(rs.getString("Projekt"), rs.getString("Name"), rs.getString("Bezeichnung"), rs.getInt("Offerte"), rs.getString("UrProjekt"), false));
+            }
+            //fertig
+            stmt.close();
+        } catch (SQLException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim laden der Projektliste");
+            return false;
+        }
+        m.setProjekte(projekte);
+        return true;
     }
 }
 

@@ -56,7 +56,8 @@ VALUES (
 
 CREATE TABLE IF NOT EXISTS `Kunden` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Kunde` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `Name` VARCHAR(255)
+         CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci ;
 
@@ -91,6 +92,47 @@ CREATE TABLE IF NOT EXISTS `Mitarbeiter` (
   `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci ;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `Projekte`
+--
+
+CREATE TABLE IF NOT EXISTS `Projekte` (
+  `id`          INT(11)                   NOT NULL AUTO_INCREMENT,
+  `Projekt`     VARCHAR(100)
+                COLLATE latin1_general_ci NOT NULL,
+  `KundeID`     INT(11)                   NOT NULL,
+  `Bezeichnung` VARCHAR(255)
+                COLLATE latin1_general_ci NOT NULL,
+  `Offerte`     INT(11)                   NOT NULL,
+  `UrProjekt`   VARCHAR(255)
+                COLLATE latin1_general_ci NOT NULL,
+  `StatusOffen` TINYINT(1)                NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = latin1
+  COLLATE = latin1_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `Offerte`
+--
+
+CREATE TABLE IF NOT EXISTS `Offerte` (
+  `Offerte`     INT(11)                   NOT NULL,
+  `KundeID`     INT(11)                   NOT NULL,
+  `Bezeichnung` VARCHAR(255)
+                COLLATE latin1_general_ci NOT NULL,
+  PRIMARY KEY (`Offerte`)
+)
+  ENGINE = MyISAM
+  DEFAULT CHARSET = latin1
+  COLLATE = latin1_general_ci;
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -1,7 +1,9 @@
 package aurestApp;
 
 import aurestApp.Tools.Dialoge;
+import aurestApp.Tools.Kunde;
 import aurestApp.Tools.Mitarbeiter;
+import aurestApp.Tools.Projekt;
 
 import java.io.*;
 import java.sql.Connection;
@@ -62,6 +64,9 @@ public class Model {
     private boolean isadmin;
     private String login;
     private String passwort;
+    private ArrayList<Projekt> projekte;
+    private ArrayList<Kunde> kunden;
+    private ArrayList<Kunde> zuLoeschendeKunden;
 
     public Model() {
         ladeDatenbankEinstellungen();
@@ -71,7 +76,7 @@ public class Model {
     }
 
     public String getVersion() {
-        return "1.1.5";
+        return "1.1.6";
     }
 
     public String getServicejahr() {
@@ -423,6 +428,10 @@ public class Model {
     }
 
     public void closeDB() {
+        //Falls die Verbindung erst garnicht aufgebaut werden konnte, direkt verlassen
+        if (conn == null)
+            return;
+        //Ansonsten versuchen sie zu schließen
         try {
             conn.close();
         } catch (SQLException e) {
@@ -488,5 +497,29 @@ public class Model {
 
     public void setPasswort(String passwort) {
         this.passwort = passwort;
+    }
+
+    public ArrayList<Projekt> getProjekte() {
+        return projekte;
+    }
+
+    public void setProjekte(ArrayList<Projekt> projekte) {
+        this.projekte = projekte;
+    }
+
+    public ArrayList<Kunde> getKunden() {
+        return kunden;
+    }
+
+    public void setKunden(ArrayList<Kunde> kunden) {
+        this.kunden = kunden;
+    }
+
+    public ArrayList<Kunde> getZuLoeschendeKunden() {
+        return zuLoeschendeKunden;
+    }
+
+    public void setZuLoeschendenKunden(ArrayList<Kunde> zuLoeschendeKunden) {
+        this.zuLoeschendeKunden = zuLoeschendeKunden;
     }
 }

@@ -29,9 +29,13 @@ public class ProjektSeiteController implements Initializable {
     @FXML
     private Tab tabProjektLogbuch;
     @FXML
+    private Tab tabProjektOffen;
+    @FXML
     private Label lbl_ProjektAnlegen;
     @FXML
     private Label lbl_ProjektLogbuch;
+    @FXML
+    private Label lbl_ProjektOffen;
 
 
     private Model m;
@@ -85,5 +89,27 @@ public class ProjektSeiteController implements Initializable {
         }
         //Inhalt in den Tab setzen
         tabProjektLogbuch.setContent(mainNode);
+
+        /*
+        * Offene Projekte
+         */
+        //Für offene Projekte den Tab Klickbar machen um die Seitengröße anzupassen
+        lbl_ProjektOffen.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                if (projektSeite.getScene().getWindow().getHeight() < 850.0)
+                    projektSeite.getScene().getWindow().setHeight(850.0);
+            }
+        });
+        //Nun den Inhalt des Tabs laden und den Controller setzten
+        loader = new FXMLLoader(getClass().getResource(Seiten.PROJEKTOFFEN));
+        loader.setController(new ProjektOffeneController(m, tabPane));
+        mainNode = null;
+        try {
+            mainNode = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //Inhalt in den Tab setzen
+        tabProjektOffen.setContent(mainNode);
     }
 }
