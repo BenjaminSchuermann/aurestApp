@@ -27,6 +27,7 @@
     <cp>./libs/commons-io-2.4.jar</cp>
     <cp>./libs/controlsfx-8.40.9.jar</cp>
     <cp>./libs/swt.jar</cp>
+    <cp>./libs/mysql-connector-java-5.1.36-bin.jar</cp>
   </classPath>
   <jre>
     <path>../jre</path>

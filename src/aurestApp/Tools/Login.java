@@ -32,10 +32,10 @@ public class Login {
         dialog.setTitle("Login");
         dialog.setHeaderText("Bitte Benutzername und Passwort eingeben");
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-        stage.getIcons().add(new Image("file:src/aurestApp/img/a128x128.png"));
+        stage.getIcons().add(new Image(Login.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
 
         // das Icon setzten neben dem Text
-        dialog.setGraphic(new ImageView(Login.class.getResource("../img/login.png").toString()));
+        dialog.setGraphic(new ImageView(new Image(Login.class.getResourceAsStream("/aurestApp/img/login.png"))));
 
         // Die Buttons anlegen
         ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);

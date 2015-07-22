@@ -85,7 +85,7 @@ public class EinstellungenMitarbeiterController implements Initializable {
 
         mitarbeiter.setItems(data);
 
-        //Beim Doppelklick die Detailsseite ï¿½ffnen
+        //Beim Doppelklick die Detailsseite öffnen
         mitarbeiter.setRowFactory(tv -> {
             TableRow<Mitarbeiter> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
