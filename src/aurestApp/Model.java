@@ -76,7 +76,7 @@ public class Model {
     }
 
     public String getVersion() {
-        return "1.1.10";
+        return "1.1.11";
     }
 
     public String getServicejahr() {
