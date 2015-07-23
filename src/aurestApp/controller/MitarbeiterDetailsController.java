@@ -5,6 +5,7 @@ import aurestApp.Tools.Dialoge;
 import aurestApp.Tools.Mitarbeiter;
 import aurestApp.Tools.Settings;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,6 +30,8 @@ public class MitarbeiterDetailsController implements Initializable {
     private Model m;
     private int userid;
     private Mitarbeiter mitarbeiter;
+    private ObservableList<Mitarbeiter> obMitarbeiter;
+    private Mitarbeiter startMitarbeiter;
 
     @FXML
     private VBox vbox;
@@ -65,9 +68,11 @@ public class MitarbeiterDetailsController implements Initializable {
     @FXML
     private Button speichern;
 
-    public MitarbeiterDetailsController(Model m, Mitarbeiter mitarbeiter) {
+    public MitarbeiterDetailsController(Model m, Mitarbeiter mitarbeiter, ObservableList<Mitarbeiter> obMitarbeiter) {
         this.m = m;
+        this.obMitarbeiter = obMitarbeiter;
         this.mitarbeiter = mitarbeiter;
+        startMitarbeiter = mitarbeiter;
     }
 
     @Override
@@ -176,7 +181,7 @@ public class MitarbeiterDetailsController implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeJa) {
-            Settings.deleteMitarbeiter(m, mitarbeiter);
+            Settings.deleteMitarbeiter(m, mitarbeiter, obMitarbeiter);
             Stage stage = (Stage) loeschemitarbeiter.getScene().getWindow();
             stage.close();
         }
@@ -192,11 +197,12 @@ public class MitarbeiterDetailsController implements Initializable {
     @FXML
     public void speichern(ActionEvent actionEvent) {
         for (Mitarbeiter einzelnerMitarbeiter : m.getMitarbeiterListe()) {
-            if(einzelnerMitarbeiter.getName().equals(name.getText())){
+            if (einzelnerMitarbeiter.getName().equals(name.getText()) & !einzelnerMitarbeiter.getName().equals(startMitarbeiter.getName())) {
                 Dialoge.InfoAnzeigen("Der Mitarbeiter exisitert bereits!");
                 return;
             }
-            if(!einzelnerMitarbeiter.getLogin().isEmpty() && einzelnerMitarbeiter.getLogin().equals(login.getText())){
+            if (!einzelnerMitarbeiter.getLogin().isEmpty() &&
+                    (einzelnerMitarbeiter.getLogin().equals(login.getText()) & !einzelnerMitarbeiter.getLogin().equals(startMitarbeiter.getLogin()))) {
                 Dialoge.InfoAnzeigen("Diese Logindaten werden schon für "+einzelnerMitarbeiter.getName()+" benutzt!");
                 return;
             }
@@ -212,6 +218,6 @@ public class MitarbeiterDetailsController implements Initializable {
         mitarbeiter.setLogin(login.getText());
         mitarbeiter.setPasswort(passwort.getText());
 
-        Settings.updateMitarbeiter(m, mitarbeiter);
+        Settings.updateMitarbeiter(m, mitarbeiter, obMitarbeiter);
     }
 }

@@ -1,6 +1,7 @@
 package aurestApp.Tools;
 
 import aurestApp.Model;
+import javafx.collections.ObservableList;
 import org.controlsfx.control.Notifications;
 
 import java.sql.ResultSet;
@@ -42,7 +43,7 @@ public class Settings {
         return true;
     }
 
-    public static void updateMitarbeiter(Model m, Mitarbeiter mitarbeiter) {
+    public static void updateMitarbeiter(Model m, Mitarbeiter mitarbeiter, ObservableList<Mitarbeiter> obMitarbeiter) {
         Statement stmt;
         try {
             stmt = m.getConn().createStatement();
@@ -78,6 +79,7 @@ public class Settings {
         //und neu laden
         if (!ladeMitarbeiter(m))
             return;
+        obMitarbeiter.setAll(m.getMitarbeiterListe());
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Speichern")
@@ -86,7 +88,7 @@ public class Settings {
 
     }
 
-    public static void addMitarbeiter(Model m, Mitarbeiter mitarbeiter) {
+    public static void addMitarbeiter(Model m, Mitarbeiter mitarbeiter, ObservableList<Mitarbeiter> obMitarbeiter) {
         Statement stmt;
         try {
             stmt = m.getConn().createStatement();
@@ -129,6 +131,7 @@ public class Settings {
         //und neu laden
         if (!ladeMitarbeiter(m))
             return;
+        obMitarbeiter.setAll(m.getMitarbeiterListe());
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Speichern")
@@ -136,7 +139,7 @@ public class Settings {
                 .showInformation();
     }
 
-    public static void deleteMitarbeiter(Model m, Mitarbeiter mitarbeiter) {
+    public static void deleteMitarbeiter(Model m, Mitarbeiter mitarbeiter, ObservableList<Mitarbeiter> obMitarbeiter) {
         Statement stmt;
         try {
             stmt = m.getConn().createStatement();
@@ -157,6 +160,7 @@ public class Settings {
         //und neu laden
         if (!ladeMitarbeiter(m))
             return;
+        obMitarbeiter.setAll(m.getMitarbeiterListe());
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Mitarbeiter löschen")

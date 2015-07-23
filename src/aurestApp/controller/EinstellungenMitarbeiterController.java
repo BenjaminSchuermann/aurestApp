@@ -130,7 +130,7 @@ public class EinstellungenMitarbeiterController implements Initializable {
         stage.getIcons().add(new Image(EinstellungenMitarbeiterController.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.MITARBEITERDETAILS));
-        loader.setController(new MitarbeiterDetailsController(m, einzelnerMitarbeiter));
+        loader.setController(new MitarbeiterDetailsController(m, einzelnerMitarbeiter, mitarbeiter.getItems()));
 
         try {
             VBox mainVbox = loader.load();
@@ -152,7 +152,7 @@ public class EinstellungenMitarbeiterController implements Initializable {
         stage.getIcons().add(new Image(EinstellungenMitarbeiterController.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.MITARBEITERDETAILS));
-        loader.setController(new MitarbeiterAnlegenController(m));
+        loader.setController(new MitarbeiterAnlegenController(m, mitarbeiter.getItems()));
 
         try {
             VBox mainVbox = loader.load();

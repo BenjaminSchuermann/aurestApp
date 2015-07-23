@@ -5,6 +5,7 @@ import aurestApp.Tools.Dialoge;
 import aurestApp.Tools.Mitarbeiter;
 import aurestApp.Tools.Settings;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,6 +32,7 @@ public class MitarbeiterAnlegenController implements Initializable {
     private Model m;
     private int userid;
     private Mitarbeiter mitarbeiter;
+    private ObservableList<Mitarbeiter> obMitarbeiter;
 
     @FXML
     private VBox vbox;
@@ -67,8 +69,9 @@ public class MitarbeiterAnlegenController implements Initializable {
     @FXML
     private Button speichern;
 
-    public MitarbeiterAnlegenController(Model m) {
+    public MitarbeiterAnlegenController(Model m, ObservableList<Mitarbeiter> obMitarbeiter) {
         this.m = m;
+        this.obMitarbeiter = obMitarbeiter;
     }
 
     @Override
@@ -184,6 +187,6 @@ public class MitarbeiterAnlegenController implements Initializable {
         mitarbeiter = new Mitarbeiter(0, name.getText(), email.getText(),kuerzel.getText(),telenotizaktiv.isSelected(),emailaktiv.isSelected(),
                 admin.isSelected(),loginaktiv.isSelected(),login.getText(),passwort.getText(),new ArrayList<>(listaltnamen.getItems()));
 
-        Settings.addMitarbeiter(m, mitarbeiter);
+        Settings.addMitarbeiter(m, mitarbeiter, obMitarbeiter);
     }
 }

@@ -46,6 +46,8 @@ VALUES (
   NULL ,  'servicevorlage',  'P:\\Servicevorlage'
 ), (
   NULL ,  'offertenvorlage',  'P:\\Offertenvorlage'
+), (
+  NULL ,  'version',  ''
 );
 
 -- --------------------------------------------------------
