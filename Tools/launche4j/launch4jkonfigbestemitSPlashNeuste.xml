@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+    <dontWrapJar>true</dontWrapJar>
+    <headerType>gui</headerType>
+    <jar>libs\aurestApp.jar</jar>
+    <outfile>D:\IdeaProjects\test2\out\artifacts\aurestApp_jar\Test\bin\aurestApp.exe</outfile>
+    <errTitle></errTitle>
+    <cmdLine></cmdLine>
+    <chdir>.</chdir>
+    <priority>normal</priority>
+    <downloadUrl>http://java.com/download</downloadUrl>
+    <supportUrl></supportUrl>
+    <stayAlive>false</stayAlive>
+    <restartOnCrash>false</restartOnCrash>
+    <manifest></manifest>
+    <icon>D:\a128x128.ico</icon>
+    <classPath>
+        <mainClass>aurestApp.Main</mainClass>
+        <cp>./libs/poi-excelant-3.11-20141221.jar</cp>
+        <cp>./libs/commons-logging-1.2.jar</cp>
+        <cp>./libs/poi-ooxml-3.11-20141221.jar</cp>
+        <cp>./libs/poi-3.11-20141221.jar</cp>
+        <cp>./libs/xmlbeans-2.6.0.jar</cp>
+        <cp>./libs/poi-scratchpad-3.11-20141221.jar</cp>
+        <cp>./libs/commons-lang3-3.3.2.jar</cp>
+        <cp>./libs/poi-ooxml-schemas-3.11-20141221.jar</cp>
+        <cp>./libs/commons-io-2.4.jar</cp>
+        <cp>./libs/controlsfx-8.40.9.jar</cp>
+        <cp>./libs/swt.jar</cp>
+        <cp>./libs/mysql-connector-java-5.1.36-bin.jar</cp>
+    </classPath>
+    <jre>
+        <path>../jre</path>
+        <bundledJre64Bit>true</bundledJre64Bit>
+        <bundledJreAsFallback>false</bundledJreAsFallback>
+        <minVersion></minVersion>
+        <maxVersion></maxVersion>
+        <jdkPreference>preferJre</jdkPreference>
+        <runtimeBits>64/32</runtimeBits>
+    </jre>
+    <splash>
+        <file>D:\IdeaProjects\test2\logo700x187.bmp</file>
+        <waitForWindow>true</waitForWindow>
+        <timeout>30</timeout>
+        <timeoutErr>true</timeoutErr>
+    </splash>
+</launch4jConfig>
