@@ -32,7 +32,7 @@ public class EinstellungenMitarbeiterController implements Initializable {
     @FXML
     private TableView<Mitarbeiter> mitarbeiter;
     @FXML
-    private TableColumn<Mitarbeiter, String> columnID;
+    private TableColumn<Mitarbeiter, Integer> columnID;
     @FXML
     private TableColumn<Mitarbeiter, String> columnMitarbeiter;
     @FXML
@@ -42,9 +42,9 @@ public class EinstellungenMitarbeiterController implements Initializable {
     @FXML
     private TableColumn<Mitarbeiter, String> columnLogin;
     @FXML
-    private TableColumn<Mitarbeiter, String> columnTele;
+    private TableColumn<Mitarbeiter, Boolean> columnTele;
     @FXML
-    private TableColumn<Mitarbeiter, String> columnEmail;
+    private TableColumn<Mitarbeiter, Boolean> columnEmail;
 
     @FXML
     private Button bearbeite;
@@ -62,26 +62,19 @@ public class EinstellungenMitarbeiterController implements Initializable {
                 FXCollections.observableArrayList(m.getMitarbeiterListe()
                 );
 
-        columnID.setCellValueFactory(
-                new PropertyValueFactory<>("userID"));
+        columnID.setCellValueFactory(cellData -> cellData.getValue().userIDProperty().asObject());
 
-        columnMitarbeiter.setCellValueFactory(
-                new PropertyValueFactory<>("name"));
+        columnMitarbeiter.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
 
-        columnEmailAdresse.setCellValueFactory(
-                new PropertyValueFactory<>("email"));
+        columnEmailAdresse.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
 
-        columnKurz.setCellValueFactory(
-                new PropertyValueFactory<>("kurz"));
+        columnKurz.setCellValueFactory(cellData -> cellData.getValue().kurzProperty());
 
-        columnLogin.setCellValueFactory(
-                new PropertyValueFactory<>("loginAktiv"));
+        columnLogin.setCellValueFactory(cellData -> cellData.getValue().loginProperty());
 
-        columnTele.setCellValueFactory(
-                new PropertyValueFactory<>("teleAktiv"));
+        columnTele.setCellValueFactory(cellData -> cellData.getValue().teleAktivProperty());
 
-        columnEmail.setCellValueFactory(
-                new PropertyValueFactory<>("eMailAktiv"));
+        columnEmail.setCellValueFactory(cellData -> cellData.getValue().eMailAktivProperty());
 
         mitarbeiter.setItems(data);
 

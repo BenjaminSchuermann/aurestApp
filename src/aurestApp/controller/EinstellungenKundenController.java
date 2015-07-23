@@ -24,13 +24,13 @@ public class EinstellungenKundenController implements Initializable {
     private final Model m;
     @FXML
     TableView<Kunde> kundenTable;
-    ;
     @FXML
-    TableColumn<Object, Object> columnID;
+    TableColumn<Kunde, Integer> columnID;
     @FXML
-    TableColumn<Object, Object> columnKunde;
+    TableColumn<Kunde, String> columnKunde;
     @FXML
     TextField txtAddKunde;
+    private ObservableList<Kunde> kunden;
     private ArrayList<Kunde> zuLoeschend = new ArrayList<>();
     @FXML
     private Button btnAddKunde;
@@ -101,29 +101,24 @@ public class EinstellungenKundenController implements Initializable {
             //remove selected item from the table list
             zuLoeschend.add(currentPerson);
             kundenTable.getItems().remove(currentPerson);
-
-
-            //todo
         }
     }
 
     @FXML
     private void handelSpeicherKunden(ActionEvent actionEvent) {
         m.setZuLoeschendenKunden(zuLoeschend);
-        Settings.speicherKunden(m, new ArrayList<>(kundenTable.getItems()));
-        setTableData();
+        Settings.speicherKunden(m, kunden);
     }
 
     private void setTableData() {
-        ObservableList<Kunde> data =
-                FXCollections.observableArrayList(m.getKunden());
+        kunden = FXCollections.observableArrayList(m.getKunden());
 
-        columnID.setCellValueFactory(
-                new PropertyValueFactory<>("id"));
+        //Das asObject() muss hier leider dran, da aus Kompatibilitätsgründen der SimpleIntegerProperty ein Number und kein Integer liefert
+        //Es könnte auch die Tabelle auf Number geändert werden. könnte.. auch...
+        columnID.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
 
-        columnKunde.setCellValueFactory(
-                new PropertyValueFactory<>("name"));
+        columnKunde.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
 
-        kundenTable.setItems(data);
+        kundenTable.setItems(kunden);
     }
 }
