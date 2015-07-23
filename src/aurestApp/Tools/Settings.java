@@ -25,7 +25,7 @@ public class Settings {
             //Lade die Mitarbeiternamen und alternativen Namen
             while (rs.next()) {
                 int userid = rs.getInt("ID");
-                ResultSet rsalts = stmt2.executeQuery("SELECT Name FROM Altname a WHERE a.id = " + userid + " ORDER BY a.Name ASC");
+                ResultSet rsalts = stmt2.executeQuery("SELECT Name FROM Altname a WHERE a.MitarbeiterID = " + userid + " ORDER BY a.Name ASC");
                 ArrayList<String> altnamen = new ArrayList<>();
                 while (rsalts.next()) {
                     altnamen.add(rsalts.getString("Name"));
@@ -297,7 +297,7 @@ public class Settings {
         return true;
     }
 
-    public static void speicherKunden(Model m, ArrayList<Kunde> kundeliste) {
+    public static void speicherKunden(Model m, ObservableList<Kunde> kundeliste) {
         Statement stmt;
         try {
             stmt = m.getConn().createStatement();
@@ -320,6 +320,7 @@ public class Settings {
         //und neu laden
         if (!ladeKunden(m))
             return;
+        kundeliste.setAll(m.getKunden());
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Speichern")
