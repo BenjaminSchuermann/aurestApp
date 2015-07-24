@@ -1,4 +1,4 @@
-package aurestApp.Tools;
+package aurestApp.tools;
 
 import javafx.scene.control.TableCell;
 import javafx.scene.control.cell.CheckBoxTableCell;

@@ -1,8 +1,8 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.Tools.Dialoge;
-import aurestApp.Tools.Mitarbeiter;
+import aurestApp.tools.Dialoge;
+import aurestApp.tools.Mitarbeiter;
 import aurestApp.interfaces.Seiten;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;

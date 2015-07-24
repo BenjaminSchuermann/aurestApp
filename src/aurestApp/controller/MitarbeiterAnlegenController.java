@@ -1,9 +1,9 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.Tools.Dialoge;
-import aurestApp.Tools.Mitarbeiter;
-import aurestApp.Tools.Settings;
+import aurestApp.tools.Dialoge;
+import aurestApp.tools.Mitarbeiter;
+import aurestApp.tools.Settings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

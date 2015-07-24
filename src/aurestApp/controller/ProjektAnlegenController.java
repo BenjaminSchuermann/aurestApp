@@ -1,9 +1,9 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.Tools.Generator;
-import aurestApp.Tools.Kunde;
-import aurestApp.Tools.Settings;
+import aurestApp.tools.Generator;
+import aurestApp.tools.Kunde;
+import aurestApp.tools.Settings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;

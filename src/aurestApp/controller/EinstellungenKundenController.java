@@ -1,8 +1,8 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.Tools.Kunde;
-import aurestApp.Tools.Settings;
+import aurestApp.tools.Kunde;
+import aurestApp.tools.Settings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

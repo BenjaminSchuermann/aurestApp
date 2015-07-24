@@ -1,4 +1,4 @@
-package aurestApp.Tools;
+package aurestApp.tools;
 
 import aurestApp.Model;
 import aurestApp.controller.ProjektLogbuchController;

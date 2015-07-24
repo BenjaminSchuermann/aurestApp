@@ -1,7 +1,7 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.Tools.Dialoge;
+import aurestApp.tools.Dialoge;
 import aurestApp.interfaces.Seiten;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
