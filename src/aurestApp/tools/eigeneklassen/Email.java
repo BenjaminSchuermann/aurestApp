@@ -1,6 +1,7 @@
-package aurestApp.tools;
+package aurestApp.tools.eigeneklassen;
 
 import aurestApp.Model;
+import aurestApp.tools.Dialoge;
 import javafx.application.Platform;
 
 import java.io.File;

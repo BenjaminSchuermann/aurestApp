@@ -1,7 +1,7 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.tools.Projekt;
+import aurestApp.tools.eigeneklassen.Projekt;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

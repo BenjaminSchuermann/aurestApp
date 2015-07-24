@@ -2,7 +2,7 @@ package aurestApp.controller;
 
 import aurestApp.Model;
 import aurestApp.tools.Generator;
-import aurestApp.tools.Kunde;
+import aurestApp.tools.eigeneklassen.Kunde;
 import aurestApp.tools.Settings;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

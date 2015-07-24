@@ -1,9 +1,9 @@
 package aurestApp;
 
 import aurestApp.tools.Dialoge;
-import aurestApp.tools.Kunde;
-import aurestApp.tools.Mitarbeiter;
-import aurestApp.tools.Projekt;
+import aurestApp.tools.eigeneklassen.Kunde;
+import aurestApp.tools.eigeneklassen.Mitarbeiter;
+import aurestApp.tools.eigeneklassen.Projekt;
 
 import java.io.*;
 import java.sql.Connection;

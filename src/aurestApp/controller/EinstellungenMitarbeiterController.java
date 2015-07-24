@@ -2,7 +2,7 @@ package aurestApp.controller;
 
 import aurestApp.Model;
 import aurestApp.tools.Dialoge;
-import aurestApp.tools.Mitarbeiter;
+import aurestApp.tools.eigeneklassen.Mitarbeiter;
 import aurestApp.interfaces.Seiten;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

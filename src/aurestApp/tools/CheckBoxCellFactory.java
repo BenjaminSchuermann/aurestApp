@@ -1,5 +1,6 @@
 package aurestApp.tools;
 
+import aurestApp.tools.eigeneklassen.Projekt;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.util.Callback;

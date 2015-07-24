@@ -1,5 +1,6 @@
-package aurestApp.tools;
+package aurestApp.tools.eigeneklassen;
 
+import aurestApp.tools.Dialoge;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
