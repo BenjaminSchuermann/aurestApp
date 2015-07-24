@@ -1,8 +1,8 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.tools.eigeneklassen.Email;
-import aurestApp.tools.eigeneklassen.MessageConsumer;
+import aurestApp.Tools.Email;
+import aurestApp.Tools.MessageConsumer;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.concurrent.Task;

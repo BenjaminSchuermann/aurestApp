@@ -1,7 +1,7 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.tools.Logbuch;
+import aurestApp.Tools.Logbuch;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +16,9 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+/**
+ * Created by Benjamin on 16.07.2015.
+ */
 public class ServiceLogbuchController implements Initializable {
     private final Model m;
     private TabPane tabPane;
