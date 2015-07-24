@@ -1,7 +1,7 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.Tools.Settings;
+import aurestApp.tools.Settings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,9 +17,6 @@ import org.controlsfx.glyphfont.GlyphFontRegistry;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Created by Benjamin on 20.07.2015.
- */
 public class EinstellungenLoginDetailsController implements Initializable {
     private Model m;
     @FXML

@@ -1,7 +1,7 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.Tools.Dialoge;
+import aurestApp.tools.Dialoge;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;

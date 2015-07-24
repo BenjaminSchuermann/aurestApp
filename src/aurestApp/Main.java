@@ -1,9 +1,9 @@
 package aurestApp;
 
-import aurestApp.Tools.Dialoge;
-import aurestApp.Tools.Login;
-import aurestApp.Tools.Settings;
 import aurestApp.interfaces.Seiten;
+import aurestApp.tools.Dialoge;
+import aurestApp.tools.Login;
+import aurestApp.tools.Settings;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;

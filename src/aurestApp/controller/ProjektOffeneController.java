@@ -1,7 +1,7 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.Tools.Projekt;
+import aurestApp.tools.eigeneklassen.Projekt;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,9 +16,6 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Created by Benjamin on 22.07.2015.
- */
 public class ProjektOffeneController implements Initializable {
     private final Model m;
     private TabPane tabPane;
