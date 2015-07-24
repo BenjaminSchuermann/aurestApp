@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
@@ -28,17 +29,17 @@ public class ProjektOffeneController implements Initializable {
     @FXML
     private TableView<Projekt> offeneProjekte;
     @FXML
-    private TableColumn<Projekt, Boolean> checkBoxTableColumn;
+    private TableColumn<Object, Object> checkBoxTableColumn;
     @FXML
-    private TableColumn<Projekt, String> columnProjekt;
+    private TableColumn<Object, Object> columnProjekt;
     @FXML
-    private TableColumn<Projekt, String> columnKunde;
+    private TableColumn<Object, Object> columnKunde;
     @FXML
-    private TableColumn<Projekt, String> columnBezeichnung;
+    private TableColumn<Object, Object> columnBezeichnung;
     @FXML
-    private TableColumn<Projekt, Integer> columnOfferte;
+    private TableColumn<Object, Object> columnOfferte;
     @FXML
-    private TableColumn<Projekt, String> columnUrProjekt;
+    private TableColumn<Object, Object> columnUrProjekt;
     @FXML
     private Button projektLoeschen;
     @FXML
@@ -55,17 +56,23 @@ public class ProjektOffeneController implements Initializable {
         ObservableList<Projekt> data =
                 FXCollections.observableArrayList(m.getProjekte());
 
-        checkBoxTableColumn.setCellValueFactory(cellData -> cellData.getValue().checkedProperty());
+        checkBoxTableColumn.setCellValueFactory(
+                new PropertyValueFactory<>("checked"));
 
-        columnProjekt.setCellValueFactory(cellData -> cellData.getValue().projektnummerProperty());
+        columnProjekt.setCellValueFactory(
+                new PropertyValueFactory<>("projektnummer"));
 
-        columnKunde.setCellValueFactory(cellData -> cellData.getValue().kundeProperty());
+        columnKunde.setCellValueFactory(
+                new PropertyValueFactory<>("kunde"));
 
-        columnBezeichnung.setCellValueFactory(cellData -> cellData.getValue().bezeichnungProperty());
+        columnBezeichnung.setCellValueFactory(
+                new PropertyValueFactory<>("bezeichnung"));
 
-        columnOfferte.setCellValueFactory(cellData -> cellData.getValue().offerteProperty().asObject());
+        columnOfferte.setCellValueFactory(
+                new PropertyValueFactory<>("offerte"));
 
-        columnUrProjekt.setCellValueFactory(cellData -> cellData.getValue().urProjektProperty());
+        columnUrProjekt.setCellValueFactory(
+                new PropertyValueFactory<>("urProjekt"));
 
         offeneProjekte.setItems(data);
         //erstellepl.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.BOOK).size(25.0).color(Color.BROWN).useGradientEffect());
