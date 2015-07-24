@@ -68,8 +68,6 @@ public class ProjektOffeneController implements Initializable {
         columnUrProjekt.setCellValueFactory(cellData -> cellData.getValue().urProjektProperty());
 
         offeneProjekte.setItems(data);
-        //erstellepl.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.BOOK).size(25.0).color(Color.BROWN).useGradientEffect());
-        //erstellepl.setContentDisplay(ContentDisplay.LEFT);
     }
 
     public void handelProjektLoeschen(ActionEvent actionEvent) {
