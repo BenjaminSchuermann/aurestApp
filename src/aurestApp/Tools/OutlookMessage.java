@@ -1,4 +1,4 @@
-package aurestApp.Tools;
+package aurestApp.tools.eigeneklassen;
 
 import org.apache.commons.io.EndianUtils;
 import org.apache.commons.lang3.ArrayUtils;

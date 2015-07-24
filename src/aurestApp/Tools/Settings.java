@@ -1,6 +1,9 @@
-package aurestApp.Tools;
+package aurestApp.tools;
 
 import aurestApp.Model;
+import aurestApp.tools.eigeneklassen.Kunde;
+import aurestApp.tools.eigeneklassen.Mitarbeiter;
+import aurestApp.tools.eigeneklassen.Projekt;
 import javafx.collections.ObservableList;
 import org.controlsfx.control.Notifications;
 
