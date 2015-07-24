@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import aurestApp.Tools.CheckBoxCellFactory?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40" fx:id="vbox">
     <children>
@@ -23,22 +21,8 @@
                         <TableColumn fx:id="columnKurz" prefWidth="75.0" text="Kürzel" />
                         <TableColumn prefWidth="75.0" text="Auswertungen">
                             <columns>
-                                <TableColumn fx:id="columnTele" prefWidth="65.0" minWidth="26.0" resizable="false" sortable="false" text="Tele">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="checked"/>
-                                    </cellValueFactory>
-                                    <cellFactory>
-                                        <CheckBoxCellFactory/>
-                                    </cellFactory>
-                                </TableColumn>
-                                <TableColumn fx:id="columnEmail" prefWidth="65.0" minWidth="26.0" resizable="false" sortable="false" text="eMail">
-                                    <cellValueFactory>
-                                        <PropertyValueFactory property="checked"/>
-                                    </cellValueFactory>
-                                    <cellFactory>
-                                        <CheckBoxCellFactory/>
-                                    </cellFactory>
-                                </TableColumn>
+                                <TableColumn fx:id="columnTele" prefWidth="65.0" text="Tele"/>
+                                <TableColumn fx:id="columnEmail" prefWidth="65.0" text="eMail"/>
                             </columns>
                         </TableColumn>
                         <TableColumn fx:id="columnLogin" editable="false" prefWidth="85.0" resizable="false" text="Login aktiv" />
