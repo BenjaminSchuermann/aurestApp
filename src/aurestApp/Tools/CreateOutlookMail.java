@@ -1,4 +1,4 @@
-package aurestApp.tools;
+package aurestApp.Tools;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.ole.win32.*;

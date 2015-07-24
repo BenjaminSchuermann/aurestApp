@@ -1,4 +1,4 @@
-package aurestApp.tools;
+package aurestApp.Tools;
 
 import aurestApp.Model;
 import aurestApp.controller.ProjektLogbuchController;
@@ -67,7 +67,6 @@ public class Generator {
         if (!offerte.isEmpty()) {
             while (!ziel.exists()) {
                 //Warteschleife
-                //todo
             }
             // pfad der offerte
             String pfadoff;
@@ -125,7 +124,6 @@ public class Generator {
 
             while (!new File(pfadoff + "\\Projekt " + pfad + ".lnk").exists() && !new File("P:\\" + pfad + "\\Offerte " + offkomplett + ".lnk").exists()) {
                 //Warteschleife
-                //todo
             }
 
         }
@@ -134,7 +132,6 @@ public class Generator {
         if (!m.getProjektUrprojekt().isEmpty()) {
             while (!ziel.exists()) {
                 //Warteschleife
-                //todo
             }
             status = "Projektlink wird vorbereitet";
             // pfad der offerte
@@ -208,7 +205,6 @@ public class Generator {
             status = "UrProjekt wird verlinkt";
             while (!new File("P:\\" + pfad + "\\UrProjekt " + spkomplett + ".lnk").exists() && !new File(pfadsp + "\\Projekt " + pfad + ".lnk").exists()) {
                 //Warteschleife
-                //todo
             }
             fa.delete();
 
@@ -313,7 +309,6 @@ public class Generator {
         if (!serviceprojekt.isEmpty()) {
             m.setServiceUrprojekt(serviceprojekt);
             while (!ziel.exists()) {
-                //todo
                 //Warteschleife
             }
             status = "Projektlink wird vorbereitet";
@@ -387,7 +382,6 @@ public class Generator {
             status = "Projekt wird verlinkt";
             while (!new File("Q:\\" + pfad + "\\Projekt " + spkomplett + ".lnk").exists() && !new File(pfadsp + "\\Service " + servicenummer + " " + snfl + ".lnk").exists()) {
                 //Warteschleife
-                //todo
             }
             fa.delete();
             status = "Service angelegt";

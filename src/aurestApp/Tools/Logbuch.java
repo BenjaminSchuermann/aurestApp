@@ -1,4 +1,4 @@
-package aurestApp.tools;
+package aurestApp.Tools;
 
 import aurestApp.Model;
 import org.controlsfx.control.Notifications;

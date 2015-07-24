@@ -1,4 +1,4 @@
-package aurestApp.tools.eigeneklassen;
+package aurestApp.Tools;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;

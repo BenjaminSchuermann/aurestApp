@@ -1,4 +1,4 @@
-package aurestApp.tools;
+package aurestApp.Tools;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

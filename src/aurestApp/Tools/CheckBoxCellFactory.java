@@ -1,4 +1,4 @@
-package aurestApp.tools.fxmlklassen;
+package aurestApp.Tools;
 
 import javafx.scene.control.TableCell;
 import javafx.scene.control.cell.CheckBoxTableCell;
@@ -8,6 +8,7 @@ public class CheckBoxCellFactory implements Callback {
 
     @Override
     public TableCell call(Object param) {
-        return new CheckBoxTableCell();
+        CheckBoxTableCell<Projekt, Boolean> checkBoxCell = new CheckBoxTableCell();
+        return checkBoxCell;
     }
 }

@@ -1,4 +1,4 @@
-package aurestApp.tools.eigeneklassen;
+package aurestApp.Tools;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.control.TextArea;

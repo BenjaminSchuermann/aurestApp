@@ -1,7 +1,6 @@
-package aurestApp.tools.eigeneklassen;
+package aurestApp.Tools;
 
 import aurestApp.Model;
-import aurestApp.tools.Dialoge;
 import javafx.application.Platform;
 
 import java.io.File;
@@ -24,7 +23,7 @@ public class Email {
     public void renameMail(File file) {
 
         if (debug) System.out.println("Das ist File:" + file);
-        boolean res;
+        boolean res = false;
         anzahlGesamt++;
         try {
             res = file.renameTo(new File(file.getParent() + "//" + getFileName(file) + ".msg"));
