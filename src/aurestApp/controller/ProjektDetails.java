@@ -102,7 +102,7 @@ public class ProjektDetails implements Initializable {
     @FXML
     private void handelopenprojekt(ActionEvent actionEvent) {
         try {
-            Desktop.getDesktop().browse(new File("/home/").toURI());
+            Desktop.getDesktop().browse(new File("P:\\7187 Schmid-Schaltanlagen Renschler Laupheim").toURI());
         } catch (IOException e) {
             Dialoge.exceptionDialog(e, "Kann Ordner nicht öffnen");
         }
