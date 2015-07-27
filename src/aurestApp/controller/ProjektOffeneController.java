@@ -1,18 +1,25 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.interfaces.Seiten;
+import aurestApp.tools.Dialoge;
 import aurestApp.tools.eigeneklassen.Projekt;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -75,6 +82,24 @@ public class ProjektOffeneController implements Initializable {
     }
 
     public void handelProjektArchivieren(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        stage.setTitle("aurestApp v" + m.getVersion());
+        stage.getIcons().add(new Image(EinstellungenMitarbeiterController.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.PROJEKTDETAILS));
+        loader.setController(new ProjektDetails(m));
+
+        try {
+            VBox mainVbox = loader.load();
+            Scene scene = new Scene(mainVbox);
+            scene.getStylesheets().setAll(getClass().getResource("/aurestApp/styles/stylesheet.css").toExternalForm());
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim erstellen der Detailseite");
+            return;
+        }
+
+        stage.show();
     }
 }

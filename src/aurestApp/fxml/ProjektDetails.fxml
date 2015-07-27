@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40">
+    <children>
+        <HBox>
+            <children>
+                <VBox HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox>
+                            <children>
+                                <Label text="Bezeichnung"/>
+                                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS"/>
+                            </children>
+                        </HBox>
+                        <TextField id="plurprojekt" fx:id="bezeichnung">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                </VBox>
+                <HBox alignment="TOP_RIGHT">
+                    <children>
+                        <VBox alignment="TOP_RIGHT" prefWidth="100.0">
+                            <children>
+                                <Label text="Status"/>
+                                <ChoiceBox fx:id="status">
+                                    <VBox.margin>
+                                        <Insets top="5.0"/>
+                                    </VBox.margin>
+                                </ChoiceBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </HBox>
+        <SplitPane fx:id="tblservices_details" dividerPositions="0.35" VBox.vgrow="ALWAYS">
+            <items>
+                <VBox>
+                    <children>
+                        <HBox>
+                            <children>
+                                <VBox prefWidth="60.0">
+                                    <children>
+                                        <Label text="Jahr"/>
+                                        <TextField fx:id="projektjahr">
+                                            <VBox.margin>
+                                                <Insets top="5.0"/>
+                                            </VBox.margin>
+                                        </TextField>
+                                    </children>
+                                </VBox>
+                                <VBox prefWidth="100.0">
+                                    <children>
+                                        <Label text="Projekt"/>
+                                        <TextField id="plprojekt" fx:id="projektnummer">
+                                            <VBox.margin>
+                                                <Insets top="5.0"/>
+                                            </VBox.margin>
+                                        </TextField>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="5.0"/>
+                                    </HBox.margin>
+                                </VBox>
+                                <VBox alignment="BOTTOM_RIGHT">
+                                    <children>
+                                        <Button fx:id="openprojekt" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#handelopenprojekt"/>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="5.0"/>
+                                    </HBox.margin>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <HBox HBox.hgrow="ALWAYS">
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                    <children>
+                                        <VBox>
+                                            <children>
+                                                <Label text="Offerte"/>
+                                                <HBox>
+                                                    <VBox.margin>
+                                                        <Insets top="5.0"/>
+                                                    </VBox.margin>
+                                                    <children>
+                                                        <TextField id="plmitarbeiter" fx:id="offerte" prefWidth="100.0"/>
+                                                        <Button fx:id="openofferte" mnemonicParsing="false" onAction="#handelopenofferte">
+                                                            <HBox.margin>
+                                                                <Insets left="5.0"/>
+                                                            </HBox.margin>
+                                                        </Button>
+                                                    </children>
+                                                </HBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <Label text="Stammprojekt"/>
+                                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS"/>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <TextField fx:id="stammjahr" prefWidth="60.0"/>
+                                <TextField id="plprojekt" fx:id="stammnummer" prefWidth="100.0">
+                                    <HBox.margin>
+                                        <Insets left="5.0"/>
+                                    </HBox.margin>
+                                </TextField>
+                                <Button fx:id="openstammprojekt" mnemonicParsing="false" onAction="#handelopenstammprojekt">
+                                    <HBox.margin>
+                                        <Insets left="5.0"/>
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </HBox>
+                        <Label text="Services">
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                        </Label>
+                        <TableView fx:id="tblservices" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="tblservice_columnjahr" prefWidth="60.0" text="Jahr"/>
+                                <TableColumn fx:id="tblservice_columnnummer" prefWidth="60.0" text="Service"/>
+                                <TableColumn fx:id="tblservice_columbezeichnung" prefWidth="160.0" text="Bezeichnung"/>
+                            </columns>
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </TableView>
+                        <HBox>
+                            <children>
+                                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Button fx:id="tblservices_anzeigen" mnemonicParsing="false" onAction="#handeltblservices_anzeigen" text="Anzeigen"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets right="5.0"/>
+                    </padding>
+                </VBox>
+                <VBox>
+                    <children>
+                        <Label text="Logbuch"/>
+                        <TableView fx:id="tbllogbuch" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="tbllog_datum" prefWidth="75.0" text="Datum"/>
+                                <TableColumn fx:id="tbllog_titel" prefWidth="75.0" text="Titel"/>
+                                <TableColumn fx:id="tbllog_kurz" prefWidth="60.0" text="Kürzel"/>
+                                <TableColumn prefWidth="172.0" text="Eintragstyp">
+                                    <columns>
+                                        <TableColumn fx:id="tbllog_typservice" prefWidth="60.0" text="Service"/>
+                                        <TableColumn fx:id="tbllog_typprojekt" prefWidth="60.0" text="Projekt"/>
+                                    </columns>
+                                </TableColumn>
+                                <TableColumn fx:id="tbllog_nummer" prefWidth="75.0" text="Nummer"/>
+                                <TableColumn fx:id="tbllog_bezeichnung" prefWidth="160.0" text="Bezeichnung"/>
+                            </columns>
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </TableView>
+                        <HBox>
+                            <children>
+                                <Button fx:id="tbllog_add" mnemonicParsing="false" onAction="#handeltbllog_add" text="Hinzufügen"/>
+                                <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Button fx:id="tbllog_details" mnemonicParsing="false" onAction="#handeltbllog_details" text="Details"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets left="5.0"/>
+                    </padding>
+                </VBox>
+            </items>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </SplitPane>
+        <HBox>
+            <children>
+                <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Button fx:id="abbruch" mnemonicParsing="false" onAction="#handelabbruch" text="Abbruch"/>
+                        <Button fx:id="speichern" mnemonicParsing="false" onAction="#handelspeichern" text="Speichern">
+                            <HBox.margin>
+                                <Insets left="15.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets top="15.0"/>
+            </VBox.margin>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>
