@@ -2,6 +2,9 @@ package aurestApp.controller;
 
 import aurestApp.Model;
 import aurestApp.tools.Dialoge;
+import aurestApp.tools.eigeneklassen.Service;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 
@@ -37,6 +41,10 @@ public class ProjektDetails implements Initializable {
     @FXML
     private Button openprojekt;
     @FXML
+    private TextField kundenid;
+    @FXML
+    private TextField kundenname;
+    @FXML
     private TextField offerte;
     @FXML
     private Button openofferte;
@@ -47,13 +55,13 @@ public class ProjektDetails implements Initializable {
     @FXML
     private Button openstammprojekt;
     @FXML
-    private TableView tblservices;
+    private TableView<Service> tblservices;
     @FXML
-    private TableColumn tblservice_columnjahr;
+    private TableColumn<Service, Integer> tblservice_columnjahr;
     @FXML
-    private TableColumn tblservice_columnnummer;
+    private TableColumn<Service, Integer> tblservice_columnnummer;
     @FXML
-    private TableColumn tblservice_columbezeichnung;
+    private TableColumn<Service, String> tblservice_columbezeichnung;
     @FXML
     private Button tblservices_anzeigen;
     @FXML
@@ -97,17 +105,41 @@ public class ProjektDetails implements Initializable {
         abbruch.setContentDisplay(ContentDisplay.LEFT);
         speichern.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SAVE).size(25.0).color(Color.BLUE));
         speichern.setContentDisplay(ContentDisplay.LEFT);
+
+        ObservableList<Service> data =
+                FXCollections.observableArrayList(new Service(0, 1745, 1, "Störung BHKW 1", 5015, "7187"),
+                        new Service(0, 1798, 1, "Störung BHKW 2", 5014, "7187"),
+                        new Service(0, 1612, 1, "Störung SPS 1", 5013, "7187")
+                );
+        tblservice_columnjahr.setCellValueFactory(cellData -> cellData.getValue().servicejahrProperty().asObject());
+        tblservice_columnnummer.setCellValueFactory(cellData -> cellData.getValue().serviceProperty().asObject());
+        tblservice_columbezeichnung.setCellValueFactory(cellData -> cellData.getValue().bezeichnungProperty());
+        tblservices.setItems(data);
+
+
+        //Zum vorführen
+        bezeichnung.setText("Renschler Laupheim - LE2");
+        bezeichnung.setEditable(false);
+        projektjahr.setText("2014");
+        projektnummer.setText("7187_1");
+        kundenid.setText("1");
+        kundenname.setText("Schmid GmbH Schaltanlagen");
+        stammjahr.setText("2013");
+        stammnummer.setText("7187");
+        offerte.setDisable(true);
+        openofferte.setDisable(true);
+
+
     }
 
     @FXML
     private void handelopenprojekt(ActionEvent actionEvent) {
         try {
-            Desktop.getDesktop().browse(new File("P:\\7187 Schmid-Schaltanlagen Renschler Laupheim").toURI());
+            Desktop.getDesktop().browse(new File("P:\\7187_1 Schmid-Schaltanlagen Renschler Laupheim - LE2").toURI());
         } catch (IOException e) {
             Dialoge.exceptionDialog(e, "Kann Ordner nicht öffnen");
         }
     }
-
     @FXML
     private void handelopenofferte(ActionEvent actionEvent) {
 
@@ -115,7 +147,11 @@ public class ProjektDetails implements Initializable {
 
     @FXML
     private void handelopenstammprojekt(ActionEvent actionEvent) {
-
+        try {
+            Desktop.getDesktop().browse(new File("P:\\7187 Schmid-Schaltanlagen Renschler Laupheim").toURI());
+        } catch (IOException e) {
+            Dialoge.exceptionDialog(e, "Kann Ordner nicht öffnen");
+        }
     }
 
     @FXML
@@ -135,7 +171,8 @@ public class ProjektDetails implements Initializable {
 
     @FXML
     private void handelabbruch(ActionEvent actionEvent) {
-
+        Stage stage = (Stage) abbruch.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

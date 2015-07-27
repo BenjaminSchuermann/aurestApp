@@ -77,6 +77,38 @@
                                 </VBox>
                             </children>
                         </HBox>
+                        <HBox layoutX="10.0" layoutY="10.0">
+                            <children>
+                                <VBox prefWidth="40.0">
+                                    <children>
+                                        <Label text="ID"/>
+                                        <TextField fx:id="kundenid">
+                                            <VBox.margin>
+                                                <Insets top="5.0"/>
+                                            </VBox.margin>
+                                        </TextField>
+                                    </children>
+                                </VBox>
+                                <VBox prefWidth="100.0" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Kunde"/>
+                                        <TextField id="plprojekt" fx:id="kundenname" maxWidth="500.0">
+                                            <VBox.margin>
+                                                <Insets top="5.0"/>
+                                            </VBox.margin>
+                                        </TextField>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="5.0"/>
+                                    </HBox.margin>
+                                </VBox>
+                                <VBox alignment="BOTTOM_RIGHT">
+                                    <HBox.margin>
+                                        <Insets left="5.0"/>
+                                    </HBox.margin>
+                                </VBox>
+                            </children>
+                        </HBox>
                         <HBox>
                             <children>
                                 <HBox HBox.hgrow="ALWAYS">
