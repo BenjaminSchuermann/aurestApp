@@ -1,16 +1,22 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.interfaces.Seiten;
 import aurestApp.tools.Dialoge;
+import aurestApp.tools.eigeneklassen.Logbucheintrag;
 import aurestApp.tools.eigeneklassen.Service;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.controlsfx.glyphfont.FontAwesome;
@@ -22,16 +28,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Created by garog on 27.07.15.
- */
 public class ProjektDetails implements Initializable {
     private Model m;
 
     @FXML
     private TextField bezeichnung;
     @FXML
-    private ChoiceBox status;
+    private ChoiceBox<String> status;
     @FXML
     private SplitPane tblservices_details;
     @FXML
@@ -65,21 +68,21 @@ public class ProjektDetails implements Initializable {
     @FXML
     private Button tblservices_anzeigen;
     @FXML
-    private TableView tbllogbuch;
+    private TableView<Logbucheintrag> tbllogbuch;
     @FXML
-    private TableColumn tbllog_datum;
+    private TableColumn<Logbucheintrag, String> tbllog_datum;
     @FXML
-    private TableColumn tbllog_titel;
+    private TableColumn<Logbucheintrag, String> tbllog_titel;
     @FXML
-    private TableColumn tbllog_kurz;
+    private TableColumn<Logbucheintrag, String> tbllog_kurz;
     @FXML
-    private TableColumn tbllog_typservice;
+    private TableColumn<Logbucheintrag, Boolean> tbllog_typservice;
     @FXML
-    private TableColumn tbllog_typprojekt;
+    private TableColumn<Logbucheintrag, Boolean> tbllog_typprojekt;
     @FXML
-    private TableColumn tbllog_nummer;
+    private TableColumn<Logbucheintrag, String> tbllog_nummer;
     @FXML
-    private TableColumn tbllog_bezeichnung;
+    private TableColumn<Logbucheintrag, String> tbllog_bezeichnung;
     @FXML
     private Button tbllog_add;
     @FXML
@@ -106,16 +109,8 @@ public class ProjektDetails implements Initializable {
         speichern.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SAVE).size(25.0).color(Color.BLUE));
         speichern.setContentDisplay(ContentDisplay.LEFT);
 
-        ObservableList<Service> data =
-                FXCollections.observableArrayList(new Service(0, 1745, 1, "Störung BHKW 1", 5015, "7187"),
-                        new Service(0, 1798, 1, "Störung BHKW 2", 5014, "7187"),
-                        new Service(0, 1612, 1, "Störung SPS 1", 5013, "7187")
-                );
-        tblservice_columnjahr.setCellValueFactory(cellData -> cellData.getValue().servicejahrProperty().asObject());
-        tblservice_columnnummer.setCellValueFactory(cellData -> cellData.getValue().serviceProperty().asObject());
-        tblservice_columbezeichnung.setCellValueFactory(cellData -> cellData.getValue().bezeichnungProperty());
-        tblservices.setItems(data);
-
+        status.getItems().addAll("offen", "geschlossen", "pending");
+        status.getSelectionModel().selectFirst();
 
         //Zum vorführen
         bezeichnung.setText("Renschler Laupheim - LE2");
@@ -129,7 +124,29 @@ public class ProjektDetails implements Initializable {
         offerte.setDisable(true);
         openofferte.setDisable(true);
 
+        ObservableList<Service> dataservices =
+                FXCollections.observableArrayList(new Service(0, 1745, 1, "Störung BHKW 1", 5015, "7187"),
+                        new Service(0, 1798, 1, "Störung BHKW 2", 5014, "7187"),
+                        new Service(0, 1612, 1, "Störung SPS 1", 5013, "7187")
+                );
+        tblservice_columnjahr.setCellValueFactory(cellData -> cellData.getValue().servicejahrProperty().asObject());
+        tblservice_columnnummer.setCellValueFactory(cellData -> cellData.getValue().serviceProperty().asObject());
+        tblservice_columbezeichnung.setCellValueFactory(cellData -> cellData.getValue().bezeichnungProperty());
+        tblservices.setItems(dataservices);
 
+        ObservableList<Logbucheintrag> datalog =
+                FXCollections.observableArrayList(new Logbucheintrag("10.10.2010", "Fehler", "bs", true, false, "1612", "Störung SPS 1"),
+                        new Logbucheintrag("12.09.2012", "Telefonat", "dl", false, true, "", ""),
+                        new Logbucheintrag("17.02.2013", "Support", "mh", false, true, "", "")
+                );
+        tbllog_datum.setCellValueFactory(cellData -> cellData.getValue().datumProperty());
+        tbllog_titel.setCellValueFactory(cellData -> cellData.getValue().titelProperty());
+        tbllog_kurz.setCellValueFactory(cellData -> cellData.getValue().kuerzelProperty());
+        tbllog_typservice.setCellValueFactory(cellData -> cellData.getValue().isserviceProperty());
+        tbllog_typprojekt.setCellValueFactory(cellData -> cellData.getValue().isprojektProperty());
+        tbllog_nummer.setCellValueFactory(cellData -> cellData.getValue().nummerProperty());
+        tbllog_bezeichnung.setCellValueFactory(cellData -> cellData.getValue().bezeichnungProperty());
+        tbllogbuch.setItems(datalog);
     }
 
     @FXML
@@ -140,6 +157,7 @@ public class ProjektDetails implements Initializable {
             Dialoge.exceptionDialog(e, "Kann Ordner nicht öffnen");
         }
     }
+
     @FXML
     private void handelopenofferte(ActionEvent actionEvent) {
 
@@ -156,7 +174,25 @@ public class ProjektDetails implements Initializable {
 
     @FXML
     private void handeltblservices_anzeigen(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        stage.setTitle("aurestApp v" + m.getVersion());
+        stage.getIcons().add(new Image(ProjektDetails.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.SERVICEDETAILS));
+        loader.setController(new ServiceDetails(m));
+
+        try {
+            VBox mainVbox = loader.load();
+            Scene scene = new Scene(mainVbox);
+            scene.getStylesheets().setAll(getClass().getResource("/aurestApp/styles/stylesheet.css").toExternalForm());
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim erstellen der Detailseite");
+            return;
+        }
+
+        stage.show();
     }
 
     @FXML

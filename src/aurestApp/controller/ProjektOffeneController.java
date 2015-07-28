@@ -84,7 +84,7 @@ public class ProjektOffeneController implements Initializable {
     public void handelProjektArchivieren(ActionEvent actionEvent) {
         Stage stage = new Stage();
         stage.setTitle("aurestApp v" + m.getVersion());
-        stage.getIcons().add(new Image(EinstellungenMitarbeiterController.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
+        stage.getIcons().add(new Image(ProjektOffeneController.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.PROJEKTDETAILS));
         loader.setController(new ProjektDetails(m));

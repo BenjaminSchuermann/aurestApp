@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import aurestApp.tools.fxml.CheckBoxCellFactory?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.*?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40">
     <children>
@@ -49,7 +47,7 @@
                                 <VBox prefWidth="60.0">
                                     <children>
                                         <Label text="Jahr"/>
-                                        <TextField fx:id="projektjahr">
+                                        <TextField fx:id="servicejahr">
                                             <VBox.margin>
                                                 <Insets top="5.0"/>
                                             </VBox.margin>
@@ -58,8 +56,8 @@
                                 </VBox>
                                 <VBox prefWidth="100.0">
                                     <children>
-                                        <Label text="Projekt"/>
-                                        <TextField fx:id="projektnummer">
+                                        <Label text="Service"/>
+                                        <TextField fx:id="servicenummer">
                                             <VBox.margin>
                                                 <Insets top="5.0"/>
                                             </VBox.margin>
@@ -71,7 +69,7 @@
                                 </VBox>
                                 <VBox alignment="BOTTOM_RIGHT">
                                     <children>
-                                        <Button fx:id="openprojekt" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#handelopenprojekt"/>
+                                        <Button fx:id="openservice" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#handelopenservice"/>
                                     </children>
                                     <HBox.margin>
                                         <Insets left="5.0"/>
@@ -116,90 +114,40 @@
                         </HBox>
                         <HBox>
                             <children>
-                                <HBox HBox.hgrow="ALWAYS">
-                                    <HBox.margin>
-                                        <Insets/>
-                                    </HBox.margin>
-                                    <children>
-                                        <VBox>
-                                            <children>
-                                                <Label text="Offerte"/>
-                                                <HBox>
-                                                    <VBox.margin>
-                                                        <Insets top="5.0"/>
-                                                    </VBox.margin>
-                                                    <children>
-                                                        <TextField fx:id="offerte" prefWidth="100.0"/>
-                                                        <Button fx:id="openofferte" mnemonicParsing="false" onAction="#handelopenofferte">
-                                                            <HBox.margin>
-                                                                <Insets left="5.0"/>
-                                                            </HBox.margin>
-                                                        </Button>
-                                                    </children>
-                                                </HBox>
-                                            </children>
-                                        </VBox>
-                                    </children>
-                                </HBox>
-                            </children>
-                            <VBox.margin>
-                                <Insets top="10.0"/>
-                            </VBox.margin>
-                        </HBox>
-                        <HBox>
-                            <children>
-                                <Label text="Stammprojekt"/>
+                                <Label text="Projekt"/>
                                 <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS"/>
                             </children>
                             <VBox.margin>
                                 <Insets top="10.0"/>
                             </VBox.margin>
                         </HBox>
-                        <HBox>
-                            <children>
-                                <TextField fx:id="stammjahr" prefWidth="60.0"/>
-                                <TextField fx:id="stammnummer" prefWidth="100.0">
-                                    <HBox.margin>
-                                        <Insets left="5.0"/>
-                                    </HBox.margin>
-                                </TextField>
-                                <Button fx:id="openstammprojekt" mnemonicParsing="false" onAction="#handelopenstammprojekt">
-                                    <HBox.margin>
-                                        <Insets left="5.0"/>
-                                    </HBox.margin>
-                                </Button>
-                            </children>
+                        <VBox>
                             <VBox.margin>
                                 <Insets top="5.0"/>
                             </VBox.margin>
-                        </HBox>
-                        <Label text="Services">
-                            <VBox.margin>
-                                <Insets top="10.0"/>
-                            </VBox.margin>
-                        </Label>
-                        <TableView fx:id="tblservices" VBox.vgrow="ALWAYS">
-                            <columns>
-                                <TableColumn fx:id="tblservice_columnjahr" prefWidth="60.0" text="Jahr"/>
-                                <TableColumn fx:id="tblservice_columnnummer" prefWidth="60.0" text="Service"/>
-                                <TableColumn fx:id="tblservice_columbezeichnung" prefWidth="160.0" text="Bezeichnung"/>
-                            </columns>
-                            <VBox.margin>
-                                <Insets top="5.0"/>
-                            </VBox.margin>
-                        </TableView>
-                        <HBox>
                             <children>
-                                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                                <HBox>
                                     <children>
-                                        <Button fx:id="tblservices_anzeigen" mnemonicParsing="false" onAction="#handeltblservices_anzeigen" text="Anzeigen"/>
+                                        <TextField fx:id="projektjahr" prefWidth="60.0"/>
+                                        <TextField fx:id="projektnummer" prefWidth="100.0">
+                                            <HBox.margin>
+                                                <Insets left="5.0"/>
+                                            </HBox.margin>
+                                        </TextField>
+                                        <Button fx:id="openprojekt" mnemonicParsing="false" onAction="#handelopenprojekt">
+                                            <HBox.margin>
+                                                <Insets left="5.0"/>
+                                            </HBox.margin>
+                                        </Button>
                                     </children>
                                 </HBox>
+                                <TextField fx:id="projektbezeichnung">
+                                    <VBox.margin>
+                                        <Insets top="5.0"/>
+                                    </VBox.margin>
+                                </TextField>
                             </children>
-                            <VBox.margin>
-                                <Insets top="5.0"/>
-                            </VBox.margin>
-                        </HBox>
+                        </VBox>
                     </children>
                     <padding>
                         <Insets right="5.0"/>
@@ -213,28 +161,7 @@
                                 <TableColumn fx:id="tbllog_datum" prefWidth="75.0" text="Datum"/>
                                 <TableColumn fx:id="tbllog_titel" prefWidth="75.0" text="Titel"/>
                                 <TableColumn fx:id="tbllog_kurz" prefWidth="60.0" text="Kürzel"/>
-                                <TableColumn prefWidth="172.0" text="Eintragstyp">
-                                    <columns>
-                                        <TableColumn fx:id="tbllog_typservice" prefWidth="60.0" text="Service">
-                                            <cellValueFactory>
-                                                <PropertyValueFactory property="checked"/>
-                                            </cellValueFactory>
-                                            <cellFactory>
-                                                <CheckBoxCellFactory/>
-                                            </cellFactory>
-                                        </TableColumn>
-                                        <TableColumn fx:id="tbllog_typprojekt" prefWidth="60.0" text="Projekt">
-                                            <cellValueFactory>
-                                                <PropertyValueFactory property="checked"/>
-                                            </cellValueFactory>
-                                            <cellFactory>
-                                                <CheckBoxCellFactory/>
-                                            </cellFactory>
-                                        </TableColumn>
-                                    </columns>
-                                </TableColumn>
-                                <TableColumn fx:id="tbllog_nummer" prefWidth="75.0" text="Nummer"/>
-                                <TableColumn fx:id="tbllog_bezeichnung" prefWidth="160.0" text="Bezeichnung"/>
+                                <TableColumn fx:id="tbllog_problem" prefWidth="160.0" text="Problem"/>
                             </columns>
                             <VBox.margin>
                                 <Insets top="5.0"/>
