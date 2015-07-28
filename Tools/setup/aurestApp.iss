@@ -6,8 +6,8 @@
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppName=aurestApp
-AppVersion=1.1.6
-;AppVerName=aurestApp 1.1.6
+AppVersion=1.1.18
+;AppVerName=aurestApp 1.1.18
 AppPublisher=Benjamin Schürmann
 ShowLanguageDialog=no
 UninstallDisplayName=aurestApp
@@ -19,8 +19,8 @@ OutputBaseFilename=setup
 Compression=lzma
 SolidCompression=yes
 ArchitecturesInstallIn64BitMode=x64
-WizardImageFile=D:\IdeaProjects\aurestApp\setup\banner.bmp
-WizardSmallImageFile=D:\IdeaProjects\aurestApp\setup\setupsmall.bmp
+WizardImageFile=D:\IdeaProjects\aurestApp\Tools\setup\banner.bmp
+WizardSmallImageFile=D:\IdeaProjects\aurestApp\Tools\setup\setupsmall.bmp
 
 [Languages]
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
@@ -30,9 +30,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "D:\aurestApp\1.1.6\bin\*"; DestDir: "{app}\bin\"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "D:\aurestApp\1.1.6\cfg\*"; DestDir: "{app}\cfg\"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "D:\aurestApp\1.1.6\jre\*"; DestDir: "{app}\jre\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\aurestApp\programm\bin\*"; DestDir: "{app}\bin\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\aurestApp\programm\cfg\*"; DestDir: "{app}\cfg\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\aurestApp\programm\jre\*"; DestDir: "{app}\jre\"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

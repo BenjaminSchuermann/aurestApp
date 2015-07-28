@@ -2,8 +2,8 @@ package aurestApp.controller;
 
 import aurestApp.Model;
 import aurestApp.tools.Generator;
-import aurestApp.tools.eigeneklassen.Kunde;
 import aurestApp.tools.Settings;
+import aurestApp.tools.eigeneklassen.Kunde;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -23,6 +23,8 @@ public class ProjektAnlegenController implements Initializable {
     private final Model m;
     ArrayList<String> kundenAlsStrings = new ArrayList<>();
     private TabPane tabPane;
+    @FXML
+    private TextField projektjahr;
     @FXML
     private TextField projektnummer;
     @FXML

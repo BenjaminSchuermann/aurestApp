@@ -11,13 +11,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
 
 import java.io.IOException;
 import java.net.URL;
@@ -58,7 +58,10 @@ public class ProjektOffeneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        projektLoeschen.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.REMOVE).size(25.0).color(Color.RED));
+        projektLoeschen.setContentDisplay(ContentDisplay.LEFT);
+        projektArchivieren.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.ARCHIVE).size(25.0).color(Color.BLACK));
+        projektArchivieren.setContentDisplay(ContentDisplay.LEFT);
         ObservableList<Projekt> data =
                 FXCollections.observableArrayList(m.getProjekte());
 

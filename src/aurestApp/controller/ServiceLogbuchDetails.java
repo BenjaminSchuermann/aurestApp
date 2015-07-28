@@ -63,6 +63,10 @@ public class ServiceLogbuchDetails implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        openservice.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FOLDER_OPEN_ALT).size(15.0).color(Color.BLACK));
+        openservice.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        openprojekt.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FOLDER_OPEN_ALT).size(15.0).color(Color.BLACK));
+        openprojekt.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         abbruch.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.REMOVE).size(25.0).color(Color.BLACK));
         abbruch.setContentDisplay(ContentDisplay.LEFT);
         //Zum vorführen

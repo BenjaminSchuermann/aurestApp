@@ -104,6 +104,12 @@ public class ProjektDetails implements Initializable {
         openofferte.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         openstammprojekt.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FOLDER_OPEN_ALT).size(15.0).color(Color.BLACK));
         openstammprojekt.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        tblservices_anzeigen.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SEARCH).size(25.0).color(Color.BLACK));
+        tblservices_anzeigen.setContentDisplay(ContentDisplay.LEFT);
+        tbllog_add.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.PLUS).size(25.0).color(Color.GREEN));
+        tbllog_add.setContentDisplay(ContentDisplay.LEFT);
+        tbllog_details.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SEARCH).size(25.0).color(Color.BLACK));
+        tbllog_details.setContentDisplay(ContentDisplay.LEFT);
         abbruch.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.REMOVE).size(25.0).color(Color.BLACK));
         abbruch.setContentDisplay(ContentDisplay.LEFT);
         speichern.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SAVE).size(25.0).color(Color.BLUE));

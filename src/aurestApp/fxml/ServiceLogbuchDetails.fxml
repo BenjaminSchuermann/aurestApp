@@ -20,7 +20,7 @@
                                                 <Insets left="5.0"/>
                                             </HBox.margin>
                                         </TextField>
-                                        <Button fx:id="openservice" mnemonicParsing="false" onAction="#handelopenservice">
+                                        <Button fx:id="openservice" minWidth="34.0" mnemonicParsing="false" onAction="#handelopenservice" prefWidth="34.0">
                                             <HBox.margin>
                                                 <Insets left="5.0"/>
                                             </HBox.margin>
@@ -55,7 +55,7 @@
                                                 <Insets left="5.0"/>
                                             </HBox.margin>
                                         </TextField>
-                                        <Button fx:id="openprojekt" mnemonicParsing="false" onAction="#handelopenprojekt">
+                                        <Button fx:id="openprojekt" minWidth="34.0" mnemonicParsing="false" onAction="#handelopenprojekt" prefWidth="34.0">
                                             <HBox.margin>
                                                 <Insets left="5.0"/>
                                             </HBox.margin>

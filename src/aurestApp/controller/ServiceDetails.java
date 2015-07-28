@@ -74,10 +74,14 @@ public class ServiceDetails implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        openservice.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FOLDER_OPEN_ALT).size(15.0).color(Color.BLACK));
+        openservice.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         openprojekt.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FOLDER_OPEN_ALT).size(15.0).color(Color.BLACK));
         openprojekt.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-        openprojekt.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FOLDER_OPEN_ALT).size(15.0).color(Color.BLACK));
-        openprojekt.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+        tbllog_add.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.PLUS).size(25.0).color(Color.GREEN));
+        tbllog_add.setContentDisplay(ContentDisplay.LEFT);
+        tbllog_details.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SEARCH).size(25.0).color(Color.BLACK));
+        tbllog_details.setContentDisplay(ContentDisplay.LEFT);
         abbruch.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.REMOVE).size(25.0).color(Color.BLACK));
         abbruch.setContentDisplay(ContentDisplay.LEFT);
         speichern.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SAVE).size(25.0).color(Color.BLUE));
@@ -95,6 +99,7 @@ public class ServiceDetails implements Initializable {
         kundenname.setText("Schmid GmbH Schaltanlagen");
         projektjahr.setText("2014");
         projektnummer.setText("7187_1");
+        projektbezeichnung.setText("Renschler Laupheim - LE2");
 
         ObservableList<Logbucheintrag> datalog =
                 FXCollections.observableArrayList(new Logbucheintrag("10.10.2010", "Fehler", "bs", true, false, "1612", "Störung SPS 1")

@@ -69,7 +69,7 @@
                                 </VBox>
                                 <VBox alignment="BOTTOM_RIGHT">
                                     <children>
-                                        <Button fx:id="openservice" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#handelopenservice"/>
+                                        <Button fx:id="openservice" alignment="TOP_CENTER" minWidth="34.0" mnemonicParsing="false" onAction="#handelopenservice" prefHeight="25.0" prefWidth="34.0"/>
                                     </children>
                                     <HBox.margin>
                                         <Insets left="5.0"/>
@@ -117,16 +117,20 @@
                                 <Insets top="10.0"/>
                             </VBox.margin>
                             <children>
-                                <Label text="Projekt"/>
-                                <HBox>
+                                <Label text="Projekt">
+                                    <VBox.margin>
+                                        <Insets/>
+                                    </VBox.margin>
+                                </Label>
+                                <HBox VBox.vgrow="ALWAYS">
                                     <children>
-                                        <TextField fx:id="projektjahr" prefWidth="60.0"/>
-                                        <TextField id="plprojekt" fx:id="projektnummer" prefWidth="100.0">
+                                        <TextField fx:id="projektjahr" prefWidth="60.0" HBox.hgrow="NEVER"/>
+                                        <TextField id="plprojekt" fx:id="projektnummer" prefWidth="100.0" HBox.hgrow="NEVER">
                                             <HBox.margin>
                                                 <Insets left="5.0"/>
                                             </HBox.margin>
                                         </TextField>
-                                        <Button fx:id="openprojekt" mnemonicParsing="false" onAction="#handelopenprojekt">
+                                        <Button fx:id="openprojekt" minWidth="34.0" mnemonicParsing="false" onAction="#handelopenprojekt" prefHeight="25.0" prefWidth="34.0">
                                             <HBox.margin>
                                                 <Insets left="5.0"/>
                                             </HBox.margin>
