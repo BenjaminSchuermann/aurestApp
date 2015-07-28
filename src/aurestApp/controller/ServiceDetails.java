@@ -1,18 +1,25 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.interfaces.Seiten;
+import aurestApp.tools.Dialoge;
 import aurestApp.tools.eigeneklassen.Logbucheintrag;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -112,7 +119,25 @@ public class ServiceDetails implements Initializable {
     }
 
     public void handeltbllog_details(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        stage.setTitle("aurestApp v" + m.getVersion());
+        stage.getIcons().add(new Image(ServiceDetails.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.SERVICELOGBUCHDETAILS));
+        loader.setController(new ServiceLogbuchDetails(m));
+
+        try {
+            VBox mainVbox = loader.load();
+            Scene scene = new Scene(mainVbox);
+            scene.getStylesheets().setAll(getClass().getResource("/aurestApp/styles/stylesheet.css").toExternalForm());
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim erstellen der Detailseite");
+            return;
+        }
+
+        stage.show();
     }
 
     public void handelabbruch(ActionEvent actionEvent) {

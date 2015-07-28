@@ -15,7 +15,7 @@
                                 <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS"/>
                             </children>
                         </HBox>
-                        <TextField fx:id="bezeichnung">
+                        <TextField id="plurprojekt" fx:id="bezeichnung">
                             <VBox.margin>
                                 <Insets top="5.0"/>
                             </VBox.margin>
@@ -57,7 +57,7 @@
                                 <VBox prefWidth="100.0">
                                     <children>
                                         <Label text="Service"/>
-                                        <TextField fx:id="servicenummer">
+                                        <TextField id="plprojekt" fx:id="servicenummer">
                                             <VBox.margin>
                                                 <Insets top="5.0"/>
                                             </VBox.margin>
@@ -92,7 +92,7 @@
                                 <VBox prefWidth="100.0" HBox.hgrow="ALWAYS">
                                     <children>
                                         <Label text="Kunde"/>
-                                        <TextField fx:id="kundenname" maxWidth="500.0">
+                                        <TextField id="plprojekt" fx:id="kundenname" maxWidth="500.0">
                                             <VBox.margin>
                                                 <Insets top="5.0"/>
                                             </VBox.margin>
@@ -112,24 +112,16 @@
                                 <Insets top="10.0"/>
                             </VBox.margin>
                         </HBox>
-                        <HBox>
-                            <children>
-                                <Label text="Projekt"/>
-                                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS"/>
-                            </children>
+                        <VBox>
                             <VBox.margin>
                                 <Insets top="10.0"/>
                             </VBox.margin>
-                        </HBox>
-                        <VBox>
-                            <VBox.margin>
-                                <Insets top="5.0"/>
-                            </VBox.margin>
                             <children>
+                                <Label text="Projekt"/>
                                 <HBox>
                                     <children>
                                         <TextField fx:id="projektjahr" prefWidth="60.0"/>
-                                        <TextField fx:id="projektnummer" prefWidth="100.0">
+                                        <TextField id="plprojekt" fx:id="projektnummer" prefWidth="100.0">
                                             <HBox.margin>
                                                 <Insets left="5.0"/>
                                             </HBox.margin>
@@ -140,6 +132,9 @@
                                             </HBox.margin>
                                         </Button>
                                     </children>
+                                    <VBox.margin>
+                                        <Insets top="5.0"/>
+                                    </VBox.margin>
                                 </HBox>
                                 <TextField fx:id="projektbezeichnung">
                                     <VBox.margin>

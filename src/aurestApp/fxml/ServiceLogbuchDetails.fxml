@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40">
+    <children>
+        <HBox>
+            <children>
+                <HBox>
+                    <children>
+                        <VBox>
+                            <children>
+                                <Label text="Service"/>
+                                <HBox>
+                                    <children>
+                                        <TextField fx:id="servicejahr" editable="false" prefWidth="60.0"/>
+                                        <TextField fx:id="servicenummer" editable="false" prefWidth="100.0">
+                                            <HBox.margin>
+                                                <Insets left="5.0"/>
+                                            </HBox.margin>
+                                        </TextField>
+                                        <Button fx:id="openservice" mnemonicParsing="false" onAction="#handelopenservice">
+                                            <HBox.margin>
+                                                <Insets left="5.0"/>
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="5.0"/>
+                                    </VBox.margin>
+                                </HBox>
+                                <TextField fx:id="servicebezeichnung" editable="false">
+                                    <VBox.margin>
+                                        <Insets top="5.0"/>
+                                    </VBox.margin>
+                                </TextField>
+                            </children>
+                        </VBox>
+                    </children>
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </HBox>
+                <HBox layoutX="25.0" layoutY="10.0">
+                    <children>
+                        <VBox>
+                            <children>
+                                <Label text="Projekt"/>
+                                <HBox>
+                                    <children>
+                                        <TextField fx:id="projektjahr" editable="false" prefWidth="60.0"/>
+                                        <TextField fx:id="projektnummer" editable="false" prefWidth="100.0">
+                                            <HBox.margin>
+                                                <Insets left="5.0"/>
+                                            </HBox.margin>
+                                        </TextField>
+                                        <Button fx:id="openprojekt" mnemonicParsing="false" onAction="#handelopenprojekt">
+                                            <HBox.margin>
+                                                <Insets left="5.0"/>
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets top="5.0"/>
+                                    </VBox.margin>
+                                </HBox>
+                                <TextField fx:id="projektbezeichnung" editable="false">
+                                    <VBox.margin>
+                                        <Insets top="5.0"/>
+                                    </VBox.margin>
+                                </TextField>
+                            </children>
+                        </VBox>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+        </HBox>
+        <HBox>
+            <children>
+                <VBox HBox.hgrow="NEVER">
+                    <children>
+                        <Label text="Datum"/>
+                        <DatePicker fx:id="sldatum" editable="false" prefWidth="170.0" showWeekNumbers="true">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </DatePicker>
+                    </children>
+                </VBox>
+                <VBox HBox.hgrow="NEVER">
+                    <children>
+                        <Label text="Mitarbeiter"/>
+                        <TextField fx:id="slmitarbeiter" editable="false" prefWidth="130.0">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </VBox>
+                <VBox HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Kontakt"/>
+                        <TextField fx:id="slkontakt" editable="false">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </TextField>
+                    </children>
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </VBox>
+            </children>
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </HBox>
+        <Label text="Anlagenteil">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+
+        <TextField fx:id="slanlagenteil" editable="false">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <Label text="Problem">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <TextField fx:id="slproblem" editable="false">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <Label text="Ursache">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <TextField fx:id="slursache" editable="false">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextField>
+        <Label text="Lösung">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <TextArea fx:id="slloesung" editable="false" minHeight="100.0" VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </TextArea>
+        <Label text="Bemerkung / Hardware Austausch">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </Label>
+        <TextField fx:id="slbemerkung" editable="false">
+            <VBox.margin>
+                <Insets top="2.0"/>
+            </VBox.margin>
+        </TextField>
+        <VBox alignment="BOTTOM_RIGHT">
+            <children>
+
+                <Button fx:id="abbruch" mnemonicParsing="false" onAction="#handelAbbruch" text="Schließen">
+                    <VBox.margin>
+                        <Insets top="15.0"/>
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

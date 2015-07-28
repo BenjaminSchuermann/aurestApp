@@ -202,7 +202,25 @@ public class ProjektDetails implements Initializable {
 
     @FXML
     private void handeltbllog_details(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        stage.setTitle("aurestApp v" + m.getVersion());
+        stage.getIcons().add(new Image(ProjektDetails.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.SERVICELOGBUCHDETAILS));
+        loader.setController(new ServiceLogbuchDetails(m));
+
+        try {
+            VBox mainVbox = loader.load();
+            Scene scene = new Scene(mainVbox);
+            scene.getStylesheets().setAll(getClass().getResource("/aurestApp/styles/stylesheet.css").toExternalForm());
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim erstellen der Detailseite");
+            return;
+        }
+
+        stage.show();
     }
 
     @FXML
