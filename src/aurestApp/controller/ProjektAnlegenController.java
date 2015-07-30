@@ -2,7 +2,6 @@ package aurestApp.controller;
 
 import aurestApp.Model;
 import aurestApp.tools.Generator;
-import aurestApp.tools.Settings;
 import aurestApp.tools.eigeneklassen.Kunde;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -66,8 +65,8 @@ public class ProjektAnlegenController implements Initializable {
 
         Generator.erstelleProjekt(projektnummer.getText(), projektkunde.getText(), projektbeschreibung.getText(), rbeigenfertigung.isSelected(), projektofferte.getText(), projektursprung.getText(), m, tabPane);
         //Sollte der Kunde noch nicht vorhanden sein, dann speichern
-        if (kundenAlsStrings.contains(projektkunde.getText().trim()))
-            return;
-        Settings.speicherKunde(m, new Kunde(0, projektkunde.getText().trim()));
+        //if (kundenAlsStrings.contains(projektkunde.getText().trim()))
+        //    return;
+        //Settings.speicherKunde(m, new Kunde(0, projektkunde.getText().trim()));
     }
 }

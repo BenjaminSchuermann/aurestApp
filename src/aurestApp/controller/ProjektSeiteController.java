@@ -111,5 +111,8 @@ public class ProjektSeiteController implements Initializable {
         }
         //Inhalt in den Tab setzen
         tabProjektOffen.setContent(mainNode);
+
+        if (m.getUserid() != 1)
+            tabPane.getTabs().remove(2);
     }
 }

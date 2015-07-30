@@ -3,7 +3,6 @@ package aurestApp.controller;
 import aurestApp.Model;
 import aurestApp.tools.Generator;
 import aurestApp.tools.eigeneklassen.Kunde;
-import aurestApp.tools.Settings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -73,8 +72,8 @@ public class ServiceAnlegenController implements Initializable {
 
         Generator.erstelleService(serviceJahr + "." + servicenummer.getText(), servicekunde.getText(), servicebeschreibung.getText(), false, serviceprojekt.getText(), m, tabPane);
         //Sollte der Kunde noch nicht vorhanden sein, dann speichern
-        if (kundenAlsStrings.contains(servicekunde.getText().trim()))
-            return;
-        Settings.speicherKunde(m, new Kunde(0, servicekunde.getText().trim()));
+        //if (kundenAlsStrings.contains(servicekunde.getText().trim()))
+        //    return;
+        //Settings.speicherKunde(m, new Kunde(0, servicekunde.getText().trim()));
     }
 }
