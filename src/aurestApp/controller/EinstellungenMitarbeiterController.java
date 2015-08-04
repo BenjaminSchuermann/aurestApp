@@ -1,9 +1,9 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.interfaces.Seiten;
 import aurestApp.tools.Dialoge;
 import aurestApp.tools.eigeneklassen.Mitarbeiter;
-import aurestApp.interfaces.Seiten;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,11 +39,11 @@ public class EinstellungenMitarbeiterController implements Initializable {
     @FXML
     private TableColumn<Mitarbeiter, String> columnKurz;
     @FXML
-    private TableColumn<Mitarbeiter, String> columnLogin;
-    @FXML
     private TableColumn<Mitarbeiter, Boolean> columnTele;
     @FXML
     private TableColumn<Mitarbeiter, Boolean> columnEmail;
+    @FXML
+    private TableColumn<Mitarbeiter, Boolean> columnLoginAktiv;
 
     @FXML
     private Button bearbeite;
@@ -69,11 +69,11 @@ public class EinstellungenMitarbeiterController implements Initializable {
 
         columnKurz.setCellValueFactory(cellData -> cellData.getValue().kurzProperty());
 
-        columnLogin.setCellValueFactory(cellData -> cellData.getValue().loginProperty());
-
         columnTele.setCellValueFactory(cellData -> cellData.getValue().teleAktivProperty());
 
         columnEmail.setCellValueFactory(cellData -> cellData.getValue().eMailAktivProperty());
+
+        columnLoginAktiv.setCellValueFactory(cellData -> cellData.getValue().loginAktivProperty());
 
         mitarbeiter.setItems(data);
 

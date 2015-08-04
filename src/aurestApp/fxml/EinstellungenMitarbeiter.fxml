@@ -41,7 +41,14 @@
                                 </TableColumn>
                             </columns>
                         </TableColumn>
-                        <TableColumn fx:id="columnLogin" editable="false" prefWidth="85.0" resizable="false" text="Login aktiv" />
+                        <TableColumn fx:id="columnLoginAktiv" editable="false" prefWidth="85.0" resizable="false" text="Login aktiv">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="checked"/>
+                            </cellValueFactory>
+                            <cellFactory>
+                                <CheckBoxCellFactory/>
+                            </cellFactory>
+                        </TableColumn>
                     </columns>
                 </TableView>
             </children>
