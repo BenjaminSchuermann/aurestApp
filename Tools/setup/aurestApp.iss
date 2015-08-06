@@ -6,8 +6,8 @@
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppName=aurestApp
-AppVersion=1.1.18
-;AppVerName=aurestApp 1.1.18
+AppVersion=1.2.0
+;AppVerName=aurestApp 1.2.0
 AppPublisher=Benjamin Schürmann
 ShowLanguageDialog=no
 UninstallDisplayName=aurestApp
@@ -19,6 +19,7 @@ OutputBaseFilename=setup
 Compression=lzma
 SolidCompression=yes
 ArchitecturesInstallIn64BitMode=x64
+SetupIconFile=D:\IdeaProjects\aurestApp\Tools\setup\a128x128.ico
 WizardImageFile=D:\IdeaProjects\aurestApp\Tools\setup\banner.bmp
 WizardSmallImageFile=D:\IdeaProjects\aurestApp\Tools\setup\setupsmall.bmp
 
@@ -36,9 +37,9 @@ Source: "D:\aurestApp\programm\jre\*"; DestDir: "{app}\jre\"; Flags: ignoreversi
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\aurestApp"; Filename: "{app}\bin\aurestApp.exe"; IconFilename: "{app}\bin\aurestApp.exe"; IconIndex: 0
+Name: "{group}\aurestApp"; Filename: "{app}\bin\aurestApp.exe";
 Name: "{group}\{cm:UninstallProgram,aurestApp}"; Filename: "{uninstallexe}"
-Name: "{userdesktop}\aurestApp"; Filename: "{app}\bin\aurestApp.exe"; IconFilename: "{app}\bin\aurestApp.exe"; IconIndex: 0
+Name: "{userdesktop}\aurestApp"; Filename: "{app}\bin\aurestApp.exe";
 
 [Run]
 Filename: "{app}\bin\aurestApp.exe"; Description: "{cm:LaunchProgram,aurestApp}"; Flags: nowait postinstall skipifsilent

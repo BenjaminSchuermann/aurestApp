@@ -1,9 +1,10 @@
 package aurestApp;
 
+import aurestApp.interfaces.Seiten;
+import aurestApp.tools.CheckVersion;
 import aurestApp.tools.Dialoge;
 import aurestApp.tools.Login;
 import aurestApp.tools.Settings;
-import aurestApp.interfaces.Seiten;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +33,9 @@ public class Main extends Application implements Seiten {
 
         //Wenn keine Datenbankverbindung hergestellt werden kann, direkt beenden.
         if (m.getConn() == null)
+            return;
+
+        if (CheckVersion.checkVersion(m))
             return;
 
         //als erstes das Loginfeld anzeigen und die userid holen
