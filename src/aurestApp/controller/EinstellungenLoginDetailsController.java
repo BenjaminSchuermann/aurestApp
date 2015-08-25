@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.paint.Color;
+import org.controlsfx.control.textfield.CustomPasswordField;
 import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
@@ -25,7 +26,7 @@ public class EinstellungenLoginDetailsController implements Initializable {
     @FXML
     private CustomTextField login;
     @FXML
-    private CustomTextField passwort;
+    private CustomPasswordField passwort;
     @FXML
     private Button speichern;
 

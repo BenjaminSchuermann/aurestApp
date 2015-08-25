@@ -2,8 +2,8 @@ package aurestApp.controller;
 
 import aurestApp.Model;
 import aurestApp.tools.Dialoge;
-import aurestApp.tools.eigeneklassen.Mitarbeiter;
 import aurestApp.tools.Settings;
+import aurestApp.tools.eigeneklassen.Mitarbeiter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckListView;
 import org.controlsfx.control.Notifications;
+import org.controlsfx.control.textfield.CustomPasswordField;
 import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
@@ -61,7 +62,7 @@ public class MitarbeiterAnlegenController implements Initializable {
     @FXML
     private CustomTextField login;
     @FXML
-    private CustomTextField passwort;
+    private CustomPasswordField passwort;
     @FXML
     private Button loeschemitarbeiter;
     @FXML

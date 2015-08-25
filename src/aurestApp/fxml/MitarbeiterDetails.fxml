@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import org.controlsfx.control.CheckListView?>
+<?import org.controlsfx.control.textfield.CustomPasswordField?>
 <?import org.controlsfx.control.textfield.CustomTextField?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="vbox" xmlns="http://javafx.com/javafx/8.0.40" VBox.vgrow="ALWAYS">
     <children>
@@ -119,11 +120,11 @@
                                 <Insets top="10.0"/>
                             </VBox.margin>
                         </Label>
-                        <CustomTextField fx:id="passwort">
+                        <CustomPasswordField fx:id="passwort">
                             <VBox.margin>
                                 <Insets top="5.0"/>
                             </VBox.margin>
-                        </CustomTextField>
+                        </CustomPasswordField>
                     </children>
                     <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
