@@ -7,10 +7,11 @@ import javafx.application.Platform;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Email {
     private final Model m;
-    private final boolean debug = false;
+    private final boolean debug = true;
     private int doppelcount = 0;
     private int anzahlGesamt = 0;
     private int anzahlOk = 0;
@@ -104,8 +105,17 @@ public class Email {
 
         //Kalender anlegen und mit Datum aus eMail bestücken
         Calendar cal = Calendar.getInstance();
+        Date messageDate;
         if (debug) System.out.println("getMessageDeliveryTime :" + eMail.getMessageDeliveryTime());
-        cal.setTime(eMail.getMessageDeliveryTime());
+        if (eMail.getMessageDeliveryTime() != null)
+            messageDate = eMail.getMessageDeliveryTime();
+        else if (eMail.getLastModificationTime() != null)
+            messageDate = eMail.getLastModificationTime();
+        else
+            return "";
+
+
+        cal.setTime(messageDate);
 
         //Ersetz durch Liste !!! wird nun direkt in der for each Schleife gemacht
         //Die Hauseigenen Namen aus der Konfiguration lesen

@@ -52,8 +52,14 @@ class OutlookMessage {
 
     /**
      * reversed endian format of the property id "message delivery time"
+     * 0x0E 06 00 40
      */
     private static final byte[] PROP_MESSAGE_DELIVERY_TIME = {0x40, 0x00, 0x06, 0x0E};
+    /**
+     * reversed endian format of the property id "last modification time"
+     * 0x30 08 00 40
+     */
+    private static final byte[] PROP_LAST_MODIFICATION_TIME = {0x40, 0x00, 0x08, 0x30};
 
     private String subject = null;
 
@@ -66,6 +72,8 @@ class OutlookMessage {
     private Date clientSubmitTime;
 
     private Date messageDeliveryTime;
+
+    private Date lastModificationTime;
 
     public OutlookMessage(String filename) throws IOException {
         this(new FileInputStream(new File(filename)));
@@ -137,6 +145,9 @@ class OutlookMessage {
                     } else if (compare(propId, PROP_MESSAGE_DELIVERY_TIME)) {
                         // read value
                         this.messageDeliveryTime = getDate(propBytes, offset);
+                    } else if (compare(propId, PROP_LAST_MODIFICATION_TIME)) {
+                        // read value
+                        this.lastModificationTime = getDate(propBytes, offset);
                     }
 
                     offset = offset + 16;
@@ -263,5 +274,9 @@ class OutlookMessage {
 
     public Date getMessageDeliveryTime() {
         return messageDeliveryTime;
+    }
+
+    public Date getLastModificationTime() {
+        return lastModificationTime;
     }
 }
