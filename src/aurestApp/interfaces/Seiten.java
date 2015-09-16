@@ -19,6 +19,7 @@ public interface Seiten {
     String EINSTELLUNGENSERVICE = "/aurestApp/fxml/EinstellungenService.fxml";
     String EINSTELLUNGENVORLAGEN = "/aurestApp/fxml/EinstellungenVorlagen.fxml";
     String EINSTELLUNGENKUNDEN = "/aurestApp/fxml/EinstellungenKunden.fxml";
+    String KUNDENDETAILS = "/aurestApp/fxml/KundenDetails.fxml";
     String EINSTELLUNGENLOGIN = "/aurestApp/fxml/EinstellungenLogin.fxml";
     String UEBERINFO = "/aurestApp/fxml/Ueber.Info.fxml";
     String EMAILPROGRESS = "/aurestApp/fxml/eMailProgress.fxml";

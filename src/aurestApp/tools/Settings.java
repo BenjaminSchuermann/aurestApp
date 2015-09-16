@@ -281,17 +281,28 @@ public class Settings {
     public static boolean ladeKunden(Model m) {
         //Ein "Statement" erzeugen
         Statement stmt;
+        Statement stmt2;
         ArrayList<Kunde> kunden = new ArrayList<>();
         try {
             stmt = m.getConn().createStatement();
+            stmt2 = m.getConn().createStatement();
+
             //Statement mit der Abfrage füllen und ein Result erstellen
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Kunden ORDER BY Name ASC;");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Kunden ORDER BY RealName ASC;");
             //Alle Results ausgeben
             while (rs.next()) {
-                kunden.add(new Kunde(rs.getInt("id"), rs.getString("Name")));
+                int kundenid = rs.getInt("id");
+                ResultSet rsordner = stmt2.executeQuery("SELECT Name FROM KundenOrdner WHERE KundenID = " + kundenid + " ORDER BY Name ASC");
+                ArrayList<String> ordner = new ArrayList<>();
+                while (rsordner.next()) {
+                    ordner.add(rsordner.getString("Name"));
+                }
+                kunden.add(new Kunde(kundenid, rs.getString("RealName"), rs.getString("Strasse"), rs.getString("Stadt"), rs.getInt("PLZ"), rs.getString("Land"), rs.getString("Telefon"), rs.getString("Fax"), ordner));
             }
             //fertig
             stmt.close();
+            stmt2.close();
+
         } catch (SQLException e) {
             Dialoge.exceptionDialog(e, "Fehler beim laden der Kundendaten");
             return false;
@@ -300,56 +311,100 @@ public class Settings {
         return true;
     }
 
-    public static void speicherKunden(Model m, ObservableList<Kunde> kundeliste) {
+    public static void addKunde(Model m, Kunde kunde) {
         Statement stmt;
         try {
             stmt = m.getConn().createStatement();
 
-            for (Kunde zuLoeschenderKunde : m.getZuLoeschendeKunden()) {
-                stmt.execute("DELETE FROM `aurestApp`.`Kunden` WHERE `Kunden`.`id` = " + zuLoeschenderKunde.getId() + ";");
+            //Speichern der Kundendaten
+            stmt.execute("INSERT INTO `aurestApp`.`Kunden`(`RealName`, `Strasse`, `Stadt`, `PLZ`, `Land`) VALUES (" +
+                    "'" + kunde.getName() + "'," +
+                    "'" + kunde.getStrasse() + "'," +
+                    "'" + kunde.getStadt() + "'," +
+                    "'" + (kunde.getPlz()) + "'," +
+                    "'" + (kunde.getLand()) + "');");
+
+            //Statement mit der Abfrage füllen und ein Result erstellen
+            ResultSet rs = stmt.executeQuery("SELECT `id` FROM `aurestApp`.`Kunden` WHERE `RealName` ='" + kunde.getName() + "';");
+            //Holen der userID des Mitarbeiters
+            while (rs.next()) {
+                kunde.setKundenID(rs.getInt("id"));
             }
 
-            //Statement mit Insert erstellen
-            for (Kunde kunde : kundeliste) {
-                if (kunde.getId() == 0)
-                    stmt.execute("INSERT INTO `aurestApp`.`Kunden` ( Name ) VALUES ('" + kunde.getName() + "');");
-                //stmt.execute("INSERT INTO Kunden ( Kunde ) SELECT * FROM (SELECT '" + kunde.getKunde() + "') AS tmp WHERE NOT EXISTS ( SELECT Kunde FROM Kunden  WHERE Kunde  = '" + kunde.getKunde() + "') LIMIT 1;");
+            //Mitarbeiter alternative Namen hinzufügen
+            for (String s : kunde.getOrdnernamen()) {
+                stmt.execute("INSERT INTO `aurestApp`.`KundenOrdner` (`KundenID`, `Name`) VALUES (" +
+                        "'" + kunde.getKundenID() + "'," +
+                        "'" + s + "');");
             }
-            //fertig
             stmt.close();
+
         } catch (SQLException e) {
-            Dialoge.exceptionDialog(e, "Fehler beim Speichern");
+            Dialoge.exceptionDialog(e, "Fehler beim speichern der Daten");
+            return;
         }
         //und neu laden
         if (!ladeKunden(m))
             return;
-        kundeliste.setAll(m.getKunden());
+        //Meldung rausgeben
+        Notifications.create().darkStyle()
+                .title("Speichern")
+                .text("Der neue Kunde wurde angelegt")
+                .showInformation();
+    }
+
+    public static void updateKunde(Model m, Kunde kunde) {
+        Statement stmt;
+        try {
+            stmt = m.getConn().createStatement();
+            //Speichern der Kundendaten
+            stmt.execute("UPDATE Kunden SET " +
+                    "RealName ='" + kunde.getName() + "', " +
+                    "Strasse ='" + kunde.getStrasse() + "'," +
+                    "PLZ ='" + kunde.getPlz() + "'," +
+                    "Stadt ='" + kunde.getStadt() + "'," +
+                    "Land ='" + kunde.getLand() + "'" +
+                    " WHERE id =" + kunde.getKundenID() + ";");
+
+            //...und dann wieder hinzufügen
+            for (String s : kunde.getOrdnernamen()) {
+                stmt.execute("INSERT INTO KundenOrdner (Name, KundenID) " +
+                        "SELECT '" + s + "', " + kunde.getKundenID() + " FROM KundenOrdner " +
+                        "WHERE NOT EXISTS (" +
+                        "    SELECT Name FROM KundenOrdner WHERE Name = '" + s + "' " +
+                        ") LIMIT 1;");
+            }
+            stmt.close();
+
+        } catch (SQLException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim speichern der Einstellungen");
+            return;
+        }
+        //und neu laden
+        if (!ladeKunden(m))
+            return;
         //Meldung rausgeben
         Notifications.create().darkStyle()
                 .title("Speichern")
                 .text("Die Einstellungen wurden gespeichert")
                 .showInformation();
+
     }
 
-    public static void speicherKunde(Model m, Kunde kunde) {
-        if (kunde.getName().isEmpty())
-            return;
-
-        //Zur Sicherheit das ganze noch mal checken
-        for (Kunde kundedetail : m.getKunden()) {
-            if (kundedetail.getName().equals(kunde.getName()))
-                return;
-        }
-
+    public static void deleteKunde(Model m, Kunde kunde) {
         Statement stmt;
         try {
             stmt = m.getConn().createStatement();
-            //Statement mit Insert erstellen
-            stmt.execute("INSERT INTO Kunden ( Name ) SELECT * FROM (SELECT '" + kunde.getName().trim() + "') AS tmp WHERE NOT EXISTS ( SELECT Name FROM Kunden  WHERE Name  = '" + kunde.getName().trim() + "') LIMIT 1;");
-            //fertig
+            //Löschen der Kundendaten
+            stmt.execute("DELETE FROM Kunden WHERE id ='" + kunde.getKundenID() + "';");
+
+            //Die alternativen Ordner für den Kunden löschen....
+            stmt.execute("DELETE FROM KundenOrdner WHERE KundenID = '" + kunde.getKundenID() + "';");
+
             stmt.close();
+
         } catch (SQLException e) {
-            Dialoge.exceptionDialog(e, "Fehler beim speichern des Kunden");
+            Dialoge.exceptionDialog(e, "Fehler beim löschen des Kunden");
             return;
         }
         //und neu laden
@@ -357,8 +412,8 @@ public class Settings {
             return;
         //Meldung rausgeben
         Notifications.create().darkStyle()
-                .title("Neuer Kunde gefunden")
-                .text("Der neue Kunde wurde gespeichert")
+                .title("Kunde löschen")
+                .text("Der Kunde wurde erfolgreich gelöscht")
                 .showInformation();
     }
 
@@ -394,10 +449,10 @@ public class Settings {
         try {
             stmt = m.getConn().createStatement();
             //Statement mit der Abfrage füllen und ein Result erstellen
-            ResultSet rs = stmt.executeQuery("SELECT p.*, k.Name FROM Projekte p LEFT JOIN Kunden k ON p.KundeID = k.id WHERE p.StatusOffen ORDER BY p.Projekt ASC");
+            ResultSet rs = stmt.executeQuery("SELECT p.*, k.RealName FROM Projekte p LEFT JOIN Kunden k ON p.KundeID = k.id WHERE p.StatusOffen ORDER BY p.Projekt ASC");
             //Lade die Mitarbeiternamen und alternativen Namen
             while (rs.next()) {
-                projekte.add(new Projekt(rs.getString("Projekt"), rs.getString("Name"), rs.getString("Bezeichnung"), rs.getInt("Offerte"), rs.getString("UrProjekt"), false));
+                projekte.add(new Projekt(rs.getString("Projekt"), rs.getString("RealName"), rs.getString("Bezeichnung"), rs.getInt("Offerte"), rs.getString("UrProjekt"), false));
             }
             //fertig
             stmt.close();

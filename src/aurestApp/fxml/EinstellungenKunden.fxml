@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
@@ -13,11 +13,22 @@
                 <Font name="System Bold" size="18.0"/>
             </font>
         </Label>
-        <CustomTextField fx:id="filterField"/>
+        <HBox>
+            <children>
+                <CustomTextField fx:id="filterField" HBox.hgrow="ALWAYS"/>
+                <Button fx:id="refreshbutton" mnemonicParsing="false" onAction="#handelrefresh">
+                    <HBox.margin>
+                        <Insets left="15.0"/>
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
         <TableView fx:id="kundenTable" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn fx:id="columnID" prefWidth="35.0" text="ID"/>
                 <TableColumn fx:id="columnKunde" prefWidth="250.0" text="Kunde"/>
+                <TableColumn fx:id="columnStrasse" prefWidth="250.0" text="Strasse"/>
+                <TableColumn fx:id="columnStadt" prefWidth="250.0" text="Stadt"/>
             </columns>
             <VBox.margin>
                 <Insets top="5.0"/>
@@ -25,24 +36,11 @@
         </TableView>
         <HBox>
             <children>
-                <TextField fx:id="txtAddKunde" HBox.hgrow="ALWAYS"/>
-                <Button fx:id="btnAddKunde" mnemonicParsing="false" onAction="#handelAddKunde" text="hinzufügen">
-                    <HBox.margin>
-                        <Insets left="10.0"/>
-                    </HBox.margin>
-                </Button>
-            </children>
-            <VBox.margin>
-                <Insets top="10.0"/>
-            </VBox.margin>
-        </HBox>
-        <HBox>
-            <children>
-                <Button fx:id="btnDelKunde" mnemonicParsing="false" onAction="#handelDelKunde" text="löschen"/>
+                <Button id="speichern" fx:id="btnNeuerKunde" mnemonicParsing="false" onAction="#handelNeuerKunde" text="Neuer Kunde"/>
                 <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
                     <children>
 
-                        <Button id="speichern" fx:id="btnSpeichern" mnemonicParsing="false" onAction="#handelSpeicherKunden" text="Speichern"/>
+                        <Button id="speichern" fx:id="btnBearbeiten" mnemonicParsing="false" onAction="#handelBearbeitenKunden" text="Kunde bearbeiten"/>
                     </children>
                 </HBox>
             </children>

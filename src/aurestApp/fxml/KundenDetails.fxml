@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.CheckListView?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="vbox" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40">
+    <children>
+        <Label text="Kunde Details">
+            <font>
+                <Font name="System Bold" size="18.0"/>
+            </font>
+        </Label>
+        <SplitPane dividerPositions="0.55" minHeight="-Infinity" minWidth="-Infinity" VBox.vgrow="ALWAYS">
+            <items>
+                <VBox>
+                    <children>
+                        <Label text="Name"/>
+                        <TextField fx:id="name">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </TextField>
+                        <Label layoutX="10.0" layoutY="10.0" text="Strasse">
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="strasse" layoutX="10.0" layoutY="28.0">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </TextField>
+                        <HBox>
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                            <children>
+                                <VBox>
+                                    <children>
+                                        <Label text="Postleitzahl">
+                                            <VBox.margin>
+                                                <Insets top="10.0"/>
+                                            </VBox.margin>
+                                        </Label>
+                                        <TextField fx:id="plz" prefHeight="25.0" prefWidth="18.0"/>
+                                    </children>
+                                </VBox>
+                                <VBox HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label text="Stadt">
+                                            <VBox.margin>
+                                                <Insets top="10.0"/>
+                                            </VBox.margin>
+                                        </Label>
+                                        <TextField fx:id="stadt"/>
+                                    </children>
+                                    <HBox.margin>
+                                        <Insets left="15.0"/>
+                                    </HBox.margin>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <Label layoutX="15.0" layoutY="72.0" text="Land">
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="land" layoutX="15.0" layoutY="94.0">
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </TextField>
+                        <Label layoutX="10.0" layoutY="102.0" text="Ordnername">
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                        </Label>
+                        <HBox>
+                            <children>
+                                <TextField fx:id="txt_addordner" HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="btn_addordner" mnemonicParsing="false" onAction="#addordner" text="hinzufügen">
+                                    <HBox.margin>
+                                        <Insets left="5.0"/>
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="5.0"/>
+                            </VBox.margin>
+                        </HBox>
+                        <Separator prefWidth="200.0">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                            </VBox.margin>
+                        </Separator>
+                        <CheckBox fx:id="kundeaktiv" layoutX="15.0" layoutY="310.0" mnemonicParsing="false" text="Aktiv"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </padding>
+                </VBox>
+                <VBox>
+                    <children>
+                        <Label text="Liste möglicher Ordnernamen"/>
+                        <CheckListView fx:id="listordner" prefHeight="200.0" VBox.vgrow="ALWAYS"/>
+                        <HBox>
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                            <children>
+                                <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Button fx:id="loescheordner" mnemonicParsing="false" onAction="#loescheordner" text="Auswahl löschen"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                    </padding>
+                </VBox>
+            </items>
+            <VBox.margin>
+                <Insets top="5.0"/>
+            </VBox.margin>
+        </SplitPane>
+        <HBox>
+            <children>
+                <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Button fx:id="loeschekunde" mnemonicParsing="false" onAction="#loeschekunde" text="Kunde Löschen"/>
+                        <Button fx:id="abbruch" mnemonicParsing="false" onAction="#abbruch" text="Abbruch">
+                            <HBox.margin>
+                                <Insets left="30.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="speichern" mnemonicParsing="false" onAction="#speichern" text="Speichern">
+                            <HBox.margin>
+                                <Insets left="30.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <HBox.margin>
+                        <Insets top="15.0"/>
+                    </HBox.margin>
+                </HBox>
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0"/>
+    </padding>
+</VBox>

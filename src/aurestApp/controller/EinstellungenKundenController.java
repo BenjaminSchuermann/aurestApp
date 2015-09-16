@@ -1,25 +1,30 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.interfaces.Seiten;
+import aurestApp.tools.Dialoge;
 import aurestApp.tools.eigeneklassen.Kunde;
-import aurestApp.tools.Settings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.glyphfont.FontAwesome;
 import org.controlsfx.glyphfont.Glyph;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EinstellungenKundenController implements Initializable {
@@ -31,17 +36,19 @@ public class EinstellungenKundenController implements Initializable {
     @FXML
     TableColumn<Kunde, String> columnKunde;
     @FXML
-    TextField txtAddKunde;
-    private ObservableList<Kunde> kunden;
-    private ArrayList<Kunde> zuLoeschend = new ArrayList<>();
+    TableColumn<Kunde, String> columnStrasse;
+    @FXML
+    TableColumn<Kunde, String> columnStadt;
     @FXML
     private CustomTextField filterField;
     @FXML
-    private Button btnAddKunde;
+    private Button refreshbutton;
     @FXML
-    private Button btnDelKunde;
+    private Button btnNeuerKunde;
     @FXML
-    private Button btnSpeichern;
+    private Button btnBearbeiten;
+    private ObservableList<Kunde> kunden;
+    private SortedList<Kunde> sortedData;
 
     public EinstellungenKundenController(Model m) {
         this.m = m;
@@ -49,27 +56,27 @@ public class EinstellungenKundenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //wenn etwas im Benutzernamefeld eingeben wurde, dann den Loginbutton aktivieren
-        txtAddKunde.textProperty().addListener((observable, oldValue, newValue) -> {
-            btnAddKunde.setDisable(newValue.trim().isEmpty());
-        });
 
-        kunden = FXCollections.observableArrayList(m.getKunden());
+        kunden =
+                FXCollections.observableArrayList(m.getKunden()
+                );
 
         //Das asObject() muss hier leider dran, da aus Kompatibilitätsgründen der SimpleIntegerProperty ein Number und kein Integer liefert
         //Es könnte auch die Tabelle auf Number geändert werden. könnte.. auch...
-        columnID.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+        columnID.setCellValueFactory(cellData -> cellData.getValue().kundenIDProperty().asObject());
 
         columnKunde.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        columnStrasse.setCellValueFactory(cellData -> cellData.getValue().strasseProperty());
+        columnStadt.setCellValueFactory(cellData -> cellData.getValue().stadtProperty());
 
-        btnAddKunde.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.USER_PLUS).size(25.0).color(Color.GREEN));
-        btnAddKunde.setContentDisplay(ContentDisplay.LEFT);
+        refreshbutton.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.REFRESH).size(15.0).color(Color.BLUE));
+        refreshbutton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
-        btnDelKunde.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.USER_TIMES).size(25.0).color(Color.RED));
-        btnDelKunde.setContentDisplay(ContentDisplay.LEFT);
+        btnNeuerKunde.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.USER_PLUS).size(25.0).color(Color.GREEN));
+        btnNeuerKunde.setContentDisplay(ContentDisplay.LEFT);
 
-        btnSpeichern.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SAVE).size(25.0).color(Color.BLUE));
-        btnSpeichern.setContentDisplay(ContentDisplay.LEFT);
+        btnBearbeiten.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.EDIT).size(25.0).color(Color.ORANGE));
+        btnBearbeiten.setContentDisplay(ContentDisplay.LEFT);
 
         filterField.setLeft(new Glyph("FontAwesome", FontAwesome.Glyph.SEARCH).color(Color.BLACK));
         filterField.setPromptText("Suchen");
@@ -88,70 +95,110 @@ public class EinstellungenKundenController implements Initializable {
                 // Compare first name and last name of every person with filter text.
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (kunde.getName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches first name.
-                } else if (kunde.getName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches last name.
+                if (kunde.getName() != null && kunde.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches name.
+                } else if (kunde.getStrasse() != null && kunde.getStrasse().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches strasse.
+                } else if (kunde.getStadt() != null && kunde.getStadt().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter stadt.
                 }
                 return false; // Does not match.
             });
         });
 
         // 3. Wrap the FilteredList in a SortedList.
-        SortedList<Kunde> sortedData = new SortedList<>(filteredData);
+        sortedData = new SortedList<>(filteredData);
 
         // 4. Bind the SortedList comparator to the TableView comparator.
         sortedData.comparatorProperty().bind(kundenTable.comparatorProperty());
 
         // 5. Add sorted (and filtered) data to the table.
         kundenTable.setItems(sortedData);
+
+        //Beim Doppelklick die Detailsseite öffnen
+        kundenTable.setRowFactory(tv -> {
+            TableRow<Kunde> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    bearbeiteKunde(row.getItem());
+                }
+            });
+            return row;
+        });
     }
 
     @FXML
-    private void handelAddKunde(ActionEvent actionEvent) {
-        //Zur Sicherheit, auch wenn der Button disabled sein sollte
-        if (txtAddKunde.getText().trim().isEmpty())
+    private void handelNeuerKunde(ActionEvent actionEvent) {
+        anlegenKunde();
+    }
+
+    @FXML
+    private void handelBearbeitenKunden(ActionEvent actionEvent) {
+        Kunde einzelnerKunde = kundenTable.getSelectionModel().getSelectedItem();
+        bearbeiteKunde(einzelnerKunde);
+    }
+
+    @FXML
+    private void handelrefresh(ActionEvent actionEvent) {
+        //todo
+        kunden = FXCollections.observableArrayList(m.getKunden());
+        // 1. Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<Kunde> filteredData = new FilteredList<>(kunden, p -> true);
+
+        // 3. Wrap the FilteredList in a SortedList.
+        sortedData = new SortedList<>(filteredData);
+        kundenTable.setItems(sortedData);
+    }
+
+    private void anlegenKunde() {
+        Stage stage = new Stage();
+        stage.setTitle("aurestApp v" + m.getVersion());
+        stage.getIcons().add(new Image(EinstellungenKundenController.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.KUNDENDETAILS));
+        loader.setController(new KundenAnlegenController(m));
+
+        try {
+            VBox mainVbox = loader.load();
+            Scene scene = new Scene(mainVbox);
+            scene.getStylesheets().setAll(getClass().getResource("/aurestApp/styles/stylesheet.css").toExternalForm());
+            stage.setScene(scene);
+
+        } catch (IOException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim erstellen der Detailseite");
+            return;
+        }
+        stage.show();
+    }
+
+    private void bearbeiteKunde(Kunde einzelnerKunde) {
+        if (einzelnerKunde == null) {
+            Notifications.create().darkStyle()
+                    .title("Mitarbeiter bearbeiten")
+                    .text("Es wurde kein Mitarbeiter zum bearbeiten gewählt")
+                    .showInformation();
             return;
 
-        //Checken ob der Kunde, bzw. der Name, bereits angelegt wurde
-        for (Kunde kunde : kundenTable.getItems()) {
-            if (kunde.getName().equals(txtAddKunde.getText().trim())) {
-                Notifications.create().darkStyle()
-                        .title("Kunde vorhanden")
-                        .text("Der Kunde ist bereits mit der ID: " + kunde.getId() + " vorhanden")
-                        .showWarning();
-                return;
-            }
         }
-        //wenn alles OK, dann füge ihn der Tabelle!! hinzu, erst mit dem Speichern wird es übernommen
-        kunden.add(new Kunde(0, txtAddKunde.getText()));
-    }
 
-    @FXML
-    private void handelDelKunde(ActionEvent actionEvent) {
-        //Abfrage ib wirklich gelöscht werden soll
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Kunde entfernen");
-        alert.setHeaderText("Kunde entfernen");
-        alert.setContentText("Soll " + kundenTable.getSelectionModel().getSelectedItem().getName() + " wirklich entfernt werden?\n Erst nach dem Speichern wird die Änderung übernommen");
+        Stage stage = new Stage();
+        stage.setTitle("aurestApp v" + m.getVersion());
+        stage.getIcons().add(new Image(EinstellungenMitarbeiterController.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
 
-        ButtonType buttonTypeJa = new ButtonType("Ja");
-        ButtonType buttonTypeNein = new ButtonType("Nein, Schließen", ButtonBar.ButtonData.CANCEL_CLOSE);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.KUNDENDETAILS));
+        loader.setController(new KundenDetailsController(m, einzelnerKunde));
 
-        alert.getButtonTypes().setAll(buttonTypeJa, buttonTypeNein);
+        try {
+            VBox mainVbox = loader.load();
+            Scene scene = new Scene(mainVbox);
+            scene.getStylesheets().setAll(getClass().getResource("/aurestApp/styles/stylesheet.css").toExternalForm());
+            stage.setScene(scene);
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeJa) {
-            Kunde currentPerson = kundenTable.getSelectionModel().getSelectedItem();
-            //remove selected item from the table list
-            zuLoeschend.add(currentPerson);
-            kunden.remove(currentPerson);
+        } catch (IOException e) {
+            Dialoge.exceptionDialog(e, "Fehler beim erstellen der Detailseite");
+            return;
         }
-    }
 
-    @FXML
-    private void handelSpeicherKunden(ActionEvent actionEvent) {
-        m.setZuLoeschendenKunden(zuLoeschend);
-        Settings.speicherKunden(m, kunden);
+        stage.show();
     }
 }

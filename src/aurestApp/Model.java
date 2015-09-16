@@ -65,7 +65,7 @@ public class Model {
     private String login;
     private String passwort;
     private ArrayList<Projekt> projekte;
-    private ArrayList<Kunde> kunden;
+    private ArrayList<Kunde> kundenListe;
     private ArrayList<Kunde> zuLoeschendeKunden;
 
     public Model() {
@@ -76,7 +76,7 @@ public class Model {
     }
 
     public String getVersion() {
-        return "1.2.2";
+        return "1.2.3";
     }
 
     public String getServicejahr() {
@@ -508,11 +508,11 @@ public class Model {
     }
 
     public ArrayList<Kunde> getKunden() {
-        return kunden;
+        return kundenListe;
     }
 
     public void setKunden(ArrayList<Kunde> kunden) {
-        this.kunden = kunden;
+        this.kundenListe = kunden;
     }
 
     public ArrayList<Kunde> getZuLoeschendeKunden() {
