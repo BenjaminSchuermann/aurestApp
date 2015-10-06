@@ -59,10 +59,7 @@ public class Generator {
             return;
         }
 
-        File fa = new File(System.getProperty("java.io.tmpdir") + "makeLink.vbs");
-        fa.delete();
-
-        String ausgabe = System.getProperty("java.io.tmpdir") + "\\makeLink.vbs";
+        File ausgabe = new File(System.getProperty("java.io.tmpdir") + "makeLink.vbs");
 
         if (!offerte.isEmpty()) {
             while (!ziel.exists()) {
@@ -91,24 +88,37 @@ public class Generator {
 
 
             try {
-                PrintWriter pWriter = new PrintWriter(ausgabe, "ISO-8859-1");
-                pWriter.println("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
-                pWriter.println("set oShellLink = WshShell.CreateShortcut(\"" + pfadoff + "\\Projekt " + pfad + ".lnk\")");
-                pWriter.println("oShellLink.TargetPath = \"" + "P:\\" + pfad + "\"");
-                pWriter.println("oShellLink.WindowStyle = 1");
-                pWriter.println("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
-                pWriter.println("oShellLink.Description = \"Ben\"");
-                pWriter.println("oShellLink.Save");
+                FileWriter file = new FileWriter(ausgabe);
+                BufferedWriter bf = new BufferedWriter(file);
+                bf.write("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
+                bf.newLine();
+                bf.write("set oShellLink = WshShell.CreateShortcut(\"" + pfadoff + "\\Projekt " + pfad + ".lnk\")");
+                bf.newLine();
+                bf.write("oShellLink.TargetPath = \"" + "P:\\" + pfad + "\"");
+                bf.newLine();
+                bf.write("oShellLink.WindowStyle = 1");
+                bf.newLine();
+                bf.write("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
+                bf.newLine();
+                bf.write("oShellLink.Description = \"Ben\"");
+                bf.newLine();
+                bf.write("oShellLink.Save");
+                bf.newLine();
 
-                pWriter.println("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
-                pWriter.println("set oShellLink = WshShell.CreateShortcut(\"" + "P:\\" + pfad + "\\Offerte " + offkomplett + ".lnk\")");
-                pWriter.println("oShellLink.TargetPath = \"" + pfadoff + "\"");
-                pWriter.println("oShellLink.WindowStyle = 1");
-                pWriter.println("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
-                pWriter.println("oShellLink.Description = \"Ben\"");
-                pWriter.println("oShellLink.Save");
-
-                pWriter.close();
+                bf.write("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
+                bf.newLine();
+                bf.write("set oShellLink = WshShell.CreateShortcut(\"" + "P:\\" + pfad + "\\Offerte " + offkomplett + ".lnk\")");
+                bf.newLine();
+                bf.write("oShellLink.TargetPath = \"" + pfadoff + "\"");
+                bf.newLine();
+                bf.write("oShellLink.WindowStyle = 1");
+                bf.newLine();
+                bf.write("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
+                bf.newLine();
+                bf.write("oShellLink.Description = \"Ben\"");
+                bf.newLine();
+                bf.write("oShellLink.Save");
+                bf.close();
             } catch (IOException e) {
                 e.printStackTrace();
                 Dialoge.exceptionDialog(e, "Fehler beim erstellen der Linkdatei für die Offerte");
@@ -116,7 +126,7 @@ public class Generator {
             }
 
             try {
-                Desktop.getDesktop().open(new File(System.getProperty("java.io.tmpdir") + "\\makeLink.vbs"));
+                Desktop.getDesktop().open(ausgabe);
             } catch (IOException e) {
                 e.printStackTrace();
                 Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei für das Logbuch");
@@ -169,23 +179,37 @@ public class Generator {
             status = "Projektlinkdatei wird erstellt";
 
             try {
-                PrintWriter pWriter = new PrintWriter(ausgabe, "ISO-8859-1");
-                pWriter.println("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
-                pWriter.println("set oShellLink = WshShell.CreateShortcut(\"P:\\" + pfad + "\\UrProjekt " + spkomplett + ".lnk\")");
-                pWriter.println("oShellLink.TargetPath = \"" + pfadsp + "\"");
-                pWriter.println("oShellLink.WindowStyle = 1");
-                pWriter.println("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
-                pWriter.println("oShellLink.Description = \"Ben\"");
-                pWriter.println("oShellLink.Save");
+                FileWriter file = new FileWriter(ausgabe);
+                BufferedWriter bf = new BufferedWriter(file);
+                bf.write("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
+                bf.newLine();
+                bf.write("set oShellLink = WshShell.CreateShortcut(\"P:\\" + pfad + "\\UrProjekt " + spkomplett + ".lnk\")");
+                bf.newLine();
+                bf.write("oShellLink.TargetPath = \"" + pfadsp + "\"");
+                bf.newLine();
+                bf.write("oShellLink.WindowStyle = 1");
+                bf.newLine();
+                bf.write("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
+                bf.newLine();
+                bf.write("oShellLink.Description = \"Ben\"");
+                bf.newLine();
+                bf.write("oShellLink.Save");
+                bf.newLine();
 
-                pWriter.println("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
-                pWriter.println("set oShellLink = WshShell.CreateShortcut(\"" + pfadsp + "\\Projekt " + pfad + ".lnk\")");
-                pWriter.println("oShellLink.TargetPath = \"P:\\" + pfad + "\"");
-                pWriter.println("oShellLink.WindowStyle = 1");
-                pWriter.println("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
-                pWriter.println("oShellLink.Description = \"Ben\"");
-                pWriter.println("oShellLink.Save");
-                pWriter.close();
+                bf.write("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
+                bf.newLine();
+                bf.write("set oShellLink = WshShell.CreateShortcut(\"" + pfadsp + "\\Projekt " + pfad + ".lnk\")");
+                bf.newLine();
+                bf.write("oShellLink.TargetPath = \"P:\\" + pfad + "\"");
+                bf.newLine();
+                bf.write("oShellLink.WindowStyle = 1");
+                bf.newLine();
+                bf.write("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
+                bf.newLine();
+                bf.write("oShellLink.Description = \"Ben\"");
+                bf.newLine();
+                bf.write("oShellLink.Save");
+                bf.close();
             } catch (IOException e) {
                 e.printStackTrace();
                 Dialoge.exceptionDialog(e, "Fehler beim erstellen der Linkdatei für das Ursprungsprojekt");
@@ -194,9 +218,8 @@ public class Generator {
 
             Desktop desktop = Desktop.getDesktop();
             System.out.println(System.getProperty("java.io.tmpdir"));
-            fa = new File(System.getProperty("java.io.tmpdir") + "makeLink.vbs");
             try {
-                desktop.open(fa);
+                desktop.open(ausgabe);
             } catch (IOException e) {
                 e.printStackTrace();
                 Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei für das Ursprungsprojekt");
@@ -206,8 +229,6 @@ public class Generator {
             while (!new File("P:\\" + pfad + "\\UrProjekt " + spkomplett + ".lnk").exists() && !new File(pfadsp + "\\Projekt " + pfad + ".lnk").exists()) {
                 //Warteschleife
             }
-            fa.delete();
-
         }
         Notifications.create().darkStyle()
                 .title("Projekt angelegt")
@@ -301,11 +322,8 @@ public class Generator {
         }
         status = "Vorlage wird kopiert";
 
-        File fa = new File(System.getProperty("java.io.tmpdir") + "makeLink.vbs");
-        fa.delete();
         // Zieldatei anlegen und falls noetig loeschen um eine neue zu erhalten
-        String ausgabe = System.getProperty("java.io.tmpdir") + "makeLink.vbs";
-
+        File ausgabe = new File(System.getProperty("java.io.tmpdir") + "makeLink.vbs");
         if (!serviceprojekt.isEmpty()) {
             m.setServiceUrprojekt(serviceprojekt);
             while (!ziel.exists()) {
@@ -335,9 +353,9 @@ public class Generator {
             }
             status = "Projektname wird gelesen";
 
-            System.out.println(test.toString());
-            System.out.println(spkomplett);
-            System.out.println(pfadsp);
+            //System.out.println("test:"+test.toString());
+            //System.out.println("spkomplett:"+spkomplett);
+            //System.out.println("pfadsp:"+pfadsp);
 
             pfadsp = pfadsp.replace("/", "\\");
             pfad = pfad.replace("/", "\\");
@@ -346,34 +364,47 @@ public class Generator {
             // Ausgabedatei öffnen
             status = "Projektlinkdatei wird erstellt";
             try {
-                PrintWriter pWriter = new PrintWriter(ausgabe, "ISO-8859-1");
-                pWriter.println("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
-                pWriter.println("set oShellLink = WshShell.CreateShortcut(\"Q:\\"
+                FileWriter file = new FileWriter(ausgabe);
+                BufferedWriter bf = new BufferedWriter(file);
+                bf.write("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
+                bf.newLine();
+                bf.write("set oShellLink = WshShell.CreateShortcut(\"Q:\\"
                         + pfad + "\\Projekt " + spkomplett + ".lnk\")");
-                pWriter.println("oShellLink.TargetPath = \"" + pfadsp + "\"");
-                pWriter.println("oShellLink.WindowStyle = 1");
-                pWriter.println("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
-                pWriter.println("oShellLink.Description = \"Ben\"");
-                pWriter.println("oShellLink.Save");
+                bf.newLine();
+                bf.write("oShellLink.TargetPath = \"" + pfadsp + "\"");
+                bf.newLine();
+                bf.write("oShellLink.WindowStyle = 1");
+                bf.newLine();
+                bf.write("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
+                bf.newLine();
+                bf.write("oShellLink.Description = \"Ben\"");
+                bf.newLine();
+                bf.write("oShellLink.Save");
+                bf.newLine();
 
-                pWriter.println("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
-                pWriter.println("set oShellLink = WshShell.CreateShortcut(\""
+                bf.write("set WshShell = WScript.CreateObject(\"WScript.Shell\")");
+                bf.newLine();
+                bf.write("set oShellLink = WshShell.CreateShortcut(\""
                         + pfadsp + "\\Service " + servicenummer + " " + snfl + ".lnk\")");
-                pWriter.println("oShellLink.TargetPath = \"Q:\\" + pfad + "\"");
-                pWriter.println("oShellLink.WindowStyle = 1");
-                pWriter.println("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
-                pWriter.println("oShellLink.Description = \"Ben\"");
-                pWriter.println("oShellLink.Save");
-                pWriter.close();
+                bf.newLine();
+                bf.write("oShellLink.TargetPath = \"Q:\\" + pfad + "\"");
+                bf.newLine();
+                bf.write("oShellLink.WindowStyle = 1");
+                bf.newLine();
+                bf.write("oShellLink.Hotkey = \"CTRL+SHIFT+F\"");
+                bf.newLine();
+                bf.write("oShellLink.Description = \"Ben\"");
+                bf.newLine();
+                bf.write("oShellLink.Save");
+                bf.close();
             } catch (IOException e) {
                 Dialoge.exceptionDialog(e, "Fehler beim erstellen der Linkdatei");
                 e.printStackTrace();
                 return;
             }
             Desktop desktop = Desktop.getDesktop();
-            fa = new File(System.getProperty("java.io.tmpdir") + "makeLink.vbs");
             try {
-                desktop.open(fa);
+                desktop.open(ausgabe);
             } catch (IOException e) {
                 Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei");
                 e.printStackTrace();
@@ -383,7 +414,7 @@ public class Generator {
             while (!new File("Q:\\" + pfad + "\\Projekt " + spkomplett + ".lnk").exists() && !new File(pfadsp + "\\Service " + servicenummer + " " + snfl + ".lnk").exists()) {
                 //Warteschleife
             }
-            fa.delete();
+            //System.out.println(ausgabe.delete());
             status = "Service angelegt";
         }
 
