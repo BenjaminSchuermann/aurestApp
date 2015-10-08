@@ -4,10 +4,7 @@ import aurestApp.Model;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -18,6 +15,7 @@ import org.controlsfx.control.textfield.CustomTextField;
 import org.controlsfx.glyphfont.GlyphFont;
 import org.controlsfx.glyphfont.GlyphFontRegistry;
 
+import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -58,11 +56,13 @@ public class Login {
         password.setPromptText("Passwort");
 
 
+        CheckBox saveLogin = new CheckBox("Logindaten Speichern");
         //und der Fläche hinzufügen
         grid.add(new Label("Benutzername:"), 0, 0);
         grid.add(username, 1, 0);
         grid.add(new Label("Passwort:"), 0, 1);
         grid.add(password, 1, 1);
+        grid.add(saveLogin, 0, 2);
 
         // Den Loginbutton anlegen und deaktivieren.
         Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
@@ -72,6 +72,21 @@ public class Login {
         username.textProperty().addListener((observable, oldValue, newValue) -> {
             loginButton.setDisable(newValue.trim().isEmpty());
         });
+
+        //Prüfen ob eine config Datei existiert, in der bereits Logindaten gespeichert sind
+        if (new File("../cfg/login.ini").exists()) {
+            try {
+                BufferedReader in = new BufferedReader(new InputStreamReader(
+                        new FileInputStream("../cfg/login.ini"), "UTF-8"));
+                username.setText(in.readLine());
+                password.setText(in.readLine());
+                in.close();
+                saveLogin.setSelected(true);
+                loginButton.setDisable(false);
+            } catch (IOException e) {
+                Dialoge.exceptionDialog(e, "Fehler bei laden der gespeicherten Logindaten");
+            }
+        }
 
         //und alles dem Dialogfeld hinzufügen
         dialog.getDialogPane().setContent(grid);
@@ -96,10 +111,26 @@ public class Login {
 
             //Wenn ein Login eingegben wurde...
             result.ifPresent(usernamePassword -> {
-                try {
-                    String user = usernamePassword.getKey();
-                    String pw = usernamePassword.getValue();
 
+                String user = usernamePassword.getKey();
+                String pw = usernamePassword.getValue();
+
+                if (!saveLogin.isSelected()) {
+                    File logindatei = new File("../cfg/login.ini");
+                    if (logindatei.exists())
+                        logindatei.delete();
+                } else {
+                    try {
+                        PrintWriter pWriter = new PrintWriter("../cfg/login.ini", "UTF-8");
+                        pWriter.println(user);
+                        pWriter.println(pw);
+                        pWriter.close();
+                    } catch (IOException e) {
+                        return;
+                    }
+                }
+
+                try {
                     //... dann in der Datenbank prüfen ob es die Kombination aus Login und PW gibt....
                     ResultSet rs = stmt.executeQuery("select * from Logins where Login='" + user + "' and Passwort='" + pw + "' and Aktiv");
                     while (rs.next()) {
