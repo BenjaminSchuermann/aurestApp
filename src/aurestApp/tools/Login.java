@@ -129,10 +129,10 @@ public class Login {
                         return;
                     }
                 }
-
+                String pwmd5 = MD5.md5(pw);
                 try {
                     //... dann in der Datenbank prüfen ob es die Kombination aus Login und PW gibt....
-                    ResultSet rs = stmt.executeQuery("select * from Logins where Login='" + user + "' and Passwort='" + pw + "' and Aktiv");
+                    ResultSet rs = stmt.executeQuery("select * from Logins where Login='" + user + "' and Passwort='" + pwmd5 + "' and Aktiv");
                     while (rs.next()) {
                         //...wenn ja, dann setze den Login auf ok und speicher die UserID
                         loginok = true;

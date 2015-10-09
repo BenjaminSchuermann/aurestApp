@@ -425,7 +425,8 @@ public class Settings {
         try {
             stmt = m.getConn().createStatement();
             //Statement mit Insert erstellen
-            stmt.execute("UPDATE Logins SET Passwort='" + passwort + "' WHERE MitarbeiterID ='" + m.getUserid() + "';");
+            String pwmd5 = MD5.md5(passwort);
+            stmt.execute("UPDATE Logins SET Passwort='" + pwmd5 + "' WHERE MitarbeiterID ='" + m.getUserid() + "';");
             //fertig
             stmt.close();
         } catch (SQLException e) {

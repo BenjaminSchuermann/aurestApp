@@ -2,9 +2,6 @@ package aurestApp.tools.eigeneklassen;
 
 import java.io.File;
 
-/**
- * Created by Benjamin on 09.10.2015.
- */
 public class Suchprojekt {
     private boolean gefunden = false;
     private String projektname;

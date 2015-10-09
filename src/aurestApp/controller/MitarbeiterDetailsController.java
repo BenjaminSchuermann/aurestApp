@@ -2,6 +2,7 @@ package aurestApp.controller;
 
 import aurestApp.Model;
 import aurestApp.tools.Dialoge;
+import aurestApp.tools.MD5;
 import aurestApp.tools.Settings;
 import aurestApp.tools.eigeneklassen.Mitarbeiter;
 import javafx.collections.FXCollections;
@@ -68,6 +69,7 @@ public class MitarbeiterDetailsController implements Initializable {
     private Button abbruch;
     @FXML
     private Button speichern;
+    private String oldPasswort;
 
     public MitarbeiterDetailsController(Model m, Mitarbeiter mitarbeiter, ObservableList<Mitarbeiter> obMitarbeiter) {
         this.m = m;
@@ -87,7 +89,8 @@ public class MitarbeiterDetailsController implements Initializable {
         admin.setSelected(mitarbeiter.getIsAdmin());
         listaltnamen.setItems(FXCollections.observableArrayList(mitarbeiter.getAltnamen()));
         login.setText(mitarbeiter.getLogin());
-        passwort.setText(mitarbeiter.getPasswort());
+        oldPasswort = mitarbeiter.getPasswort();
+        passwort.setText(oldPasswort);
 
         btn_addaltname.setDisable(true);
         //wenn etwas im Benutzernamefeld eingeben wurde, dann den Loginbutton aktivieren
@@ -217,8 +220,11 @@ public class MitarbeiterDetailsController implements Initializable {
         mitarbeiter.setIsAdmin(admin.isSelected());
         mitarbeiter.setAltnamen(new ArrayList<>(listaltnamen.getItems()));
         mitarbeiter.setLogin(login.getText());
-        mitarbeiter.setPasswort(passwort.getText());
-
+        if (oldPasswort.equals(passwort.getText())) {
+            mitarbeiter.setPasswort(oldPasswort);
+        } else {
+            mitarbeiter.setPasswort(MD5.md5(passwort.getText()));
+        }
         Settings.updateMitarbeiter(m, mitarbeiter, obMitarbeiter);
     }
 }

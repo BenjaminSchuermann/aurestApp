@@ -1,10 +1,7 @@
 package aurestApp;
 
 import aurestApp.interfaces.Seiten;
-import aurestApp.tools.CheckVersion;
-import aurestApp.tools.Dialoge;
-import aurestApp.tools.Login;
-import aurestApp.tools.Settings;
+import aurestApp.tools.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +35,7 @@ public class Main extends Application implements Seiten {
         if (CheckVersion.checkVersion(m))
             return;
 
+        System.out.println(MD5.md5("t4g9f"));
         //als erstes das Loginfeld anzeigen und die userid holen
         int userid = Login.login(m);
 
