@@ -32,6 +32,10 @@ public class Login {
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(Login.class.getResourceAsStream("/aurestApp/img/a128x128.png")));
 
+        File configpfad = new File(System.getenv("LOCALAPPDATA") + "\\aurestApp");
+        if (!configpfad.exists())
+            configpfad.mkdir();
+
         // das Icon setzten neben dem Text
         dialog.setGraphic(new ImageView(new Image(Login.class.getResourceAsStream("/aurestApp/img/login.png"))));
 
@@ -74,10 +78,10 @@ public class Login {
         });
 
         //Prüfen ob eine config Datei existiert, in der bereits Logindaten gespeichert sind
-        if (new File("../cfg/login.ini").exists()) {
+        if (new File(configpfad + "/login.ini").exists()) {
             try {
                 BufferedReader in = new BufferedReader(new InputStreamReader(
-                        new FileInputStream("../cfg/login.ini"), "UTF-8"));
+                        new FileInputStream(configpfad + "/login.ini"), "UTF-8"));
                 username.setText(in.readLine());
                 password.setText(in.readLine());
                 in.close();
@@ -116,12 +120,12 @@ public class Login {
                 String pw = usernamePassword.getValue();
 
                 if (!saveLogin.isSelected()) {
-                    File logindatei = new File("../cfg/login.ini");
+                    File logindatei = new File(configpfad + "/login.ini");
                     if (logindatei.exists())
                         logindatei.delete();
                 } else {
                     try {
-                        PrintWriter pWriter = new PrintWriter("../cfg/login.ini", "UTF-8");
+                        PrintWriter pWriter = new PrintWriter(configpfad + "/login.ini", "UTF-8");
                         pWriter.println(user);
                         pWriter.println(pw);
                         pWriter.close();
