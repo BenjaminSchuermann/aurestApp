@@ -6,8 +6,8 @@
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppName=aurestApp
-AppVersion=1.2.4
-;AppVerName=aurestApp 1.2.4
+AppVersion=1.4
+;AppVerName=aurestApp 1.4
 AppPublisher=Benjamin Schürmann
 ShowLanguageDialog=no
 UninstallDisplayName=aurestApp
