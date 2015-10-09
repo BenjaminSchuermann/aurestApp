@@ -17,6 +17,8 @@ public class CheckVersion {
     private static String versionDB;
 
     public static boolean checkVersion(Model m) throws SQLException {
+        if (new File("../cfg/engi").exists())
+            return false;
         Statement stmt = m.getConn().createStatement();
         //Checke auf neue Version
         try {
