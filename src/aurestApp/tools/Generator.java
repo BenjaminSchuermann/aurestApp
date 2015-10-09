@@ -4,6 +4,7 @@ import aurestApp.Model;
 import aurestApp.controller.ProjektLogbuchController;
 import aurestApp.controller.ServiceLogbuchController;
 import aurestApp.interfaces.Seiten;
+import aurestApp.tools.eigeneklassen.Suchprojekt;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -25,7 +26,6 @@ public class Generator {
             Dialoge.DialogAnzeigeBox("fehler", "Projektnummer fehlt");
             return;
         }
-
         String art;
         if (projekttyp) {
             art = "Eigenfertigung";
@@ -105,32 +105,15 @@ public class Generator {
                 //Warteschleife
             }
             status = "Projektlink wird vorbereitet";
-            // pfad der offerte
+            Suchprojekt urprojekt = findeProjekt(ProjektUrprojekt);
+            // pfad des urprojekts
             String pfadsp;
-            String spshort;
             String spkomplett;
 
-            spshort = m.getProjektUrprojekt().substring(0, 2);
-            // System.out.print(spshort);
-            File test;
-            if (Integer.parseInt(spshort) <= 60) {
-                test = new File("Q:/" + spshort + "__/");
-            } else {
-                test = new File("Q:/" + spshort + "_/");
-            }
-            status = "Projektname wird gelesen";
-            spkomplett = searchFile(test, m.getProjektUrprojekt());
-
-            // System.out.print(test.toString());
-            // System.out.println(spkomplett);
-
-            if (Integer.parseInt(spshort) <= 60) {
-                pfadsp = "Q:/" + spshort + "__/" + spkomplett;
-            } else {
-                pfadsp = "Q:/" + spshort + "_/" + spkomplett;
-            }
-            pfadsp = pfadsp.replace("/", "\\");
             pfad = pfad.replace("/", "\\");
+
+            pfadsp = urprojekt.getProjektpfad().getAbsolutePath();
+            spkomplett = urprojekt.getProjektname();
 
             System.out.println("der Pfad:" + pfad);
             System.out.println("der pfadsp:" + pfadsp);
@@ -255,32 +238,13 @@ public class Generator {
                 //Warteschleife
             }
             status = "Projektlink wird vorbereitet";
-            // pfad der offerte
+            // pfad des urprojekts
+            Suchprojekt urprojekt = findeProjekt(serviceprojekt);
             String pfadsp;
-            String spshort;
             String spkomplett;
 
-            spshort = serviceprojekt.substring(0, 2);
-            // System.out.print(spshort);
-
-            File test;
-            if (Integer.parseInt(spshort) <= 60) {
-                test = new File("Q:/" + spshort + "__\\");
-            } else {
-                test = new File("Q:/" + spshort + "_\\");
-            }
-            if (test.exists()) {
-                spkomplett = searchFile(test, serviceprojekt);
-                pfadsp = test.toString() + "\\" + spkomplett;
-            } else {
-                spkomplett = searchFile(new File("P:/"), serviceprojekt);
-                pfadsp = "P:/" + spkomplett;
-            }
-            status = "Projektname wird gelesen";
-
-            //System.out.println("test:"+test.toString());
-            //System.out.println("spkomplett:"+spkomplett);
-            //System.out.println("pfadsp:"+pfadsp);
+            pfadsp = urprojekt.getProjektpfad().getAbsolutePath();
+            spkomplett = urprojekt.getProjektname();
 
             pfadsp = pfadsp.replace("/", "\\");
             pfad = pfad.replace("/", "\\");
@@ -466,5 +430,40 @@ public class Generator {
             e.printStackTrace();
         }
         return ausgabe;
+    }
+
+    private static Suchprojekt findeProjekt(String projektnummer) {
+        Suchprojekt projekt = new Suchprojekt();
+
+        String projektkurz = projektnummer.substring(0, 2);
+        // System.out.print(spshort);
+        File archivpfad;
+        if (Integer.parseInt(projektkurz) <= 60) {
+            archivpfad = new File("Q:\\" + projektkurz + "__\\");
+        } else {
+            archivpfad = new File("Q:\\" + projektkurz + "_\\");
+        }
+        status = "Projektname wird gelesen";
+        String projektname = searchFile(archivpfad, projektnummer);
+
+        if (!projektname.isEmpty()) {
+            projekt.setGefunden(true);
+            projekt.setProjektlaufwerk("Q:\\");
+            projekt.setProjektname(projektname);
+            projekt.setProjektpfad(new File(archivpfad.getAbsolutePath() + "\\" + projektname));
+        } else {
+            projektname = searchFile(new File("P:\\"), projektnummer);
+            if (!projektname.isEmpty()) {
+                projekt.setGefunden(true);
+                projekt.setProjektlaufwerk("P:\\");
+                projekt.setProjektname(projektname);
+                projekt.setProjektpfad(new File("P:\\" + projektname));
+            }
+        }
+        System.out.println(projekt.isGefunden());
+        System.out.println(projekt.getProjektlaufwerk());
+        System.out.println(projekt.getProjektname());
+        System.out.println(projekt.getProjektpfad());
+        return projekt;
     }
 }
