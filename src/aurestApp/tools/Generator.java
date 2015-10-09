@@ -432,7 +432,7 @@ public class Generator {
         return ausgabe;
     }
 
-    private static Suchprojekt findeProjekt(String projektnummer) {
+    public static Suchprojekt findeProjekt(String projektnummer) {
         Suchprojekt projekt = new Suchprojekt();
 
         String projektkurz = projektnummer.substring(0, 2);
@@ -443,7 +443,6 @@ public class Generator {
         } else {
             archivpfad = new File("Q:\\" + projektkurz + "_\\");
         }
-        status = "Projektname wird gelesen";
         String projektname = searchFile(archivpfad, projektnummer);
 
         if (!projektname.isEmpty()) {

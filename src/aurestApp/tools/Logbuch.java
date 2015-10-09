@@ -1,6 +1,7 @@
 package aurestApp.tools;
 
 import aurestApp.Model;
+import aurestApp.tools.eigeneklassen.Suchprojekt;
 import org.controlsfx.control.Notifications;
 
 import java.awt.*;
@@ -210,43 +211,22 @@ public class Logbuch {
     private static String getUrProjektordner(Model m, boolean projekt) {
 
         //Die ersten beiden Zahlen rausschneiden
-        String spshort;
+        String pfadsp;
         String spkomplett;
         String urProjekt;
-        try {
             if (projekt) {
                 urProjekt = m.getProjektLogUrprojekt();
             } else {
                 urProjekt = m.getServiceLogUrprojekt();
             }
 
-            spshort = urProjekt.substring(0, 2);
-        } catch (StringIndexOutOfBoundsException e) {
-            Dialoge.exceptionDialog(e, "Fehler bei der Ur/Projektnummer");
-            return "";
-        }
-        File test;
-        try {
-            //und damit den Pfad zum Archiv bestimmen
-            if (Integer.parseInt(spshort) <= 60) {
-                test = new File("Q:/" + spshort + "__/");
-            } else {
-                test = new File("Q:/" + spshort + "_/");
-            }
-        } catch (NumberFormatException e) {
-            Dialoge.exceptionDialog(e, "Fehler bei der Ur/Projektnummer");
-            return "";
-        }
-        //Dann das Projekt in dem Archiv suchen
-        spkomplett = Generator.searchFile(test, urProjekt);
-        String pfadsp = (test.toString() + "\\" + spkomplett).replace("/", "\\");
+        Suchprojekt urprojekt = Generator.findeProjekt(urProjekt);
+
+        pfadsp = urprojekt.getProjektpfad().getAbsolutePath();
+        spkomplett = urprojekt.getProjektname();
 
         if (spkomplett.isEmpty()) {
-            spkomplett = Generator.searchFile(new File("P:/"), urProjekt);
-            pfadsp = (("P:/") + spkomplett).replace("/", "\\");
-            if (spkomplett.isEmpty()) {
                 return "";
-            }
         }
         //noinspection UnnecessaryLocalVariable
         System.out.println("der pfadsp:" + pfadsp);
@@ -321,5 +301,4 @@ public class Logbuch {
         }
 
     }
-
 }
