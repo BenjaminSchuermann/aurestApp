@@ -18,7 +18,6 @@ import java.util.ResourceBundle;
 
 public class ProjektLogbuchController implements Initializable {
     private final Model m;
-    private TabPane tabPane;
     //@FXML
     //private RadioButton rbprojektoffen;
     //@FXML
@@ -38,9 +37,8 @@ public class ProjektLogbuchController implements Initializable {
     @FXML
     private Button erstellepl;
 
-    public ProjektLogbuchController(Model m, TabPane tabPane) {
+    public ProjektLogbuchController(Model m) {
         this.m = m;
-        this.tabPane = tabPane;
     }
 
     @Override

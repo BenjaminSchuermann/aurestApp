@@ -21,7 +21,6 @@ import java.util.ResourceBundle;
  */
 public class ServiceLogbuchController implements Initializable {
     private final Model m;
-    private TabPane tabPane;
     //@FXML
     //private RadioButton rbprojektoffen;
     //@FXML
@@ -53,9 +52,8 @@ public class ServiceLogbuchController implements Initializable {
     @FXML
     private Button erstellesl;
 
-    public ServiceLogbuchController(Model m, TabPane tabPane) {
+    public ServiceLogbuchController(Model m) {
         this.m = m;
-        this.tabPane = tabPane;
     }
 
     @Override

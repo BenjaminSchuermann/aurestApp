@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.SegmentedButton?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" minHeight="700.0" minWidth="800.0" stylesheets="@../styles/stylesheet.css" xmlns="http://javafx.com/javafx/8.0.40">
-    <MenuBar>
-        <Menu text="Menü">
-            <MenuItem onAction="#handelProjekt" text="Projekt"/>
-            <MenuItem onAction="#handelService" text="Service"/>
-            <!-- <MenuItem onAction="#handelProjektArchivieren" text="archivieren"/>  -->
-
-            <MenuItem onAction="#handelEmail" text="eMails umbennen"/>
-            <SeparatorMenuItem/>
-            <MenuItem onAction="#handelExit" text="Beenden"/>
-        </Menu>
-
-        <Menu text="Einstellungen">
-            <MenuItem fx:id="setMitarbeiterEinstellungen" onAction="#handelMitarbeiterEinstellungen" text="Mitarbeiter"/>
-            <MenuItem fx:id="setServiceEinstellungen" onAction="#handelServiceEinstellungen" text="Servicejahr"/>
-            <MenuItem fx:id="setVorlagenEinstellungen" onAction="#handelVorlagenEinstellungen" text="Ordnervorlagen"/>
-            <MenuItem fx:id="setKundenEinstellungen" onAction="#handelKundenEinstellungen" text="Kunden"/>
-            <MenuItem fx:id="setLoginEinstellungen" onAction="#handelLoginEinstellungen" text="Logindaten"/>
-        </Menu>
-        <Menu text="Über">
-            <MenuItem onAction="#handelInfo" text="Info"/>
-        </Menu>
-    </MenuBar>
-    <VBox fx:id="programmInhalt" VBox.vgrow="ALWAYS"/>
+    <GridPane hgap="5" vgap="5" minWidth="600.0" minHeight="50.0">
+        <Pane GridPane.rowIndex="0">
+            <children>
+                <ToggleButton fx:id="bt1" text="Projekt"/>
+                <ToggleButton fx:id="bt2" text="Service"/>
+                <ToggleButton fx:id="bt3" text="eMail" onAction="#handelEmail"/>
+                <ToggleButton fx:id="bt4" text="Einstellungen"/>
+                <ToggleButton fx:id="bt5" text="Über" onAction="#handelInfo"/>
+                <ToggleButton fx:id="bt6" text="Beenden" onAction="#handelExit"/>
+                <SegmentedButton fx:id="sb1"/>
+            </children>
+        </Pane>
+        <Pane GridPane.rowIndex="1" fx:id="pgp" visible="false">
+            <children>
+                <ToggleButton fx:id="pbt1" layoutY="3.0" text="Projekt anlegen" onAction="#handelProjektAnlegen"/>
+                <ToggleButton fx:id="pbt2" layoutY="3.0" text="Projekt Logbuch" onAction="#handelProjektLogbuch"/>
+                <ToggleButton fx:id="pbt3" layoutY="3.0" text="Offene Projekte" onAction="#handelOffeneProjekte"/>
+                <SegmentedButton fx:id="psb"/>
+            </children>
+        </Pane>
+        <Pane GridPane.rowIndex="1" fx:id="sgp" visible="false">
+            <children>
+                <ToggleButton fx:id="sbt1" layoutY="3.0" text="Projekt anlegen" onAction="#handelServiceAnlegen"/>
+                <ToggleButton fx:id="sbt2" layoutY="3.0" text="Projekt Logbuch" onAction="#handelServiceLogbuch"/>
+                <SegmentedButton fx:id="ssb"/>
+            </children>
+        </Pane>
+        <Pane GridPane.rowIndex="1" fx:id="egp" visible="false">
+            <children>
+                <ToggleButton fx:id="ebt1" layoutY="3.0" text="Mitarbeiter" onAction="#handelMitarbeiterEinstellungen"/>
+                <ToggleButton fx:id="ebt2" layoutY="3.0" text="Servicejahr" onAction="#handelServiceEinstellungen"/>
+                <ToggleButton fx:id="ebt3" layoutY="3.0" text="Ordnervorlagen" onAction="#handelVorlagenEinstellungen"/>
+                <ToggleButton fx:id="ebt4" layoutY="3.0" text="Kunden" onAction="#handelKundenEinstellungen"/>
+                <ToggleButton fx:id="ebt5" layoutY="3.0" text="Logindaten" onAction="#handelLoginEinstellungen"/>
+                <SegmentedButton fx:id="sb2"/>
+            </children>
+        </Pane>
+        <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+        </padding>
+    </GridPane>
+    <Separator orientation="HORIZONTAL"/>
+    <VBox fx:id="programmInhalt" VBox.vgrow="ALWAYS"></VBox>
 </VBox>

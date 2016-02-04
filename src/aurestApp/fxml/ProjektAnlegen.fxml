@@ -3,9 +3,8 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS" xmlns="http://javafx.com/javafx/8.0.40">
+<VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" VBox.vgrow="ALWAYS">
     <children>
-
         <RadioButton id="rbeigenfertigung" fx:id="rbeigenfertigung" mnemonicParsing="false" selected="true" text="Eigenfertigung">
             <toggleGroup>
                 <ToggleGroup fx:id="myToggleGroup"/>

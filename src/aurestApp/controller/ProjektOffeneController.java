@@ -11,7 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -28,7 +31,6 @@ import java.util.ResourceBundle;
  */
 public class ProjektOffeneController implements Initializable {
     private final Model m;
-    private TabPane tabPane;
 
     @FXML
     private VBox vbox;
@@ -51,9 +53,8 @@ public class ProjektOffeneController implements Initializable {
     @FXML
     private Button projektArchivieren;
 
-    public ProjektOffeneController(Model m, TabPane tabPane) {
+    public ProjektOffeneController(Model m) {
         this.m = m;
-        this.tabPane = tabPane;
     }
 
     @Override

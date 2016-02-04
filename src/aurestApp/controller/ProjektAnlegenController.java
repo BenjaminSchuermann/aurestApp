@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 public class ProjektAnlegenController implements Initializable {
     private final Model m;
     ArrayList<String> kundenAlsStrings = new ArrayList<>();
-    private TabPane tabPane;
     @FXML
     private TextField projektjahr;
     @FXML
@@ -41,9 +40,8 @@ public class ProjektAnlegenController implements Initializable {
     @FXML
     private Button erstelleProjekt;
 
-    public ProjektAnlegenController(Model m, TabPane tabPane) {
+    public ProjektAnlegenController(Model m) {
         this.m = m;
-        this.tabPane = tabPane;
     }
 
     @Override
@@ -63,7 +61,7 @@ public class ProjektAnlegenController implements Initializable {
                 .text("Projekt wird angelegt")
                 .showInformation();
 
-        Generator.erstelleProjekt(projektnummer.getText(), projektkunde.getText(), projektbeschreibung.getText(), rbeigenfertigung.isSelected(), projektofferte.getText(), projektursprung.getText(), m, tabPane);
+        Generator.erstelleProjekt(projektnummer.getText(), projektkunde.getText(), projektbeschreibung.getText(), rbeigenfertigung.isSelected(), projektofferte.getText(), projektursprung.getText(), m);
         //Sollte der Kunde noch nicht vorhanden sein, dann speichern
         //if (kundenAlsStrings.contains(projektkunde.getText().trim()))
         //    return;

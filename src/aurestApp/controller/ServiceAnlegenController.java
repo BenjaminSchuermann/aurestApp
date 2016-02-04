@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -26,7 +25,6 @@ import java.util.stream.Collectors;
 public class ServiceAnlegenController implements Initializable {
     private final Model m;
     ArrayList<String> kundenAlsStrings = new ArrayList<>();
-    private TabPane tabPane;
 
     @FXML
     private Pane menuServiceAnlegen;
@@ -43,9 +41,8 @@ public class ServiceAnlegenController implements Initializable {
     @FXML
     private TextField serviceprojekt;
 
-    public ServiceAnlegenController(Model m, TabPane tabPane) {
+    public ServiceAnlegenController(Model m) {
         this.m = m;
-        this.tabPane = tabPane;
     }
 
     @Override
@@ -70,7 +67,7 @@ public class ServiceAnlegenController implements Initializable {
         if (serviceJahr.isEmpty())
             serviceJahr = servicejahr.getPromptText();
 
-        Generator.erstelleService(serviceJahr + "." + servicenummer.getText(), servicekunde.getText(), servicebeschreibung.getText(), false, serviceprojekt.getText(), m, tabPane);
+        Generator.erstelleService(serviceJahr + "." + servicenummer.getText(), servicekunde.getText(), servicebeschreibung.getText(), false, serviceprojekt.getText(), m);
         //Sollte der Kunde noch nicht vorhanden sein, dann speichern
         //if (kundenAlsStrings.contains(servicekunde.getText().trim()))
         //    return;

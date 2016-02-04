@@ -54,7 +54,7 @@ public class ServiceSeiteController implements Initializable {
         });
         //Nun den Inhalt des Tabs laden und den Controller setzten
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.SERVICEERSTELLEN));
-        loader.setController(new ServiceAnlegenController(m, tabPane));
+        loader.setController(new ServiceAnlegenController(m));
         Node mainNode = null;
         try {
             mainNode = loader.load();
@@ -76,7 +76,7 @@ public class ServiceSeiteController implements Initializable {
         });
         //Nun den Inhalt des Tabs laden und den Controller setzten
         loader = new FXMLLoader(getClass().getResource(Seiten.SERVICELOGBUCH));
-        loader.setController(new ServiceLogbuchController(m, tabPane));
+        loader.setController(new ServiceLogbuchController(m));
         mainNode = null;
         try {
             mainNode = loader.load();

@@ -58,7 +58,7 @@ public class ProjektSeiteController implements Initializable {
         });
         //Nun den Inhalt des Tabs laden und den Controller setzten
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Seiten.PROJEKTERSTELLEN));
-        loader.setController(new ProjektAnlegenController(m, tabPane));
+        loader.setController(new ProjektAnlegenController(m));
         Node mainNode = null;
         try {
             mainNode = loader.load();
@@ -80,7 +80,7 @@ public class ProjektSeiteController implements Initializable {
         });
         //Nun den Inhalt des Tabs laden und den Controller setzten
         loader = new FXMLLoader(getClass().getResource(Seiten.PROJEKTLOGBUCH));
-        loader.setController(new ProjektLogbuchController(m, tabPane));
+        loader.setController(new ProjektLogbuchController(m));
         mainNode = null;
         try {
             mainNode = loader.load();
@@ -102,7 +102,7 @@ public class ProjektSeiteController implements Initializable {
         });
         //Nun den Inhalt des Tabs laden und den Controller setzten
         loader = new FXMLLoader(getClass().getResource(Seiten.PROJEKTOFFEN));
-        loader.setController(new ProjektOffeneController(m, tabPane));
+        loader.setController(new ProjektOffeneController(m));
         mainNode = null;
         try {
             mainNode = loader.load();

@@ -1,15 +1,10 @@
 package aurestApp.tools;
 
 import aurestApp.Model;
-import aurestApp.controller.ProjektLogbuchController;
-import aurestApp.controller.ServiceLogbuchController;
-import aurestApp.interfaces.Seiten;
 import aurestApp.tools.eigeneklassen.Suchprojekt;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseButton;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import org.controlsfx.control.Notifications;
 
 import java.awt.*;
@@ -20,7 +15,7 @@ public class Generator {
 
     private static String status = "";
 
-    public static void erstelleProjekt(String projektnummer, String kunde, String projektname, boolean projekttyp, String offerte, String ProjektUrprojekt, Model m, TabPane tabPane) {
+    public static void erstelleProjekt(String projektnummer, String kunde, String projektname, boolean projekttyp, String offerte, String ProjektUrprojekt, Model m) {
         if (projektnummer.isEmpty()) {
             status = "Projektnummer fehlt";
             Dialoge.DialogAnzeigeBox("fehler", "Projektnummer fehlt");
@@ -156,11 +151,12 @@ public class Generator {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeJa) {
+            /*
             m.setProjektToLog(true);
             tabPane.getTabs().remove(1);
-            /*
-        * Projekt Logbuch
-         */
+
+        // Projekt Logbuch
+
             Tab tabProjektLogbuch = new Tab();
             Label lbl_ProjektLogbuch = new Label("Projekt Logbuch");
             tabProjektLogbuch.setGraphic(lbl_ProjektLogbuch);
@@ -188,11 +184,11 @@ public class Generator {
             if (tabPane.getScene().getWindow().getHeight() < 850.0)
                 tabPane.getScene().getWindow().setHeight(850.0);
             //Dialoge.DialogAnzeigeBox("info", "Projekt " + pfad + " wurde erfolgreich angelegt");
-
+*/
         }
     }
 
-    public static void erstelleService(String servicenummer, String kunde, String servicename, boolean servicetyp, String serviceprojekt, Model m, TabPane tabPane) {
+    public static void erstelleService(String servicenummer, String kunde, String servicename, boolean servicetyp, String serviceprojekt, Model m) {
         status = "Servicegenerierung gestartet";
         if (servicenummer.isEmpty()) {
             Dialoge.DialogAnzeigeBox("fehler", "Servicenummer fehlt");
@@ -290,11 +286,12 @@ public class Generator {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeJa) {
+            /*
             m.setServiceToLog(true);
             tabPane.getTabs().remove(1);
-            /*
-        * Service Logbuch
-         */
+
+            // Service Logbuch
+
             Tab tabServiceLogbuch = new Tab();
             Label lbl_ServiceLogbuch = new Label("Service Logbuch");
             tabServiceLogbuch.setGraphic(lbl_ServiceLogbuch);
@@ -320,7 +317,7 @@ public class Generator {
             tabPane.getSelectionModel().selectNext();
             if (tabPane.getScene().getWindow().getHeight() < 850.0)
                 tabPane.getScene().getWindow().setHeight(850.0);
-
+            */
         }
     }
 
