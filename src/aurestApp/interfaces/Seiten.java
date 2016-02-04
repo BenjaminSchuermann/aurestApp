@@ -2,13 +2,11 @@ package aurestApp.interfaces;
 
 public interface Seiten {
     String HAUPTFENSTER = "/aurestApp/fxml/main.fxml";
-    String PROJEKT = "/aurestApp/fxml/ProjektSeite.fxml";
     String PROJEKTERSTELLEN = "/aurestApp/fxml/ProjektAnlegen.fxml";
     String PROJEKTARCHIVIEREN = "/aurestApp/fxml/MenuProjektArchivieren.fxml";
     String PROJEKTLOGBUCH = "/aurestApp/fxml/ProjektLogbuch.fxml";
     String PROJEKTOFFEN = "/aurestApp/fxml/ProjektOffene.fxml";
     String PROJEKTDETAILS = "/aurestApp/fxml/ProjektDetails.fxml";
-    String SERVICE = "/aurestApp/fxml/ServiceSeite.fxml";
     String SERVICEERSTELLEN = "/aurestApp/fxml/ServiceAnlegen.fxml";
     String SERVICELOGBUCH = "/aurestApp/fxml/ServiceLogbuch.fxml";
     String SERVICEDETAILS = "/aurestApp/fxml/ServiceDetails.fxml";

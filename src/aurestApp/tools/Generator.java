@@ -2,24 +2,19 @@ package aurestApp.tools;
 
 import aurestApp.Model;
 import aurestApp.tools.eigeneklassen.Suchprojekt;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import org.controlsfx.control.Notifications;
 
 import java.awt.*;
 import java.io.*;
-import java.util.Optional;
 
 public class Generator {
 
     private static String status = "";
 
-    public static void erstelleProjekt(String projektnummer, String kunde, String projektname, boolean projekttyp, String offerte, String ProjektUrprojekt, Model m) {
+    public static String erstelleProjekt(String projektnummer, String kunde, String projektname, boolean projekttyp, String offerte, String ProjektUrprojekt, Model m) {
         if (projektnummer.isEmpty()) {
             status = "Projektnummer fehlt";
             Dialoge.DialogAnzeigeBox("fehler", "Projektnummer fehlt");
-            return;
+            return "Projektnummer fehlt";
         }
         String art;
         if (projekttyp) {
@@ -42,7 +37,7 @@ public class Generator {
         File ziel = new File("P:/" + pfad);
         if (ziel.exists()) {
             Dialoge.DialogAnzeigeBox("warnung", "Projekt ist bereits angelegt");
-            return;
+            return "Projekt ist bereits angelegt";
         }
 
         try {
@@ -50,7 +45,7 @@ public class Generator {
         } catch (Exception e) {
             Dialoge.exceptionDialog(e, "Fehler beim Kopieren der Vorlage");
             e.printStackTrace();
-            return;
+            return "Fehler beim Kopieren der Vorlage";
         }
 
         if (!offerte.isEmpty()) {
@@ -127,72 +122,23 @@ public class Generator {
             } catch (IOException e) {
                 e.printStackTrace();
                 Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei für das Ursprungsprojekt");
-                return;
+                return "Fehler beim öffnen der Linkdatei für das Ursprungsprojekt";
             }
             status = "UrProjekt wird verlinkt";
             while (!new File("P:\\" + pfad + "\\UrProjekt " + spkomplett + ".lnk").exists() && !new File(pfadsp + "\\Projekt " + pfad + ".lnk").exists()) {
                 //Warteschleife
             }
+
+
         }
-        Notifications.create().darkStyle()
-                .title("Projekt angelegt")
-                .text("Das neue Projekt wurde erfolgreich angelegt")
-                .showInformation();
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Projekt " + m.getProjektNummer() + " angelegt");
-        alert.setHeaderText("Projekt " + m.getProjektNummer() + " wurde erfolgreich angelegt");
-        alert.setContentText("Willst du direkt einen Logbucheintrag vornehmen?");
-
-        ButtonType buttonTypeJa = new ButtonType("Ja");
-        ButtonType buttonTypeNein = new ButtonType("Nein, Schließen", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        alert.getButtonTypes().setAll(buttonTypeJa, buttonTypeNein);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeJa) {
-            /*
-            m.setProjektToLog(true);
-            tabPane.getTabs().remove(1);
-
-        // Projekt Logbuch
-
-            Tab tabProjektLogbuch = new Tab();
-            Label lbl_ProjektLogbuch = new Label("Projekt Logbuch");
-            tabProjektLogbuch.setGraphic(lbl_ProjektLogbuch);
-
-            //Für Projekt Logbuch den Tab Klickbar machen um die Seitengröße anzupassen
-            lbl_ProjektLogbuch.setOnMouseClicked(mouseEvent -> {
-                if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                    if (tabPane.getScene().getWindow().getHeight() < 850.0)
-                        tabPane.getScene().getWindow().setHeight(850.0);
-                }
-            });
-            //Nun den Inhalt des Tabs laden und den Controller setzten
-            FXMLLoader loader = new FXMLLoader(Generator.class.getResource(Seiten.PROJEKTLOGBUCH));
-            loader.setController(new ProjektLogbuchController(m, tabPane));
-            Node mainNode = null;
-            try {
-                mainNode = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //Inhalt in den Tab setzen
-            tabProjektLogbuch.setContent(mainNode);
-            tabPane.getTabs().add(tabProjektLogbuch);
-            tabPane.getSelectionModel().selectNext();
-            if (tabPane.getScene().getWindow().getHeight() < 850.0)
-                tabPane.getScene().getWindow().setHeight(850.0);
-            //Dialoge.DialogAnzeigeBox("info", "Projekt " + pfad + " wurde erfolgreich angelegt");
-*/
-        }
+        return "Projekt angelegt";
     }
 
-    public static void erstelleService(String servicenummer, String kunde, String servicename, boolean servicetyp, String serviceprojekt, Model m) {
+    public static String erstelleService(String servicenummer, String kunde, String servicename, boolean servicetyp, String serviceprojekt, Model m) {
         status = "Servicegenerierung gestartet";
         if (servicenummer.isEmpty()) {
             Dialoge.DialogAnzeigeBox("fehler", "Servicenummer fehlt");
-            return;
+            return "Servicenummer fehlt";
         }
         String snfl = "";
 
@@ -215,7 +161,7 @@ public class Generator {
         File ziel = new File("Q:/" + pfad);
         if (ziel.exists()) {
             Dialoge.DialogAnzeigeBox("fehler", "Service ist bereits angelegt");
-            return;
+            return "Service ist bereits angelegt";
         }
 
         try {
@@ -223,7 +169,7 @@ public class Generator {
         } catch (Exception e) {
             Dialoge.exceptionDialog(e, "Fehler beim kopieren der Servicevorlage");
             e.printStackTrace();
-            return;
+            return "Fehler beim kopieren der Servicevorlage";
         }
         status = "Vorlage wird kopiert";
 
@@ -259,7 +205,7 @@ public class Generator {
             } catch (IOException e) {
                 Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei(en)");
                 e.printStackTrace();
-                return;
+                return "Fehler beim öffnen der Linkdatei(en)";
             }
             status = "Projekt wird verlinkt";
             while (!new File("Q:\\" + pfad + "\\Projekt " + spkomplett + ".lnk").exists() && !new File(pfadsp + "\\Service " + servicenummer + " " + snfl + ".lnk").exists()) {
@@ -268,57 +214,8 @@ public class Generator {
             //System.out.println(ausgabe.delete());
             status = "Service angelegt";
         }
-
-        Notifications.create().darkStyle()
-                .title("Neuer Service")
-                .text("Der neue Service wurde erfolgreich angelegt")
-                .showInformation();
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Service " + m.getServiceNummer() + " angelegt");
-        alert.setHeaderText("Service " + m.getServiceNummer() + " wurde erfolgreich angelegt");
-        alert.setContentText("Willst du direkt einen Logbucheintrag vornehmen?");
-
-        ButtonType buttonTypeJa = new ButtonType("Ja");
-        ButtonType buttonTypeNein = new ButtonType("Nein, Schließen", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        alert.getButtonTypes().setAll(buttonTypeJa, buttonTypeNein);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeJa) {
-            /*
-            m.setServiceToLog(true);
-            tabPane.getTabs().remove(1);
-
-            // Service Logbuch
-
-            Tab tabServiceLogbuch = new Tab();
-            Label lbl_ServiceLogbuch = new Label("Service Logbuch");
-            tabServiceLogbuch.setGraphic(lbl_ServiceLogbuch);
-
-            //Für Projekt Logbuch den Tab Klickbar machen um die Seitengröße anzupassen
-            lbl_ServiceLogbuch.setOnMouseClicked(mouseEvent -> {
-                if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                    tabPane.getScene().getWindow().setHeight(850.0);
-                }
-            });
-            //Nun den Inhalt des Tabs laden und den Controller setzten
-            FXMLLoader loader = new FXMLLoader(Generator.class.getResource(Seiten.SERVICELOGBUCH));
-            loader.setController(new ServiceLogbuchController(m, tabPane));
-            Node mainNode = null;
-            try {
-                mainNode = loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //Inhalt in den Tab setzen
-            tabServiceLogbuch.setContent(mainNode);
-            tabPane.getTabs().add(tabServiceLogbuch);
-            tabPane.getSelectionModel().selectNext();
-            if (tabPane.getScene().getWindow().getHeight() < 850.0)
-                tabPane.getScene().getWindow().setHeight(850.0);
-            */
-        }
+        status = "Service angelegt";
+        return status;
     }
 
     public static String searchFile(File dir, String find) {

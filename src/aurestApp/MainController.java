@@ -213,7 +213,7 @@ class MainController implements Seiten, Initializable {
     private void handelProjektAnlegen(ActionEvent actionEvent) throws IOException {
         checkSize();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(PROJEKTERSTELLEN));
-        loader.setController(new ProjektAnlegenController(m));
+        loader.setController(new ProjektAnlegenController(m, programmInhalt, pbt2));
         Node mainNode = loader.load();
         setInhalt(mainNode);
     }
@@ -249,7 +249,7 @@ class MainController implements Seiten, Initializable {
     private void handelServiceAnlegen(ActionEvent actionEvent) throws IOException {
         checkSize();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(SERVICEERSTELLEN));
-        loader.setController(new ServiceAnlegenController(m));
+        loader.setController(new ServiceAnlegenController(m, programmInhalt, sbt2));
         Node mainNode = loader.load();
         setInhalt(mainNode);
     }
