@@ -27,8 +27,8 @@
         </Pane>
         <Pane GridPane.rowIndex="1" fx:id="sgp" visible="false">
             <children>
-                <ToggleButton fx:id="sbt1" layoutY="3.0" text="Projekt anlegen" onAction="#handelServiceAnlegen"/>
-                <ToggleButton fx:id="sbt2" layoutY="3.0" text="Projekt Logbuch" onAction="#handelServiceLogbuch"/>
+                <ToggleButton fx:id="sbt1" layoutY="3.0" text="Service anlegen" onAction="#handelServiceAnlegen"/>
+                <ToggleButton fx:id="sbt2" layoutY="3.0" text="Service Logbuch" onAction="#handelServiceLogbuch"/>
                 <SegmentedButton fx:id="ssb"/>
             </children>
         </Pane>

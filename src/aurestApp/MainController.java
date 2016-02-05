@@ -9,12 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import org.controlsfx.control.SegmentedButton;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
 
 import java.io.IOException;
 import java.net.URL;
@@ -90,27 +89,27 @@ class MainController implements Seiten, Initializable {
 
 //Hauptleiste anlegen
         bt1.setUserData("Projekt");
-        bt1.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.TASKS).size(25.0).color(Color.BLACK));
+        bt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/application_from_storage.png"))));//.getGraphic().set.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.TASKS).size(25.0).color(Color.BLACK));
         bt1.setContentDisplay(ContentDisplay.LEFT);
 
         bt2.setUserData("Service");
-        bt2.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.WRENCH).size(25.0).color(Color.SANDYBROWN));
+        bt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/wrench.png"))));
         bt2.setContentDisplay(ContentDisplay.LEFT);
 
         bt3.setUserData("eMails");
-        bt3.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.ENVELOPE_ALT).size(25.0).color(Color.BLUE));
+        bt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/emails_stack.png"))));
         bt3.setContentDisplay(ContentDisplay.LEFT);
 
         bt4.setUserData("Einstellungen");
-        bt4.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.GEAR).size(25.0).color(Color.DARKGRAY));
+        bt4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/setting_tools.png"))));
         bt4.setContentDisplay(ContentDisplay.LEFT);
 
         bt5.setUserData("Info");
-        bt5.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.INFO_CIRCLE).size(25.0).color(Color.BLUE));
+        bt5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/info_rhombus.png"))));
         bt5.setContentDisplay(ContentDisplay.LEFT);
 
         bt6.setUserData("Beenden");
-        bt6.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.CLOSE).size(25.0).color(Color.BLACK));
+        bt6.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/cancel.png"))));
         bt6.setContentDisplay(ContentDisplay.LEFT);
 
         sb1.getButtons().addAll(bt1, bt2, bt3, bt4, bt5, bt6);
@@ -151,15 +150,16 @@ class MainController implements Seiten, Initializable {
 
         //Leiste Projekt anlegen
         pbt1.setUserData("Projekt anlegen");
-        pbt1.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.PLUS).size(15.0).color(Color.BLACK));
+        pbt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/application_form_add.png"))));
+
         pbt1.setContentDisplay(ContentDisplay.LEFT);
 
         pbt2.setUserData("Projekt Logbuch");
-        pbt2.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.BOOK).size(15.0).color(Color.BLACK));
+        pbt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/book_add.png"))));
         pbt2.setContentDisplay(ContentDisplay.LEFT);
 
         pbt3.setUserData("Offene Projekte");
-        pbt3.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.ARCHIVE).size(15.0).color(Color.BLACK));
+        pbt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/application_view_list.png"))));
         pbt3.setContentDisplay(ContentDisplay.LEFT);
 
         //Zum Entwicklen nur meinem Login den dritten Button anzeigen
@@ -174,11 +174,11 @@ class MainController implements Seiten, Initializable {
 
         //Leiste Service anlegen
         sbt1.setUserData("Service anlegen");
-        sbt1.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.PLUS).size(15.0).color(Color.BLACK));
+        sbt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/wrenchadd.png"))));
         sbt1.setContentDisplay(ContentDisplay.LEFT);
 
         sbt2.setUserData("Service Logbuch");
-        sbt2.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.BOOK).size(15.0).color(Color.BLACK));
+        sbt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/book_add.png"))));
         sbt2.setContentDisplay(ContentDisplay.LEFT);
 
         ssb.getButtons().addAll(sbt1, sbt2);
@@ -186,23 +186,23 @@ class MainController implements Seiten, Initializable {
 
         //Leiste Einstellungen anlegen
         ebt1.setUserData("Mitarbeiter");
-        ebt1.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.USER).size(15.0).color(Color.BLACK));
+        ebt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/user_edit.png"))));
         ebt1.setContentDisplay(ContentDisplay.LEFT);
 
         ebt2.setUserData("Servicejahr");
-        ebt2.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.CALENDAR).size(15.0).color(Color.BLACK));
+        ebt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/calendar_edit.png"))));
         ebt2.setContentDisplay(ContentDisplay.LEFT);
 
         ebt3.setUserData("Ordnervorlagen");
-        ebt3.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FOLDER).size(15.0).color(Color.BLACK));
+        ebt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/folder_edit.png"))));
         ebt3.setContentDisplay(ContentDisplay.LEFT);
 
         ebt4.setUserData("Kunden");
-        ebt4.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.USERS).size(15.0).color(Color.BLACK));
+        ebt4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/user_suit.png"))));
         ebt4.setContentDisplay(ContentDisplay.LEFT);
 
         ebt5.setUserData("Logindaten");
-        ebt5.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.LOCK).size(15.0).color(Color.BLACK));
+        ebt5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/lock_edit.png"))));
         ebt5.setContentDisplay(ContentDisplay.LEFT);
 
         sb2.getButtons().addAll(ebt1, ebt2, ebt3, ebt4, ebt5);
