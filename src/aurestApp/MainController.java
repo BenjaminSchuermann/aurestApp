@@ -1,7 +1,9 @@
 package aurestApp;
 
 import aurestApp.controller.*;
+import aurestApp.img.icons.Images;
 import aurestApp.interfaces.Seiten;
+import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,8 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import org.controlsfx.control.SegmentedButton;
@@ -89,27 +89,27 @@ class MainController implements Seiten, Initializable {
 
 //Hauptleiste anlegen
         bt1.setUserData("Projekt");
-        bt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/application_from_storage.png"))));//.getGraphic().set.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.TASKS).size(25.0).color(Color.BLACK));
+        bt1.setGraphic(GetImageView.load(Images.APPLICATION_FROM_STORAGE, 32));
         bt1.setContentDisplay(ContentDisplay.LEFT);
 
         bt2.setUserData("Service");
-        bt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/wrench.png"))));
+        bt2.setGraphic(GetImageView.load(Images.WRENCH, 32));
         bt2.setContentDisplay(ContentDisplay.LEFT);
 
         bt3.setUserData("eMails");
-        bt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/emails_stack.png"))));
+        bt3.setGraphic(GetImageView.load(Images.EMAILS_STACK, 32));
         bt3.setContentDisplay(ContentDisplay.LEFT);
 
         bt4.setUserData("Einstellungen");
-        bt4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/setting_tools.png"))));
+        bt4.setGraphic(GetImageView.load(Images.SETTING_TOOLS, 32));
         bt4.setContentDisplay(ContentDisplay.LEFT);
 
         bt5.setUserData("Info");
-        bt5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/info_rhombus.png"))));
+        bt5.setGraphic(GetImageView.load(Images.INFO_RHOMBUS, 32));
         bt5.setContentDisplay(ContentDisplay.LEFT);
 
         bt6.setUserData("Beenden");
-        bt6.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/cancel.png"))));
+        bt6.setGraphic(GetImageView.load(Images.CANCEL, 32));
         bt6.setContentDisplay(ContentDisplay.LEFT);
 
         sb1.getButtons().addAll(bt1, bt2, bt3, bt4, bt5, bt6);
@@ -150,16 +150,16 @@ class MainController implements Seiten, Initializable {
 
         //Leiste Projekt anlegen
         pbt1.setUserData("Projekt anlegen");
-        pbt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/application_form_add.png"))));
+        pbt1.setGraphic(GetImageView.load(Images.APPLICATION_FORM_ADD, 16));
 
         pbt1.setContentDisplay(ContentDisplay.LEFT);
 
         pbt2.setUserData("Projekt Logbuch");
-        pbt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/report_add.png"))));
+        pbt2.setGraphic(GetImageView.load(Images.REPORT_ADD, 16));
         pbt2.setContentDisplay(ContentDisplay.LEFT);
 
         pbt3.setUserData("Offene Projekte");
-        pbt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/application_view_list.png"))));
+        pbt3.setGraphic(GetImageView.load(Images.APPLICATION_VIEW_LIST, 16));
         pbt3.setContentDisplay(ContentDisplay.LEFT);
 
         //Zum Entwicklen nur meinem Login den dritten Button anzeigen
@@ -174,11 +174,11 @@ class MainController implements Seiten, Initializable {
 
         //Leiste Service anlegen
         sbt1.setUserData("Service anlegen");
-        sbt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/wrenchadd.png"))));
+        sbt1.setGraphic(GetImageView.load(Images.WRENCHADD, 16));
         sbt1.setContentDisplay(ContentDisplay.LEFT);
 
         sbt2.setUserData("Service Logbuch");
-        sbt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/report_add.png"))));
+        sbt2.setGraphic(GetImageView.load(Images.REPORT_ADD, 16));
         sbt2.setContentDisplay(ContentDisplay.LEFT);
 
         ssb.getButtons().addAll(sbt1, sbt2);
@@ -186,23 +186,23 @@ class MainController implements Seiten, Initializable {
 
         //Leiste Einstellungen anlegen
         ebt1.setUserData("Mitarbeiter");
-        ebt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/user_edit.png"))));
+        ebt1.setGraphic(GetImageView.load(Images.USER_EDIT, 16));
         ebt1.setContentDisplay(ContentDisplay.LEFT);
 
         ebt2.setUserData("Servicejahr");
-        ebt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/calendar_edit.png"))));
+        ebt2.setGraphic(GetImageView.load(Images.CALENDAR_EDIT, 16));
         ebt2.setContentDisplay(ContentDisplay.LEFT);
 
         ebt3.setUserData("Ordnervorlagen");
-        ebt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/folder_edit.png"))));
+        ebt3.setGraphic(GetImageView.load(Images.FOLDER_EDIT, 16));
         ebt3.setContentDisplay(ContentDisplay.LEFT);
 
         ebt4.setUserData("Kunden");
-        ebt4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/vcard_edit.png"))));
+        ebt4.setGraphic(GetImageView.load(Images.VCARD_EDIT, 16));
         ebt4.setContentDisplay(ContentDisplay.LEFT);
 
         ebt5.setUserData("Logindaten");
-        ebt5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/lock_edit.png"))));
+        ebt5.setGraphic(GetImageView.load(Images.LOCK_EDIT, 16));
         ebt5.setContentDisplay(ContentDisplay.LEFT);
 
         sb2.getButtons().addAll(ebt1, ebt2, ebt3, ebt4, ebt5);

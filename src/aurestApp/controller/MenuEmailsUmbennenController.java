@@ -1,8 +1,10 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.tools.Dialoge;
+import aurestApp.img.icons.Images;
 import aurestApp.interfaces.Seiten;
+import aurestApp.tools.Dialoge;
+import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,12 +14,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,7 +44,10 @@ public class MenuEmailsUmbennenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        emailsumbennen.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.ENVELOPE_ALT).size(25.0).color(Color.BLUE));
+        emailordnerwaehlen.setGraphic(GetImageView.load(Images.FOLDER_EXPLORE, 32));
+        emailordnerwaehlen.setContentDisplay(ContentDisplay.LEFT);
+
+        emailsumbennen.setGraphic(GetImageView.load(Images.EMAIL_SEND_RECEIVE, 32));
         emailsumbennen.setContentDisplay(ContentDisplay.LEFT);
     }
 

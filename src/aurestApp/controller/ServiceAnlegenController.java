@@ -1,8 +1,10 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.img.icons.Images;
 import aurestApp.interfaces.Seiten;
 import aurestApp.tools.Generator;
+import aurestApp.tools.eigeneklassen.GetImageView;
 import aurestApp.tools.eigeneklassen.Kunde;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,11 +14,8 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
 
 import java.io.IOException;
 import java.net.URL;
@@ -59,7 +58,7 @@ public class ServiceAnlegenController implements Initializable {
         kundenAlsStrings.addAll(m.getKunden().stream().map(Kunde::getName).collect(Collectors.toList()));
         TextFields.bindAutoCompletion(servicekunde, new HashSet<>(kundenAlsStrings));
 
-        erstelleService.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FILE_TEXT_ALT).size(25.0).color(Color.BLACK));
+        erstelleService.setGraphic(GetImageView.load(Images.WRENCHADD, 32));
         erstelleService.setContentDisplay(ContentDisplay.LEFT);
     }
 

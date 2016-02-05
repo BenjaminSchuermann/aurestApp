@@ -1,8 +1,10 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.img.icons.Images;
 import aurestApp.tools.Dialoge;
 import aurestApp.tools.Settings;
+import aurestApp.tools.eigeneklassen.GetImageView;
 import aurestApp.tools.eigeneklassen.Kunde;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -10,12 +12,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckListView;
 import org.controlsfx.control.Notifications;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -81,13 +80,19 @@ public class KundenDetailsController implements Initializable {
             btn_addordner.setDisable(newValue.trim().isEmpty());
         });
 
-        loeschekunde.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.USER_TIMES).size(25.0).color(Color.RED));
+        loescheordner.setGraphic(GetImageView.load(Images.TABLE_ROW_DELETE, 16));
+        loescheordner.setContentDisplay(ContentDisplay.LEFT);
+
+        btn_addordner.setGraphic(GetImageView.load(Images.ADD, 16));
+        btn_addordner.setContentDisplay(ContentDisplay.LEFT);
+
+        loeschekunde.setGraphic(GetImageView.load(Images.VCARD_DELETE, 32));
         loeschekunde.setContentDisplay(ContentDisplay.LEFT);
 
-        abbruch.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.REMOVE).size(25.0).color(Color.BLACK));
+        abbruch.setGraphic(GetImageView.load(Images.CANCEL, 32));
         abbruch.setContentDisplay(ContentDisplay.LEFT);
 
-        speichern.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SAVE).size(25.0).color(Color.BLUE));
+        speichern.setGraphic(GetImageView.load(Images.DISK, 32));
         speichern.setContentDisplay(ContentDisplay.LEFT);
     }
 

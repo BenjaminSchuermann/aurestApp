@@ -1,8 +1,10 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.img.icons.Images;
 import aurestApp.tools.Dialoge;
 import aurestApp.tools.Settings;
+import aurestApp.tools.eigeneklassen.GetImageView;
 import aurestApp.tools.eigeneklassen.Mitarbeiter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,16 +16,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckListView;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.CustomPasswordField;
 import org.controlsfx.control.textfield.CustomTextField;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
-import org.controlsfx.glyphfont.GlyphFont;
-import org.controlsfx.glyphfont.GlyphFontRegistry;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -111,20 +108,24 @@ public class MitarbeiterAnlegenController implements Initializable {
                 loginaktiv.setSelected(false);
         });
 
-        GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
+        loeschealtnamen.setGraphic(GetImageView.load(Images.TABLE_ROW_DELETE, 16));
+        loeschealtnamen.setContentDisplay(ContentDisplay.LEFT);
 
-        login.setLeft(fontAwesome.create("USER"));
-        passwort.setLeft(fontAwesome.create("LOCK"));
+        btn_addaltname.setGraphic(GetImageView.load(Images.ADD, 16));
+        btn_addaltname.setContentDisplay(ContentDisplay.LEFT);
+
+        login.setLeft(GetImageView.load(Images.USER_SILHOUETTE, 16));
+        passwort.setLeft(GetImageView.load(Images.LOCK, 16));
 
         //Hier nicht genutzt
-        loeschemitarbeiter.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.USER_TIMES).size(25.0).color(Color.RED));
+        loeschemitarbeiter.setGraphic(GetImageView.load(Images.USER_DELETE, 32));
         loeschemitarbeiter.setContentDisplay(ContentDisplay.LEFT);
         loeschemitarbeiter.setVisible(false);
 
-        abbruch.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.REMOVE).size(25.0).color(Color.BLACK));
+        abbruch.setGraphic(GetImageView.load(Images.CANCEL, 32));
         abbruch.setContentDisplay(ContentDisplay.LEFT);
 
-        speichern.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SAVE).size(25.0).color(Color.BLUE));
+        speichern.setGraphic(GetImageView.load(Images.DISK, 32));
         speichern.setContentDisplay(ContentDisplay.LEFT);
     }
 

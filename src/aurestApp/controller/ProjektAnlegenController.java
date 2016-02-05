@@ -1,8 +1,10 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.img.icons.Images;
 import aurestApp.interfaces.Seiten;
 import aurestApp.tools.Generator;
+import aurestApp.tools.eigeneklassen.GetImageView;
 import aurestApp.tools.eigeneklassen.Kunde;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,11 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,7 +59,7 @@ public class ProjektAnlegenController implements Initializable {
 
         TextFields.bindAutoCompletion(projektkunde, new HashSet<>(kundenAlsStrings));
 
-        erstelleProjekt.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.FILE_POWERPOINT_ALT).size(25.0).color(Color.BLACK));
+        erstelleProjekt.setGraphic(GetImageView.load(Images.APPLICATION_FORM_ADD, 32));
         erstelleProjekt.setContentDisplay(ContentDisplay.LEFT);
     }
 

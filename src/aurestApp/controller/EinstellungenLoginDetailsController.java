@@ -1,26 +1,20 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.img.icons.Images;
 import aurestApp.tools.Settings;
+import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
-import javafx.scene.paint.Color;
 import org.controlsfx.control.textfield.CustomPasswordField;
 import org.controlsfx.control.textfield.CustomTextField;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
-import org.controlsfx.glyphfont.GlyphFont;
-import org.controlsfx.glyphfont.GlyphFontRegistry;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Created by Benjamin on 20.07.2015.
- */
 public class EinstellungenLoginDetailsController implements Initializable {
     private Model m;
     @FXML
@@ -36,10 +30,9 @@ public class EinstellungenLoginDetailsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
 
-        login.setLeft(fontAwesome.create("USER"));
-        passwort.setLeft(fontAwesome.create("LOCK"));
+        login.setLeft(GetImageView.load(Images.USER_SILHOUETTE, 16));
+        passwort.setLeft(GetImageView.load(Images.LOCK, 16));
 
         login.setText(m.getLogin());
         login.setEditable(false);
@@ -49,7 +42,7 @@ public class EinstellungenLoginDetailsController implements Initializable {
             speichern.setDisable(newValue.trim().isEmpty());
         });
 
-        speichern.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.SAVE).size(25.0).color(Color.BLUE));
+        speichern.setGraphic(GetImageView.load(Images.DISK, 32));
         speichern.setContentDisplay(ContentDisplay.LEFT);
     }
 

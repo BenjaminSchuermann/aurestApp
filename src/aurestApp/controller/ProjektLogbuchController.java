@@ -1,16 +1,15 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.img.icons.Images;
 import aurestApp.tools.Logbuch;
+import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
 import org.controlsfx.control.Notifications;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -53,7 +52,7 @@ public class ProjektLogbuchController implements Initializable {
             Platform.runLater(planlagenteil::requestFocus);
         }
 
-        erstellepl.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.BOOK).size(25.0).color(Color.BROWN).useGradientEffect());
+        erstellepl.setGraphic(GetImageView.load(Images.REPORT_ADD, 32));
         erstellepl.setContentDisplay(ContentDisplay.LEFT);
     }
 

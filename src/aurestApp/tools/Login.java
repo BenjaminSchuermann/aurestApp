@@ -1,6 +1,8 @@
 package aurestApp.tools;
 
 import aurestApp.Model;
+import aurestApp.img.icons.Images;
+import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -12,8 +14,6 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 import org.controlsfx.control.textfield.CustomPasswordField;
 import org.controlsfx.control.textfield.CustomTextField;
-import org.controlsfx.glyphfont.GlyphFont;
-import org.controlsfx.glyphfont.GlyphFontRegistry;
 
 import java.io.*;
 import java.sql.ResultSet;
@@ -49,14 +49,12 @@ public class Login {
         grid.setVgap(10);
         grid.setPadding(new Insets(20, 150, 10, 10));
 
-        GlyphFont fontAwesome = GlyphFontRegistry.font("FontAwesome");
-
         CustomTextField username = new CustomTextField();
-        username.setLeft(fontAwesome.create("USER"));
+        username.setLeft(GetImageView.load(Images.USER_SILHOUETTE, 16));
         username.setPromptText("Benutzername");
 
         CustomPasswordField password = new CustomPasswordField();
-        password.setLeft(fontAwesome.create("LOCK"));
+        password.setLeft(GetImageView.load(Images.LOCK, 16));
         password.setPromptText("Passwort");
 
 
