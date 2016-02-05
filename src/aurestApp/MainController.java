@@ -89,27 +89,27 @@ class MainController implements Seiten, Initializable {
 
 //Hauptleiste anlegen
         bt1.setUserData("Projekt");
-        bt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/application_from_storage.png"))));//.getGraphic().set.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.TASKS).size(25.0).color(Color.BLACK));
+        bt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/application_from_storage.png"))));//.getGraphic().set.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.TASKS).size(25.0).color(Color.BLACK));
         bt1.setContentDisplay(ContentDisplay.LEFT);
 
         bt2.setUserData("Service");
-        bt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/wrench.png"))));
+        bt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/wrench.png"))));
         bt2.setContentDisplay(ContentDisplay.LEFT);
 
         bt3.setUserData("eMails");
-        bt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/emails_stack.png"))));
+        bt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/emails_stack.png"))));
         bt3.setContentDisplay(ContentDisplay.LEFT);
 
         bt4.setUserData("Einstellungen");
-        bt4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/setting_tools.png"))));
+        bt4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/setting_tools.png"))));
         bt4.setContentDisplay(ContentDisplay.LEFT);
 
         bt5.setUserData("Info");
-        bt5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/info_rhombus.png"))));
+        bt5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/info_rhombus.png"))));
         bt5.setContentDisplay(ContentDisplay.LEFT);
 
         bt6.setUserData("Beenden");
-        bt6.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/cancel.png"))));
+        bt6.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/32/cancel.png"))));
         bt6.setContentDisplay(ContentDisplay.LEFT);
 
         sb1.getButtons().addAll(bt1, bt2, bt3, bt4, bt5, bt6);
@@ -150,16 +150,16 @@ class MainController implements Seiten, Initializable {
 
         //Leiste Projekt anlegen
         pbt1.setUserData("Projekt anlegen");
-        pbt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/application_form_add.png"))));
+        pbt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/application_form_add.png"))));
 
         pbt1.setContentDisplay(ContentDisplay.LEFT);
 
         pbt2.setUserData("Projekt Logbuch");
-        pbt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/book_add.png"))));
+        pbt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/report_add.png"))));
         pbt2.setContentDisplay(ContentDisplay.LEFT);
 
         pbt3.setUserData("Offene Projekte");
-        pbt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/application_view_list.png"))));
+        pbt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/application_view_list.png"))));
         pbt3.setContentDisplay(ContentDisplay.LEFT);
 
         //Zum Entwicklen nur meinem Login den dritten Button anzeigen
@@ -174,11 +174,11 @@ class MainController implements Seiten, Initializable {
 
         //Leiste Service anlegen
         sbt1.setUserData("Service anlegen");
-        sbt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/wrenchadd.png"))));
+        sbt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/wrenchadd.png"))));
         sbt1.setContentDisplay(ContentDisplay.LEFT);
 
         sbt2.setUserData("Service Logbuch");
-        sbt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/book_add.png"))));
+        sbt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/report_add.png"))));
         sbt2.setContentDisplay(ContentDisplay.LEFT);
 
         ssb.getButtons().addAll(sbt1, sbt2);
@@ -186,23 +186,23 @@ class MainController implements Seiten, Initializable {
 
         //Leiste Einstellungen anlegen
         ebt1.setUserData("Mitarbeiter");
-        ebt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/user_edit.png"))));
+        ebt1.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/user_edit.png"))));
         ebt1.setContentDisplay(ContentDisplay.LEFT);
 
         ebt2.setUserData("Servicejahr");
-        ebt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/calendar_edit.png"))));
+        ebt2.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/calendar_edit.png"))));
         ebt2.setContentDisplay(ContentDisplay.LEFT);
 
         ebt3.setUserData("Ordnervorlagen");
-        ebt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/folder_edit.png"))));
+        ebt3.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/folder_edit.png"))));
         ebt3.setContentDisplay(ContentDisplay.LEFT);
 
         ebt4.setUserData("Kunden");
-        ebt4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/user_suit.png"))));
+        ebt4.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/vcard_edit.png"))));
         ebt4.setContentDisplay(ContentDisplay.LEFT);
 
         ebt5.setUserData("Logindaten");
-        ebt5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/lock_edit.png"))));
+        ebt5.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("img/icons/16/lock_edit.png"))));
         ebt5.setContentDisplay(ContentDisplay.LEFT);
 
         sb2.getButtons().addAll(ebt1, ebt2, ebt3, ebt4, ebt5);

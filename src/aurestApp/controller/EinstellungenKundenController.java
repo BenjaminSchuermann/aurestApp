@@ -1,8 +1,10 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
+import aurestApp.img.icons.Images;
 import aurestApp.interfaces.Seiten;
 import aurestApp.tools.Dialoge;
+import aurestApp.tools.eigeneklassen.GetImageView;
 import aurestApp.tools.eigeneklassen.Kunde;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,12 +18,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.CustomTextField;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
 
 import java.io.IOException;
 import java.net.URL;
@@ -69,16 +68,16 @@ public class EinstellungenKundenController implements Initializable {
         columnStrasse.setCellValueFactory(cellData -> cellData.getValue().strasseProperty());
         columnStadt.setCellValueFactory(cellData -> cellData.getValue().stadtProperty());
 
-        refreshbutton.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.REFRESH).size(15.0).color(Color.BLUE));
+        refreshbutton.setGraphic(GetImageView.load(Images.ARROW_REFRESH, 16));
         refreshbutton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
-        btnNeuerKunde.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.USER_PLUS).size(25.0).color(Color.GREEN));
+        btnNeuerKunde.setGraphic(GetImageView.load(Images.VCARD_ADD, 32));
         btnNeuerKunde.setContentDisplay(ContentDisplay.LEFT);
 
-        btnBearbeiten.setGraphic(new Glyph("FontAwesome", FontAwesome.Glyph.EDIT).size(25.0).color(Color.ORANGE));
+        btnBearbeiten.setGraphic(GetImageView.load(Images.VCARD_EDIT, 32));
         btnBearbeiten.setContentDisplay(ContentDisplay.LEFT);
 
-        filterField.setLeft(new Glyph("FontAwesome", FontAwesome.Glyph.SEARCH).color(Color.BLACK));
+        filterField.setLeft(GetImageView.load(Images.MAGNIFIER, 16));
         filterField.setPromptText("Suchen");
 
         // 1. Wrap the ObservableList in a FilteredList (initially display all data).
