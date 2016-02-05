@@ -122,16 +122,29 @@ class MainController implements Seiten, Initializable {
                     egp.setVisible(true);
                 } else {
                     egp.setVisible(false);
+                    //Werden die Untersmenüs nicht angezeigt, dann die Anwahl deaktivieren
+                    ebt1.setSelected(false);
+                    ebt2.setSelected(false);
+                    ebt3.setSelected(false);
+                    ebt4.setSelected(false);
+                    ebt5.setSelected(false);
                 }
                 if (new_toggle.getUserData().equals("Projekt")) {
                     pgp.setVisible(true);
                 } else {
                     pgp.setVisible(false);
+                    //Werden die Untersmenüs nicht angezeigt, dann die Anwahl deaktivieren
+                    pbt1.setSelected(false);
+                    pbt2.setSelected(false);
+                    pbt3.setSelected(false);
                 }
                 if (new_toggle.getUserData().equals("Service")) {
                     sgp.setVisible(true);
                 } else {
                     sgp.setVisible(false);
+                    //Werden die Untersmenüs nicht angezeigt, dann die Anwahl deaktivieren
+                    sbt1.setSelected(false);
+                    sbt2.setSelected(false);
                 }
             }
         });
