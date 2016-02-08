@@ -6,6 +6,8 @@ public interface Images {
     String APPLICATION_FROM_STORAGE = "application_from_storage.png";
     String APPLICATION_VIEW_LIST = "application_view_list.png";
     String ARROW_REFRESH = "arrow_refresh.png";
+    String BLUEPRINT = "blueprint.png";
+    String BLUEPRINT_ADD = "blueprint_add.png";
     String BOOK_ADD = "book_add.png";
     String CALENDAR_EDIT = "calendar_edit.png";
     String CANCEL = "cancel.png";

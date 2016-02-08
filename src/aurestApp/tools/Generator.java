@@ -359,4 +359,43 @@ public class Generator {
         System.out.println(projekt.getProjektpfad());
         return projekt;
     }
+
+    public static String erstelleOfferte(String offerte, String kunde, String beschreibung, Model m) {
+        if (offerte.isEmpty()) {
+            status = "Offertennummer fehlt";
+            Dialoge.DialogAnzeigeBox("fehler", "Offertennummer fehlt");
+            return "Offertennummer fehlt";
+        }
+
+        m.setOffertenNummer(offerte);
+        String pfad = offerte.substring(0, 3) + "_/"
+                + m.getOffertenNummer();
+
+        if (!kunde.isEmpty()) {
+            m.setOffertenKunde(kunde.replaceAll("[\\/:*?\"<>|]", "-"));
+            pfad = pfad + " " + m.getOffertenKunde();
+        }
+
+        if (!beschreibung.isEmpty()) {
+            pfad = pfad + ", " + beschreibung.replaceAll("[\\/:*?\"<>|]", "-");
+        }
+        // System.out.println(pfad);
+        status = "Zielordner wurde vorbereitet";
+
+        File ziel = new File("O:/" + pfad);
+        if (ziel.exists()) {
+            Dialoge.DialogAnzeigeBox("fehler", "Service ist bereits angelegt");
+            return "Service ist bereits angelegt";
+        }
+        status = "Vorlage wird kopiert";
+        try {
+            copyService(new File(m.getVorlagenOfferte()), ziel);
+        } catch (Exception e) {
+            Dialoge.exceptionDialog(e, "Fehler beim kopieren der Offertenvorlage");
+            e.printStackTrace();
+            return "Fehler beim kopieren der Offertenvorlage";
+        }
+        status = "Offerte angelegt";
+        return status;
+    }
 }

@@ -67,6 +67,8 @@ public class Model {
     private ArrayList<Projekt> projekte;
     private ArrayList<Kunde> kundenListe;
     private ArrayList<Kunde> zuLoeschendeKunden;
+    private String offertenNummer;
+    private String offertenKunde;
 
     public Model() {
         ladeDatenbankEinstellungen();
@@ -76,7 +78,7 @@ public class Model {
     }
 
     public String getVersion() {
-        return "1.4.8";
+        return "1.5.0";
     }
 
     public String getServicejahr() {
@@ -521,5 +523,21 @@ public class Model {
 
     public void setZuLoeschendenKunden(ArrayList<Kunde> zuLoeschendeKunden) {
         this.zuLoeschendeKunden = zuLoeschendeKunden;
+    }
+
+    public String getOffertenNummer() {
+        return offertenNummer;
+    }
+
+    public void setOffertenNummer(String offertenNummer) {
+        this.offertenNummer = offertenNummer;
+    }
+
+    public String getOffertenKunde() {
+        return offertenKunde;
+    }
+
+    public void setOffertenKunde(String offertenKunde) {
+        this.offertenKunde = offertenKunde;
     }
 }

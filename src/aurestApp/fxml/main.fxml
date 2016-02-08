@@ -18,6 +18,11 @@
                         <Tooltip text="Service anlegen"/>
                     </tooltip>
                 </ToggleButton>
+                <ToggleButton fx:id="bt7" text="" onAction="#handelOfferte">
+                    <tooltip>
+                        <Tooltip text="Offerte anlegen"/>
+                    </tooltip>
+                </ToggleButton>
                 <ToggleButton fx:id="bt3" text="" onAction="#handelEmail">
                     <tooltip>
                         <Tooltip text="eMails umbennen"/>

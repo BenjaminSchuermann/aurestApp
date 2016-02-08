@@ -38,6 +38,8 @@ class MainController implements Seiten, Initializable {
     private ToggleButton bt5;
     @FXML
     private ToggleButton bt6;
+    @FXML
+    private ToggleButton bt7;
 
     @FXML
     private Pane pgp;
@@ -90,29 +92,33 @@ class MainController implements Seiten, Initializable {
 //Hauptleiste anlegen
         bt1.setUserData("Projekt");
         bt1.setGraphic(GetImageView.load(Images.APPLICATION_FROM_STORAGE, 32));
-        bt1.setContentDisplay(ContentDisplay.LEFT);
+        bt1.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
         bt2.setUserData("Service");
         bt2.setGraphic(GetImageView.load(Images.WRENCH, 32));
-        bt2.setContentDisplay(ContentDisplay.LEFT);
+        bt2.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
         bt3.setUserData("eMails");
         bt3.setGraphic(GetImageView.load(Images.EMAILS_STACK, 32));
-        bt3.setContentDisplay(ContentDisplay.LEFT);
+        bt3.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
         bt4.setUserData("Einstellungen");
         bt4.setGraphic(GetImageView.load(Images.COG, 32));
-        bt4.setContentDisplay(ContentDisplay.LEFT);
+        bt4.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
         bt5.setUserData("Info");
         bt5.setGraphic(GetImageView.load(Images.INFO_RHOMBUS, 32));
-        bt5.setContentDisplay(ContentDisplay.LEFT);
+        bt5.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
         bt6.setUserData("Beenden");
         bt6.setGraphic(GetImageView.load(Images.CANCEL, 32));
-        bt6.setContentDisplay(ContentDisplay.LEFT);
+        bt6.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
 
-        sb1.getButtons().addAll(bt1, bt2, bt3, bt4, bt5, bt6);
+        bt7.setUserData("Offerte");
+        bt7.setGraphic(GetImageView.load(Images.BLUEPRINT, 32));
+        bt7.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
+
+        sb1.getButtons().addAll(bt1, bt2, bt7, bt3, bt4, bt5, bt6);
         sb1.getStyleClass().add(SegmentedButton.STYLE_CLASS_DARK);
 
         sb1.getToggleGroup().selectedToggleProperty().addListener((ov, toggle, new_toggle) -> {
@@ -272,6 +278,15 @@ class MainController implements Seiten, Initializable {
         checkSize();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(SERVICELOGBUCH));
         loader.setController(new ServiceLogbuchController(m));
+        Node mainNode = loader.load();
+        setInhalt(mainNode);
+    }
+
+    @FXML
+    private void handelOfferte(ActionEvent actionEvent) throws IOException {
+        checkSize();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(OFFERTEERSTELLEN));
+        loader.setController(new MenuOfferteController(m));
         Node mainNode = loader.load();
         setInhalt(mainNode);
     }

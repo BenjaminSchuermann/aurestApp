@@ -209,11 +209,11 @@ public class Settings {
         try {
             stmt = m.getConn().createStatement();
             //Speicher die Projektvorlage
-            stmt.execute("UPDATE Einstellungen SET wert ='" + vorlagen.get(0) + "' WHERE config ='projektvorlage';");
+            stmt.execute("UPDATE Einstellungen SET wert ='" + vorlagen.get(0).replace("\\", "\\\\") + "' WHERE config ='projektvorlage';");
             //Speicher die Servicevorlage
-            stmt.execute("UPDATE Einstellungen SET wert ='" + vorlagen.get(1) + "' WHERE config ='servicevorlage';");
+            stmt.execute("UPDATE Einstellungen SET wert ='" + vorlagen.get(1).replace("\\", "\\\\") + "' WHERE config ='servicevorlage';");
             //Speicher die Offertenvorlage
-            stmt.execute("UPDATE Einstellungen SET wert ='" + vorlagen.get(2) + "' WHERE config ='offertenvorlage';");
+            stmt.execute("UPDATE Einstellungen SET wert ='" + vorlagen.get(2).replace("\\", "\\\\") + "' WHERE config ='offertenvorlage';");
             //fertig
             stmt.close();
         } catch (SQLException e) {
