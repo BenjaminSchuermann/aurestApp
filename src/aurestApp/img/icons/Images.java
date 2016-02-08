@@ -9,6 +9,7 @@ public interface Images {
     String BOOK_ADD = "book_add.png";
     String CALENDAR_EDIT = "calendar_edit.png";
     String CANCEL = "cancel.png";
+    String COG = "cog.png";
     String DELETE = "delete.png";
     String DISK = "disk.png";
     String EMAIL_SEND_RECEIVE = "email_send_receive.png";

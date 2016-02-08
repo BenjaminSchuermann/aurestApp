@@ -8,12 +8,36 @@
     <GridPane hgap="5" vgap="5" minWidth="600.0" minHeight="50.0">
         <Pane GridPane.rowIndex="0">
             <children>
-                <ToggleButton fx:id="bt1" text="Projekt"/>
-                <ToggleButton fx:id="bt2" text="Service"/>
-                <ToggleButton fx:id="bt3" text="eMail" onAction="#handelEmail"/>
-                <ToggleButton fx:id="bt4" text="Einstellungen"/>
-                <ToggleButton fx:id="bt5" text="Über" onAction="#handelInfo"/>
-                <ToggleButton fx:id="bt6" text="Beenden" onAction="#handelExit"/>
+                <ToggleButton fx:id="bt1" text="">
+                    <tooltip>
+                        <Tooltip text="Projekt anlegen"/>
+                    </tooltip>
+                </ToggleButton>
+                <ToggleButton fx:id="bt2" text="">
+                    <tooltip>
+                        <Tooltip text="Service anlegen"/>
+                    </tooltip>
+                </ToggleButton>
+                <ToggleButton fx:id="bt3" text="" onAction="#handelEmail">
+                    <tooltip>
+                        <Tooltip text="eMails umbennen"/>
+                    </tooltip>
+                </ToggleButton>
+                <ToggleButton fx:id="bt4" text="">
+                    <tooltip>
+                        <Tooltip text="Einstellungen"/>
+                    </tooltip>
+                </ToggleButton>
+                <ToggleButton fx:id="bt5" text="" onAction="#handelInfo">
+                    <tooltip>
+                        <Tooltip text="Info anzeigen"/>
+                    </tooltip>
+                </ToggleButton>
+                <ToggleButton fx:id="bt6" text="" onAction="#handelExit">
+                    <tooltip>
+                        <Tooltip text="Programm beenden"/>
+                    </tooltip>
+                </ToggleButton>
                 <SegmentedButton fx:id="sb1"/>
             </children>
         </Pane>

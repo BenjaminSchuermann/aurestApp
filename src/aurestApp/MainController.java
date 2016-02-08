@@ -101,7 +101,7 @@ class MainController implements Seiten, Initializable {
         bt3.setContentDisplay(ContentDisplay.LEFT);
 
         bt4.setUserData("Einstellungen");
-        bt4.setGraphic(GetImageView.load(Images.SETTING_TOOLS, 32));
+        bt4.setGraphic(GetImageView.load(Images.COG, 32));
         bt4.setContentDisplay(ContentDisplay.LEFT);
 
         bt5.setUserData("Info");
