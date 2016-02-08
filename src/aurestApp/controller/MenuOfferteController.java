@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -24,9 +23,6 @@ import java.util.stream.Collectors;
 public class MenuOfferteController implements Initializable {
     private final Model m;
     ArrayList<String> kundenAlsStrings = new ArrayList<>();
-    private VBox programmInhalt;
-    @FXML
-    private TextField offertenjahr;
     @FXML
     private TextField offertennummer;
     @FXML
@@ -66,10 +62,6 @@ public class MenuOfferteController implements Initializable {
                     .text("Die neue Offerte wurde erfolgreich angelegt")
                     .showInformation();
         }
-        //Sollte der Kunde noch nicht vorhanden sein, dann speichern
-        //if (kundenAlsStrings.contains(projektkunde.getText().trim()))
-        //    return;
-        //Settings.speicherKunde(m, new Kunde(0, projektkunde.getText().trim()));
     }
 
 }
