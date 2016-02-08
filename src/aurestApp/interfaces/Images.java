@@ -1,4 +1,4 @@
-package aurestApp.img.icons;
+package aurestApp.interfaces;
 
 public interface Images {
     String ADD = "add.png";

@@ -1,7 +1,7 @@
 package aurestApp;
 
 import aurestApp.controller.*;
-import aurestApp.img.icons.Images;
+import aurestApp.interfaces.Images;
 import aurestApp.interfaces.Seiten;
 import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.event.ActionEvent;

@@ -1,7 +1,7 @@
 package aurestApp.tools;
 
 import aurestApp.Model;
-import aurestApp.img.icons.Images;
+import aurestApp.interfaces.Images;
 import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.application.Platform;
 import javafx.geometry.Insets;

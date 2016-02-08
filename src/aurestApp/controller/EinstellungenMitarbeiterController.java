@@ -1,7 +1,7 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.img.icons.Images;
+import aurestApp.interfaces.Images;
 import aurestApp.interfaces.Seiten;
 import aurestApp.tools.Dialoge;
 import aurestApp.tools.eigeneklassen.GetImageView;
