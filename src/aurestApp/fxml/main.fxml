@@ -8,37 +8,37 @@
     <GridPane hgap="5" vgap="5" minWidth="600.0" minHeight="50.0">
         <Pane GridPane.rowIndex="0">
             <children>
-                <ToggleButton fx:id="bt1" text="">
+                <ToggleButton id="menuProjektButton" fx:id="bt1" text="">
                     <tooltip>
                         <Tooltip text="Projekt anlegen"/>
                     </tooltip>
                 </ToggleButton>
-                <ToggleButton fx:id="bt2" text="">
+                <ToggleButton id="menuServiceButton" fx:id="bt2" text="">
                     <tooltip>
                         <Tooltip text="Service anlegen"/>
                     </tooltip>
                 </ToggleButton>
-                <ToggleButton fx:id="bt7" text="" onAction="#handelOfferte">
+                <ToggleButton id="menuOfferteButton" fx:id="bt7" text="" onAction="#handelOfferte">
                     <tooltip>
                         <Tooltip text="Offerte anlegen"/>
                     </tooltip>
                 </ToggleButton>
-                <ToggleButton fx:id="bt3" text="" onAction="#handelEmail">
+                <ToggleButton id="menuEmailButton" fx:id="bt3" text="" onAction="#handelEmail">
                     <tooltip>
                         <Tooltip text="eMails umbennen"/>
                     </tooltip>
                 </ToggleButton>
-                <ToggleButton fx:id="bt4" text="">
+                <ToggleButton id="menuEinstellungenButton" fx:id="bt4" text="">
                     <tooltip>
                         <Tooltip text="Einstellungen"/>
                     </tooltip>
                 </ToggleButton>
-                <ToggleButton fx:id="bt5" text="" onAction="#handelInfo">
+                <ToggleButton id="menuInfoButton" fx:id="bt5" text="" onAction="#handelInfo">
                     <tooltip>
                         <Tooltip text="Info anzeigen"/>
                     </tooltip>
                 </ToggleButton>
-                <ToggleButton fx:id="bt6" text="" onAction="#handelExit">
+                <ToggleButton id="menuEndeButton" fx:id="bt6" text="" onAction="#handelExit">
                     <tooltip>
                         <Tooltip text="Programm beenden"/>
                     </tooltip>
@@ -48,26 +48,26 @@
         </Pane>
         <Pane GridPane.rowIndex="1" fx:id="pgp" visible="false">
             <children>
-                <ToggleButton fx:id="pbt1" layoutY="3.0" text="Projekt anlegen" onAction="#handelProjektAnlegen"/>
-                <ToggleButton fx:id="pbt2" layoutY="3.0" text="Projekt Logbuch" onAction="#handelProjektLogbuch"/>
-                <ToggleButton fx:id="pbt3" layoutY="3.0" text="Offene Projekte" onAction="#handelOffeneProjekte"/>
+                <ToggleButton id="submenuProjektAnlegenButton" fx:id="pbt1" layoutY="3.0" text="Projekt anlegen" onAction="#handelProjektAnlegen"/>
+                <ToggleButton id="submenuProjektLogbuchButton" fx:id="pbt2" layoutY="3.0" text="Projekt Logbuch" onAction="#handelProjektLogbuch"/>
+                <ToggleButton id="submenuOfferteAnlegenButton" fx:id="pbt3" layoutY="3.0" text="Offene Projekte" onAction="#handelOffeneProjekte"/>
                 <SegmentedButton fx:id="psb"/>
             </children>
         </Pane>
         <Pane GridPane.rowIndex="1" fx:id="sgp" visible="false">
             <children>
-                <ToggleButton fx:id="sbt1" layoutY="3.0" text="Service anlegen" onAction="#handelServiceAnlegen"/>
-                <ToggleButton fx:id="sbt2" layoutY="3.0" text="Service Logbuch" onAction="#handelServiceLogbuch"/>
+                <ToggleButton id="submenuServiceAnlegenButton" fx:id="sbt1" layoutY="3.0" text="Service anlegen" onAction="#handelServiceAnlegen"/>
+                <ToggleButton id="submenuServiceLogbuchButton" fx:id="sbt2" layoutY="3.0" text="Service Logbuch" onAction="#handelServiceLogbuch"/>
                 <SegmentedButton fx:id="ssb"/>
             </children>
         </Pane>
         <Pane GridPane.rowIndex="1" fx:id="egp" visible="false">
             <children>
-                <ToggleButton fx:id="ebt1" layoutY="3.0" text="Mitarbeiter" onAction="#handelMitarbeiterEinstellungen"/>
-                <ToggleButton fx:id="ebt2" layoutY="3.0" text="Servicejahr" onAction="#handelServiceEinstellungen"/>
-                <ToggleButton fx:id="ebt3" layoutY="3.0" text="Ordnervorlagen" onAction="#handelVorlagenEinstellungen"/>
-                <ToggleButton fx:id="ebt4" layoutY="3.0" text="Kunden" onAction="#handelKundenEinstellungen"/>
-                <ToggleButton fx:id="ebt5" layoutY="3.0" text="Logindaten" onAction="#handelLoginEinstellungen"/>
+                <ToggleButton id="submenuEinstellungenMitarbeiterButton" fx:id="ebt1" layoutY="3.0" text="Mitarbeiter" onAction="#handelMitarbeiterEinstellungen"/>
+                <ToggleButton id="submenuEinstellungenServiceButton" fx:id="ebt2" layoutY="3.0" text="Servicejahr" onAction="#handelServiceEinstellungen"/>
+                <ToggleButton id="submenuEinstellungenVorlagenButton" fx:id="ebt3" layoutY="3.0" text="Ordnervorlagen" onAction="#handelVorlagenEinstellungen"/>
+                <ToggleButton id="submenuEinstellungenKundenButton" fx:id="ebt4" layoutY="3.0" text="Kunden" onAction="#handelKundenEinstellungen"/>
+                <ToggleButton id="submenuEinstellungenLoginButton" fx:id="ebt5" layoutY="3.0" text="Logindaten" onAction="#handelLoginEinstellungen"/>
                 <SegmentedButton fx:id="sb2"/>
             </children>
         </Pane>

@@ -1,0 +1,71 @@
+/*Hauptmenü*/
+#menuProjektButton {
+    -fx-graphic: url("/aurestApp/img/icons/32/application_from_storage.png");
+}
+
+#menuServiceButton {
+    -fx-graphic: url("/aurestApp/img/icons/32/wrench.png");
+}
+
+#menuOfferteButton {
+    -fx-graphic: url("/aurestApp/img/icons/32/blueprint.png");
+}
+
+#menuEmailButton {
+    -fx-graphic: url("/aurestApp/img/icons/32/emails_stack.png");
+}
+
+#menuEinstellungenButton {
+    -fx-graphic: url("/aurestApp/img/icons/32/cog.png");
+}
+
+#menuInfoButton {
+    -fx-graphic: url("/aurestApp/img/icons/32/info_rhombus.png");
+}
+
+#menuEndeButton {
+    -fx-graphic: url("/aurestApp/img/icons/32/cancel.png");
+}
+
+/*Subemü Projekt*/
+#submenuProjektAnlegenButton {
+    -fx-graphic: url("/aurestApp/img/icons/16/application_form_add.png");
+}
+
+#submenuProjektLogbuchButton {
+    -fx-graphic: url("/aurestApp/img/icons/16/report_add.png");
+}
+
+#submenuOfferteAnlegenButton {
+    -fx-graphic: url("/aurestApp/img/icons/16/application_view_list.png");
+}
+
+/*Subemü Service*/
+#submenuServiceAnlegenButton {
+    -fx-graphic: url("/aurestApp/img/icons/16/wrenchadd.png");
+}
+
+#submenuServiceLogbuchButton {
+    -fx-graphic: url("/aurestApp/img/icons/16/report_add.png");
+}
+
+/*Subemü Einstellungen*/
+submenuEinstellungenMitarbeiterButton {
+    -fx-graphic: url("/aurestApp/img/icons/16/user_edit.png");
+}
+
+submenuEinstellungenServiceButton {
+    -fx-graphic: url("/aurestApp/img/icons/16/calendar_edit.png");
+}
+
+submenuEinstellungenVorlagenButton {
+    -fx-graphic: url("/aurestApp/img/icons/16/folder_edit.png");
+}
+
+submenuEinstellungenKundenButton {
+    -fx-graphic: url("/aurestApp/img/icons/16/vcard_edit.png");
+}
+
+submenuEinstellungenLoginButton {
+    -fx-graphic: url("/aurestApp/img/icons/16/lock_edit.png");
+}

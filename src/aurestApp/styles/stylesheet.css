@@ -1,3 +1,5 @@
+@import url(icons.css);
+
 #beispiellabel {
     -fx-text-fill: darkgray;
     -fx-alignment: center-right;
@@ -7,4 +9,8 @@
 #infohead {
     -fx-font-size: 30px;
     -fx-effect: dropshadow(gaussian, blue, 20, 0.2, 0, 0);
+}
+
+.text-field, .password-field, .date-picker, .button, .toggle-button {
+    -fx-background-radius: 0;
 }
