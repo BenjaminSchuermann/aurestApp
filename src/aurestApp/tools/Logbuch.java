@@ -222,6 +222,9 @@ public class Logbuch {
 
         Suchprojekt urprojekt = Generator.findeProjekt(urProjekt);
 
+        if (!urprojekt.isGefunden()) {
+            return "";
+        }
         pfadsp = urprojekt.getProjektpfad().getAbsolutePath();
         spkomplett = urprojekt.getProjektname();
 
