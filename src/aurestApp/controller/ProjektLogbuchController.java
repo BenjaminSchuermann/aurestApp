@@ -58,6 +58,14 @@ public class ProjektLogbuchController implements Initializable {
 
     @FXML
     private void handelProjektLogbuch(ActionEvent actionEvent) {
+        if (plurprojekt.getText().isEmpty()) {
+            Notifications.create().darkStyle()
+                    .title("Fehler")
+                    .text("UrProjektnummer fehlt")
+                    .showError();
+            return;
+        }
+
         Notifications.create().darkStyle()
                 .title("Neuer Lobbucheintrag")
                 .text("Bitte warten während der Logbucheintrag erstellt wird")

@@ -74,6 +74,13 @@ public class ServiceLogbuchController implements Initializable {
 
     @FXML
     public void handelServiceLogbuch(ActionEvent actionEvent) {
+        if (slurprojekt.getText().isEmpty()) {
+            Notifications.create().darkStyle()
+                    .title("Fehler")
+                    .text("UrProjektnummer fehlt")
+                    .showError();
+            return;
+        }
         Notifications.create().darkStyle()
                 .title("Neuer Lobbucheintrag")
                 .text("Bitte warten während der Logbucheintrag erstellt wird")
