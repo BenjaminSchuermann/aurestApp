@@ -138,8 +138,18 @@ public class Generator {
             while (!new File(qprojektordner + "\\" + pfad + "\\UrProjekt " + spkomplett + ".lnk").exists() && !new File(pfadsp + "\\Projekt " + pfad + ".lnk").exists()) {
                 //Warteschleife
             }
+        }
+        while (!new File(qprojektordner + "/" + pfad).exists()) {
+            //Warteschleife
+        }
 
-
+        //Link von Q nach P anlegen
+        File link1 = createVBS("P:\\" + pfad + ".lnk", qprojektordner + "\\" + pfad, "linkxy");
+        try {
+            Desktop.getDesktop().open(link1);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei für das Logbuch");
         }
         return "Projekt angelegt";
     }
