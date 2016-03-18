@@ -66,6 +66,14 @@ public class ProjektLogbuchController implements Initializable {
             return;
         }
 
+        if (plprojekt.getText().isEmpty()) {
+            Notifications.create().darkStyle()
+                    .title("Fehler")
+                    .text("Projektnummer fehlt")
+                    .showError();
+            return;
+        }
+
         Notifications.create().darkStyle()
                 .title("Neuer Lobbucheintrag")
                 .text("Bitte warten während der Logbucheintrag erstellt wird")
