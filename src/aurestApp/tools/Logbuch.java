@@ -70,7 +70,7 @@ public class Logbuch {
     }
 
     private static void erweiterProjekteintrag(Model m) {
-        String text = "-----------------------------------------------------------------------------------------------------------------" + System.lineSeparator();
+        String text = System.lineSeparator() + "-----------------------------------------------------------------------------------------------------------------" + System.lineSeparator();
 
         String nummer = m.getProjektLogProjekt();
         //Service/Projektnummer erstellen und Tabs einfügen
@@ -120,7 +120,7 @@ public class Logbuch {
     }
 
     private static void erweiterServiceeintrag(Model m) {
-        String text;
+        String text = System.lineSeparator() + "-----------------------------------------------------------------------------------------------------------------" + System.lineSeparator();
         String nummer;
         if (m.isServiceLogCheckBox()) {
             nummer = "Ohne Servicenummer";
@@ -135,11 +135,11 @@ public class Logbuch {
 
         //Service/Projektnummer erstellen und Tabs einfügen
         if (nummer.length() < 8)
-            text = nummer + "\t\t\t";
+            text += nummer + "\t\t\t";
         else if (nummer.length() < 16)
-            text = nummer + "\t\t";
+            text += nummer + "\t\t";
         else
-            text = nummer + "\t";
+            text += nummer + "\t";
 
         //Das gewählte Datum einfügen
         text += m.getServiceLogDatum() + "\t";
@@ -154,33 +154,26 @@ public class Logbuch {
 
         //Den Anlagenteil/Ort einfügen
         String anlagenteil = m.getServiceLogAnlagenteil();
-        if (anlagenteil.length() < 8)
-            text += anlagenteil + "\t\t\t";
-        else if (anlagenteil.length() < 16)
-            text += anlagenteil + "\t\t";
-        else if (anlagenteil.length() < 24)
-            text += anlagenteil + "\t";
-        else
-            text += anlagenteil + "\t";
+        text += anlagenteil + System.lineSeparator();
 
         //Service Kontakt einfügen
         if (!m.getServiceLogKontakt().isEmpty()) {
-            text += "Kontakt: " + m.getServiceLogKontakt().replace("\n", System.lineSeparator() + "\t\t\t\t\t\t\t\t\t\t");
-            text += System.lineSeparator() + "\t\t\t\t\t\t\t\t\t\t";
+            text += "Kontakt: " + m.getServiceLogKontakt().replace("\n", System.lineSeparator());
+            text += System.lineSeparator() + System.lineSeparator();
         }
         //Service Problem einfügen
-        text += "Problem: " + m.getServiceLogProblem().replace("\n", System.lineSeparator() + "\t\t\t\t\t\t\t\t\t\t");
-        text += System.lineSeparator() + "\t\t\t\t\t\t\t\t\t\t";
+        text += "Problem: " + m.getServiceLogProblem().replace("\n", System.lineSeparator());
+        text += System.lineSeparator() + System.lineSeparator();
         //Service Ursache einfügen
-        text += "Ursache: " + m.getServiceLogUrsache().replace("\n", System.lineSeparator() + "\t\t\t\t\t\t\t\t\t\t");
-        text += System.lineSeparator() + "\t\t\t\t\t\t\t\t\t\t";
+        text += "Ursache: " + m.getServiceLogUrsache().replace("\n", System.lineSeparator());
+        text += System.lineSeparator() + System.lineSeparator();
         //Service Lösung einfügen
-        text += "Lösung: " + m.getServiceLogLösung().replace("\n", System.lineSeparator() + "\t\t\t\t\t\t\t\t\t\t");
-        text += System.lineSeparator() + "\t\t\t\t\t\t\t\t\t\t";
+        text += "Lösung:" + System.lineSeparator() + m.getServiceLogLösung().replace("\n", System.lineSeparator());
+        text += System.lineSeparator() + System.lineSeparator();
         //Service Bermerkung einfügen
         if (!m.getServiceLogBemerkung().isEmpty()) {
-            text += "Bemerkung / Hardware Austausch: " + m.getServiceLogBemerkung().replace("\n", System.lineSeparator() + "\t\t\t\t\t\t\t\t\t\t");
-            text += System.lineSeparator();
+            text += "Bemerkung / Hardware Austausch: " + m.getServiceLogBemerkung().replace("\n", System.lineSeparator());
+            text += System.lineSeparator() + System.lineSeparator();
         }
 
         //Und das ganze versuchen ans Logbuch anzuhängen
