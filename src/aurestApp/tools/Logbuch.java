@@ -17,7 +17,9 @@ public class Logbuch {
         PrintWriter pWriter;
         try {
             pWriter = new PrintWriter(urProjektOrdner + "\\Logbuch.txt", "UTF-8");
-            pWriter.println("Projekt-/Servicenr.\tDatum\t\tMA\t\tAnlagenteil\t\tTätigkeit");
+            //erst in eine String Var schreiben, um das Kodierungsproblem mit den Umlauten zu umgehen
+            String ts = "Projekt-/Servicenr.\tDatum\t\tMA\t\tAnlagenteil\t\tTätigkeit";
+            pWriter.println(ts);
             pWriter.println("-----------------------------------------------------------------------------------------------------------------");
             pWriter.close();
         } catch (FileNotFoundException e) {
