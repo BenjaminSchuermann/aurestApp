@@ -57,11 +57,11 @@
             <children>
             <HBox>
                <children>
-                  <Button fx:id="addMitarbeiter" mnemonicParsing="false" onAction="#handelAddMitarbeiter" text="Neuen Mitarbeiter" />
+                   <Button id="addMitarbeiter" fx:id="addMitarbeiter" mnemonicParsing="false" onAction="#handelAddMitarbeiter" text="Neuen Mitarbeiter"/>
                   <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
-            
-                            <Button id="bearbeite" fx:id="bearbeite" mnemonicParsing="false" onAction="#handelbearbeiteMitarbeiter" text="Mitarbeiter bearbeiten" />
+
+                         <Button id="bearbeiteMitarbeiter" fx:id="bearbeite" mnemonicParsing="false" onAction="#handelbearbeiteMitarbeiter" text="Mitarbeiter bearbeiten"/>
                      </children>
                   </HBox>
                </children>

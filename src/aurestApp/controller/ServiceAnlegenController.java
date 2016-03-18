@@ -1,10 +1,8 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.interfaces.Seiten;
 import aurestApp.tools.Generator;
-import aurestApp.tools.eigeneklassen.GetImageView;
 import aurestApp.tools.eigeneklassen.Kunde;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -57,9 +55,6 @@ public class ServiceAnlegenController implements Initializable {
 
         kundenAlsStrings.addAll(m.getKunden().stream().map(Kunde::getName).collect(Collectors.toList()));
         TextFields.bindAutoCompletion(servicekunde, new HashSet<>(kundenAlsStrings));
-
-        erstelleService.setGraphic(GetImageView.load(Images.WRENCHADD, 32));
-        erstelleService.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

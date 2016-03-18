@@ -1,10 +1,8 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.tools.Dialoge;
 import aurestApp.tools.Settings;
-import aurestApp.tools.eigeneklassen.GetImageView;
 import aurestApp.tools.eigeneklassen.Kunde;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -79,21 +77,6 @@ public class KundenDetailsController implements Initializable {
         txt_addordner.textProperty().addListener((observable, oldValue, newValue) -> {
             btn_addordner.setDisable(newValue.trim().isEmpty());
         });
-
-        loescheordner.setGraphic(GetImageView.load(Images.TABLE_ROW_DELETE, 16));
-        loescheordner.setContentDisplay(ContentDisplay.LEFT);
-
-        btn_addordner.setGraphic(GetImageView.load(Images.ADD, 16));
-        btn_addordner.setContentDisplay(ContentDisplay.LEFT);
-
-        loeschekunde.setGraphic(GetImageView.load(Images.VCARD_DELETE, 32));
-        loeschekunde.setContentDisplay(ContentDisplay.LEFT);
-
-        abbruch.setGraphic(GetImageView.load(Images.CANCEL, 32));
-        abbruch.setContentDisplay(ContentDisplay.LEFT);
-
-        speichern.setGraphic(GetImageView.load(Images.DISK, 32));
-        speichern.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

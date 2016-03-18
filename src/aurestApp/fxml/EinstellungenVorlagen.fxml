@@ -9,10 +9,8 @@
         <Label id="info" text="Projektvorlagen :"/>
         <HBox>
             <children>
-
                 <TextField id="projektvorlagen" fx:id="projektvorlagen" editable="false" HBox.hgrow="ALWAYS"/>
-
-                <Button id="projektvorlagenordnerwaehlen" fx:id="projektvorlagenordnerwaehlen" mnemonicParsing="false" onAction="#waehlenProjektvorlagenOrdner" text="Ordner wählen">
+                <Button id="ordnerwaehlenklein" fx:id="projektvorlagenordnerwaehlen" mnemonicParsing="false" onAction="#waehlenProjektvorlagenOrdner" text="Ordner wählen">
                     <HBox.margin>
                         <Insets left="15.0"/>
                     </HBox.margin>
@@ -30,7 +28,7 @@
         <HBox>
             <children>
                 <TextField id="servicevorlage" fx:id="servicevorlage" editable="false" HBox.hgrow="ALWAYS"/>
-                <Button id="servicevorlageordnerwaehlen" fx:id="servicevorlageordnerwaehlen" mnemonicParsing="false" onAction="#waehlenServicevorlageOrdner" text="Ordner wählen">
+                <Button id="ordnerwaehlenklein" fx:id="servicevorlageordnerwaehlen" mnemonicParsing="false" onAction="#waehlenServicevorlageOrdner" text="Ordner wählen">
                     <HBox.margin>
                         <Insets left="15.0"/>
                     </HBox.margin>
@@ -48,7 +46,7 @@
         <HBox layoutX="25.0" layoutY="109.0">
             <children>
                 <TextField id="offertevorlage" fx:id="offertevorlage" editable="false" HBox.hgrow="ALWAYS"/>
-                <Button id="offertevorlageordnerwaehlen" fx:id="offertevorlageordnerwaehlen" mnemonicParsing="false" onAction="#waehlenOffertevorlageOrdner" text="Ordner wählen">
+                <Button id="ordnerwaehlenklein" fx:id="offertevorlageordnerwaehlen" mnemonicParsing="false" onAction="#waehlenOffertevorlageOrdner" text="Ordner wählen">
                     <HBox.margin>
                         <Insets left="15.0"/>
                     </HBox.margin>

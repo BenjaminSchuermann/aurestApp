@@ -50,22 +50,126 @@
 }
 
 /*Subemü Einstellungen*/
-submenuEinstellungenMitarbeiterButton {
+#submenuEinstellungenMitarbeiterButton {
     -fx-graphic: url("/aurestApp/img/icons/16/user_edit.png");
 }
 
-submenuEinstellungenServiceButton {
+#submenuEinstellungenServiceButton {
     -fx-graphic: url("/aurestApp/img/icons/16/calendar_edit.png");
 }
 
-submenuEinstellungenVorlagenButton {
+#submenuEinstellungenVorlagenButton {
     -fx-graphic: url("/aurestApp/img/icons/16/folder_edit.png");
 }
 
-submenuEinstellungenKundenButton {
+#submenuEinstellungenKundenButton {
     -fx-graphic: url("/aurestApp/img/icons/16/vcard_edit.png");
 }
 
-submenuEinstellungenLoginButton {
+#submenuEinstellungenLoginButton {
     -fx-graphic: url("/aurestApp/img/icons/16/lock_edit.png");
 }
+
+/*Projektbuttons*/
+#erstelleProjekt {
+    -fx-graphic: url("/aurestApp/img/icons/32/application_form_add.png");
+    -fx-content-display: left;
+}
+
+#erstelleProjektLogbuch {
+    -fx-graphic: url("/aurestApp/img/icons/32/report_add.png");
+    -fx-content-display: left;
+}
+
+/*Servicebuttons*/
+#erstelleService {
+    -fx-graphic: url("/aurestApp/img/icons/32/wrenchadd.png");
+    -fx-content-display: left;
+}
+
+#erstelleServiceLogbuch {
+    -fx-graphic: url("/aurestApp/img/icons/32/report_add.png");
+    -fx-content-display: left;
+}
+
+/*Offertebutton*/
+#erstelleOfferte {
+    -fx-graphic: url("/aurestApp/img/icons/32/blueprint_add.png");
+    -fx-content-display: left;
+}
+
+/*emails umbennen*/
+#emailordnerwaehlen {
+    -fx-graphic: url("/aurestApp/img/icons/32/folder_explore.png");
+    -fx-content-display: left;
+}
+
+#emailsumbennen {
+    -fx-graphic: url("/aurestApp/img/icons/32/email_send_receive.png");
+    -fx-content-display: left;
+}
+
+/*Mitarbeiterbereich*/
+#addMitarbeiter {
+    -fx-graphic: url("/aurestApp/img/icons/32/user_add.png");
+    -fx-content-display: left;
+}
+
+#bearbeiteMitarbeiter {
+    -fx-graphic: url("/aurestApp/img/icons/32/user_edit.png");
+    -fx-content-display: left;
+}
+
+#loeschemitarbeiter {
+    -fx-graphic: url("/aurestApp/img/icons/32/user_delete.png");
+    -fx-content-display: left;
+}
+
+/*Generell*/
+#btn_addaltname, #btn_addordner {
+    -fx-graphic: url("/aurestApp/img/icons/16/add.png");
+    -fx-content-display: left;
+}
+
+#loeschealtnamen, #loescheordner {
+    -fx-graphic: url("/aurestApp/img/icons/16/table_row_delete.png");
+    -fx-content-display: left;
+}
+
+#abbruch {
+    -fx-graphic: url("/aurestApp/img/icons/32/cancel.png");
+    -fx-content-display: left;
+}
+
+#speichern {
+    -fx-graphic: url("/aurestApp/img/icons/32/disk.png");
+    -fx-content-display: left;
+}
+
+/*Vorlagen*/
+#ordnerwaehlenklein {
+    -fx-graphic: url("/aurestApp/img/icons/16/folder_explore.png");
+    -fx-content-display: left;
+}
+
+/*Kunde*/
+#btnrefresh {
+    -fx-graphic: url("/aurestApp/img/icons/16/arrow_refresh.png");
+    -fx-content-display: left;
+}
+
+#btnNeuerKunde {
+    -fx-graphic: url("/aurestApp/img/icons/32/vcard_add.png");
+    -fx-content-display: left;
+}
+
+#btnBearbeiten {
+    -fx-graphic: url("/aurestApp/img/icons/32/vcard_edit.png");
+    -fx-content-display: left;
+}
+
+#loeschekunde {
+    -fx-graphic: url("/aurestApp/img/icons/32/vcard_delete.png");
+    -fx-content-display: left;
+}
+

@@ -1,14 +1,11 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.tools.Generator;
-import aurestApp.tools.eigeneklassen.GetImageView;
 import aurestApp.tools.eigeneklassen.Kunde;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
@@ -41,9 +38,6 @@ public class MenuOfferteController implements Initializable {
         kundenAlsStrings.addAll(m.getKunden().stream().map(Kunde::getName).collect(Collectors.toList()));
 
         TextFields.bindAutoCompletion(offertenkunde, new HashSet<>(kundenAlsStrings));
-
-        erstelleOfferte.setGraphic(GetImageView.load(Images.BLUEPRINT_ADD, 32));
-        erstelleOfferte.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

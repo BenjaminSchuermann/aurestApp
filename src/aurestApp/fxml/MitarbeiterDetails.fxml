@@ -52,7 +52,7 @@
                         <HBox>
                             <children>
                                 <TextField fx:id="txt_addaltname" HBox.hgrow="ALWAYS"/>
-                                <Button fx:id="btn_addaltname" mnemonicParsing="false" onAction="#addaltname" text="hinzufügen">
+                                <Button id="btn_addaltname" fx:id="btn_addaltname" mnemonicParsing="false" onAction="#addaltname" text="hinzufügen">
                                     <HBox.margin>
                                         <Insets left="5.0"/>
                                     </HBox.margin>
@@ -99,7 +99,7 @@
                             <children>
                                 <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <Button fx:id="loeschealtnamen" mnemonicParsing="false" onAction="#loeschealtnamen" text="Auswahl löschen"/>
+                                        <Button id="loeschealtnamen" fx:id="loeschealtnamen" mnemonicParsing="false" onAction="#loeschealtnamen" text="Auswahl löschen"/>
                                     </children>
                                 </HBox>
                             </children>
@@ -110,7 +110,7 @@
                             </VBox.margin>
                         </Separator>
                         <Label text="Login"/>
-                        <CustomTextField fx:id="login">
+                        <CustomTextField id="login" fx:id="login">
                             <VBox.margin>
                                 <Insets top="5.0"/>
                             </VBox.margin>
@@ -120,7 +120,7 @@
                                 <Insets top="10.0"/>
                             </VBox.margin>
                         </Label>
-                        <CustomPasswordField fx:id="passwort">
+                        <CustomPasswordField id="passwort" fx:id="passwort">
                             <VBox.margin>
                                 <Insets top="5.0"/>
                             </VBox.margin>
@@ -139,13 +139,13 @@
             <children>
                 <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
                     <children>
-                        <Button fx:id="loeschemitarbeiter" mnemonicParsing="false" onAction="#loeschemitarbeiter" text="Mitarbeiter Löschen"/>
-                        <Button fx:id="abbruch" mnemonicParsing="false" onAction="#abbruch" text="Abbruch">
+                        <Button id="loeschemitarbeiter" fx:id="loeschemitarbeiter" mnemonicParsing="false" onAction="#loeschemitarbeiter" text="Mitarbeiter Löschen"/>
+                        <Button id="abbruch" fx:id="abbruch" mnemonicParsing="false" onAction="#abbruch" text="Abbruch">
                             <HBox.margin>
                                 <Insets left="30.0"/>
                             </HBox.margin>
                         </Button>
-                        <Button fx:id="speichern" mnemonicParsing="false" onAction="#speichern" text="Speichern">
+                        <Button id="speichern" fx:id="speichern" mnemonicParsing="false" onAction="#speichern" text="Speichern">
                             <HBox.margin>
                                 <Insets left="30.0"/>
                             </HBox.margin>

@@ -1,14 +1,15 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.tools.Logbuch;
-import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
 
 import java.net.URL;
@@ -51,9 +52,6 @@ public class ProjektLogbuchController implements Initializable {
             m.setProjektToLog(false);
             Platform.runLater(planlagenteil::requestFocus);
         }
-
-        erstellepl.setGraphic(GetImageView.load(Images.REPORT_ADD, 32));
-        erstellepl.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

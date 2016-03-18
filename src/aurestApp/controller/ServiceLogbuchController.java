@@ -1,9 +1,7 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.tools.Logbuch;
-import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -67,9 +65,6 @@ public class ServiceLogbuchController implements Initializable {
             m.setServiceToLog(false);
             Platform.runLater(slkontakt::requestFocus);
         }
-
-        erstellesl.setGraphic(GetImageView.load(Images.REPORT_ADD, 32));
-        erstellesl.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

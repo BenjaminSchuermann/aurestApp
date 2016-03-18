@@ -1,15 +1,12 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.interfaces.Seiten;
 import aurestApp.tools.Dialoge;
-import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -20,10 +17,8 @@ import org.controlsfx.control.Notifications;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class MenuEmailsUmbennenController implements Initializable {
+public class MenuEmailsUmbennenController {
     private final Model m;
     private File selectedDirectory;
     private boolean emailsVorhanden;
@@ -40,15 +35,6 @@ public class MenuEmailsUmbennenController implements Initializable {
 
     public MenuEmailsUmbennenController(Model m) {
         this.m = m;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        emailordnerwaehlen.setGraphic(GetImageView.load(Images.FOLDER_EXPLORE, 32));
-        emailordnerwaehlen.setContentDisplay(ContentDisplay.LEFT);
-
-        emailsumbennen.setGraphic(GetImageView.load(Images.EMAIL_SEND_RECEIVE, 32));
-        emailsumbennen.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

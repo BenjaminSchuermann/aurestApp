@@ -1,10 +1,8 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.interfaces.Seiten;
 import aurestApp.tools.Dialoge;
-import aurestApp.tools.eigeneklassen.GetImageView;
 import aurestApp.tools.eigeneklassen.Mitarbeiter;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,7 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -86,12 +87,6 @@ public class EinstellungenMitarbeiterController implements Initializable {
             });
             return row;
         });
-
-        addMitarbeiter.setGraphic(GetImageView.load(Images.USER_ADD, 32));
-        addMitarbeiter.setContentDisplay(ContentDisplay.LEFT);
-
-        bearbeite.setGraphic(GetImageView.load(Images.USER_EDIT, 32));
-        bearbeite.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

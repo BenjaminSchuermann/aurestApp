@@ -41,7 +41,7 @@
             <children>
                 <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
                     <children>
-                        <Button fx:id="speichern" mnemonicParsing="false" onAction="#speicherLogin" text="Speichern"/>
+                        <Button id="speichern" fx:id="speichern" mnemonicParsing="false" onAction="#speicherLogin" text="Speichern"/>
                     </children>
                 </HBox>
             </children>

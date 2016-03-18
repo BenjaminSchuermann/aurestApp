@@ -80,7 +80,7 @@
                         <HBox>
                             <children>
                                 <TextField fx:id="txt_addordner" HBox.hgrow="ALWAYS"/>
-                                <Button fx:id="btn_addordner" mnemonicParsing="false" onAction="#addordner" text="hinzufügen">
+                                <Button id="btn_addordner" fx:id="btn_addordner" mnemonicParsing="false" onAction="#addordner" text="hinzufügen">
                                     <HBox.margin>
                                         <Insets left="5.0"/>
                                     </HBox.margin>
@@ -112,7 +112,7 @@
                             <children>
                                 <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <Button fx:id="loescheordner" mnemonicParsing="false" onAction="#loescheordner" text="Auswahl löschen"/>
+                                        <Button id="loescheordner" fx:id="loescheordner" mnemonicParsing="false" onAction="#loescheordner" text="Auswahl löschen"/>
                                     </children>
                                 </HBox>
                             </children>
@@ -131,13 +131,13 @@
             <children>
                 <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
                     <children>
-                        <Button fx:id="loeschekunde" mnemonicParsing="false" onAction="#loeschekunde" text="Kunde Löschen"/>
-                        <Button fx:id="abbruch" mnemonicParsing="false" onAction="#abbruch" text="Abbruch">
+                        <Button id="loeschekunde" fx:id="loeschekunde" mnemonicParsing="false" onAction="#loeschekunde" text="Kunde Löschen"/>
+                        <Button id="abbruch" fx:id="abbruch" mnemonicParsing="false" onAction="#abbruch" text="Abbruch">
                             <HBox.margin>
                                 <Insets left="30.0"/>
                             </HBox.margin>
                         </Button>
-                        <Button fx:id="speichern" mnemonicParsing="false" onAction="#speichern" text="Speichern">
+                        <Button id="speichern" fx:id="speichern" mnemonicParsing="false" onAction="#speichern" text="Speichern">
                             <HBox.margin>
                                 <Insets left="30.0"/>
                             </HBox.margin>

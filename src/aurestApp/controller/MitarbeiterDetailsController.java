@@ -1,7 +1,6 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.tools.Dialoge;
 import aurestApp.tools.MD5;
 import aurestApp.tools.Settings;
@@ -119,23 +118,8 @@ public class MitarbeiterDetailsController implements Initializable {
                 loginaktiv.setSelected(false);
         });
 
-        loeschealtnamen.setGraphic(GetImageView.load(Images.TABLE_ROW_DELETE, 16));
-        loeschealtnamen.setContentDisplay(ContentDisplay.LEFT);
-
-        btn_addaltname.setGraphic(GetImageView.load(Images.ADD, 16));
-        btn_addaltname.setContentDisplay(ContentDisplay.LEFT);
-
-        login.setLeft(GetImageView.load(Images.USER_SILHOUETTE, 16));
-        passwort.setLeft(GetImageView.load(Images.LOCK, 16));
-
-        loeschemitarbeiter.setGraphic(GetImageView.load(Images.USER_DELETE, 32));
-        loeschemitarbeiter.setContentDisplay(ContentDisplay.LEFT);
-
-        abbruch.setGraphic(GetImageView.load(Images.CANCEL, 32));
-        abbruch.setContentDisplay(ContentDisplay.LEFT);
-
-        speichern.setGraphic(GetImageView.load(Images.DISK, 32));
-        speichern.setContentDisplay(ContentDisplay.LEFT);
+        login.setLeft(GetImageView.load("user_silhouette.png", 16));
+        passwort.setLeft(GetImageView.load("lock.png", 16));
     }
 
     @FXML

@@ -1,7 +1,6 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.interfaces.Seiten;
 import aurestApp.tools.Dialoge;
 import aurestApp.tools.eigeneklassen.GetImageView;
@@ -15,7 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -68,16 +70,7 @@ public class EinstellungenKundenController implements Initializable {
         columnStrasse.setCellValueFactory(cellData -> cellData.getValue().strasseProperty());
         columnStadt.setCellValueFactory(cellData -> cellData.getValue().stadtProperty());
 
-        refreshbutton.setGraphic(GetImageView.load(Images.ARROW_REFRESH, 16));
-        refreshbutton.setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
-
-        btnNeuerKunde.setGraphic(GetImageView.load(Images.VCARD_ADD, 32));
-        btnNeuerKunde.setContentDisplay(ContentDisplay.LEFT);
-
-        btnBearbeiten.setGraphic(GetImageView.load(Images.VCARD_EDIT, 32));
-        btnBearbeiten.setContentDisplay(ContentDisplay.LEFT);
-
-        filterField.setLeft(GetImageView.load(Images.MAGNIFIER, 16));
+        filterField.setLeft(GetImageView.load("magnifier.png", 16));
         filterField.setPromptText("Suchen");
 
         // 1. Wrap the ObservableList in a FilteredList (initially display all data).

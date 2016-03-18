@@ -1,7 +1,6 @@
 package aurestApp.tools;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -50,11 +49,11 @@ public class Login {
         grid.setPadding(new Insets(20, 150, 10, 10));
 
         CustomTextField username = new CustomTextField();
-        username.setLeft(GetImageView.load(Images.USER_SILHOUETTE, 16));
+        username.setLeft(GetImageView.load("user_silhouette.png", 16));
         username.setPromptText("Benutzername");
 
         CustomPasswordField password = new CustomPasswordField();
-        password.setLeft(GetImageView.load(Images.LOCK, 16));
+        password.setLeft(GetImageView.load("lock.png", 16));
         password.setPromptText("Passwort");
 
 

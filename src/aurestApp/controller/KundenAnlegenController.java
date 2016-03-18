@@ -1,10 +1,8 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.tools.Dialoge;
 import aurestApp.tools.Settings;
-import aurestApp.tools.eigeneklassen.GetImageView;
 import aurestApp.tools.eigeneklassen.Kunde;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -12,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -73,22 +70,8 @@ public class KundenAnlegenController implements Initializable {
             btn_addordner.setDisable(newValue.trim().isEmpty());
         });
 
-        loescheordner.setGraphic(GetImageView.load(Images.TABLE_ROW_DELETE, 16));
-        loescheordner.setContentDisplay(ContentDisplay.LEFT);
-
-        btn_addordner.setGraphic(GetImageView.load(Images.ADD, 16));
-        btn_addordner.setContentDisplay(ContentDisplay.LEFT);
-
         //Hier nicht genutzt
-        loeschekunde.setGraphic(GetImageView.load(Images.VCARD_DELETE, 32));
-        loeschekunde.setContentDisplay(ContentDisplay.LEFT);
         loeschekunde.setVisible(false);
-
-        abbruch.setGraphic(GetImageView.load(Images.CANCEL, 32));
-        abbruch.setContentDisplay(ContentDisplay.LEFT);
-
-        speichern.setGraphic(GetImageView.load(Images.DISK, 32));
-        speichern.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

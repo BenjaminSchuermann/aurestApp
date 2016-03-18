@@ -1,10 +1,8 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.interfaces.Seiten;
 import aurestApp.tools.Generator;
-import aurestApp.tools.eigeneklassen.GetImageView;
 import aurestApp.tools.eigeneklassen.Kunde;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,9 +56,6 @@ public class ProjektAnlegenController implements Initializable {
         kundenAlsStrings.addAll(m.getKunden().stream().map(Kunde::getName).collect(Collectors.toList()));
 
         TextFields.bindAutoCompletion(projektkunde, new HashSet<>(kundenAlsStrings));
-
-        erstelleProjekt.setGraphic(GetImageView.load(Images.APPLICATION_FORM_ADD, 32));
-        erstelleProjekt.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

@@ -1,15 +1,12 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.tools.Dialoge;
 import aurestApp.tools.Settings;
-import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -46,18 +43,6 @@ public class EinstellungenVorlagenController implements Initializable {
         projektvorlagen.setText(m.getVorlagenProjekt());
         servicevorlage.setText(m.getVorlagenService());
         offertevorlage.setText(m.getVorlagenOfferte());
-
-        projektvorlagenordnerwaehlen.setGraphic(GetImageView.load(Images.FOLDER_EXPLORE, 16));
-        projektvorlagenordnerwaehlen.setContentDisplay(ContentDisplay.LEFT);
-
-        servicevorlageordnerwaehlen.setGraphic(GetImageView.load(Images.FOLDER_EXPLORE, 16));
-        servicevorlageordnerwaehlen.setContentDisplay(ContentDisplay.LEFT);
-
-        offertevorlageordnerwaehlen.setGraphic(GetImageView.load(Images.FOLDER_EXPLORE, 16));
-        offertevorlageordnerwaehlen.setContentDisplay(ContentDisplay.LEFT);
-
-        speichern.setGraphic(GetImageView.load(Images.DISK, 32));
-        speichern.setContentDisplay(ContentDisplay.LEFT);
     }
 
     @FXML

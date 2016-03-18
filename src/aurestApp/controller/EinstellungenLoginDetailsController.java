@@ -1,14 +1,12 @@
 package aurestApp.controller;
 
 import aurestApp.Model;
-import aurestApp.interfaces.Images;
 import aurestApp.tools.Settings;
 import aurestApp.tools.eigeneklassen.GetImageView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import org.controlsfx.control.textfield.CustomPasswordField;
 import org.controlsfx.control.textfield.CustomTextField;
 
@@ -31,8 +29,8 @@ public class EinstellungenLoginDetailsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        login.setLeft(GetImageView.load(Images.USER_SILHOUETTE, 16));
-        passwort.setLeft(GetImageView.load(Images.LOCK, 16));
+        login.setLeft(GetImageView.load("user_silhouette.png", 16));
+        passwort.setLeft(GetImageView.load("lock.png", 16));
 
         login.setText(m.getLogin());
         login.setEditable(false);
@@ -41,9 +39,6 @@ public class EinstellungenLoginDetailsController implements Initializable {
         passwort.textProperty().addListener((observable, oldValue, newValue) -> {
             speichern.setDisable(newValue.trim().isEmpty());
         });
-
-        speichern.setGraphic(GetImageView.load(Images.DISK, 32));
-        speichern.setContentDisplay(ContentDisplay.LEFT);
     }
 
     public void speicherLogin(ActionEvent actionEvent) {

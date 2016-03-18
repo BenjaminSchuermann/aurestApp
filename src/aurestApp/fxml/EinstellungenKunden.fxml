@@ -16,7 +16,7 @@
         <HBox>
             <children>
                 <CustomTextField fx:id="filterField" HBox.hgrow="ALWAYS"/>
-                <Button fx:id="refreshbutton" mnemonicParsing="false" onAction="#handelrefresh">
+                <Button id="btnrefresh" fx:id="refreshbutton" mnemonicParsing="false" onAction="#handelrefresh">
                     <HBox.margin>
                         <Insets left="15.0"/>
                     </HBox.margin>
@@ -36,11 +36,11 @@
         </TableView>
         <HBox>
             <children>
-                <Button id="speichern" fx:id="btnNeuerKunde" mnemonicParsing="false" onAction="#handelNeuerKunde" text="Neuer Kunde"/>
+                <Button id="btnNeuerKunde" fx:id="btnNeuerKunde" mnemonicParsing="false" onAction="#handelNeuerKunde" text="Neuer Kunde"/>
                 <HBox alignment="BOTTOM_RIGHT" HBox.hgrow="ALWAYS">
                     <children>
 
-                        <Button id="speichern" fx:id="btnBearbeiten" mnemonicParsing="false" onAction="#handelBearbeitenKunden" text="Kunde bearbeiten"/>
+                        <Button id="btnBearbeiten" fx:id="btnBearbeiten" mnemonicParsing="false" onAction="#handelBearbeitenKunden" text="Kunde bearbeiten"/>
                     </children>
                 </HBox>
             </children>
