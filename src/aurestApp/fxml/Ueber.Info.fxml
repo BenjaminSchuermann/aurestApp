@@ -37,7 +37,7 @@
                         </Label>
                     </children>
                 </HBox>
-                <Label id="info" text="Copyright© 2014-2015 by"/>
+                <Label id="info" text="Copyright© 2014-2016 by"/>
                 <Label id="info" text="Benjamin Schürmann"/>
             </children>
         </VBox>
