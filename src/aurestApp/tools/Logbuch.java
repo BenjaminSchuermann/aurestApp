@@ -18,9 +18,8 @@ public class Logbuch {
         try {
             pWriter = new PrintWriter(urProjektOrdner + "\\Logbuch.txt", "UTF-8");
             //erst in eine String Var schreiben, um das Kodierungsproblem mit den Umlauten zu umgehen
-            String ts = "Projekt-/Servicenr.\tDatum\t\tMA\t\tAnlagenteil\t\tTätigkeit";
+            String ts = "Projekt-/Servicenr.\tDatum\t\tMA\t\tAnlagenteil";
             pWriter.println(ts);
-            pWriter.println("-----------------------------------------------------------------------------------------------------------------");
             pWriter.close();
         } catch (FileNotFoundException e) {
             Dialoge.exceptionDialog(e, "Logbuchdatei kann nicht erstellt werden");
@@ -71,15 +70,16 @@ public class Logbuch {
     }
 
     private static void erweiterProjekteintrag(Model m) {
-        String text;
+        String text = "-----------------------------------------------------------------------------------------------------------------" + System.lineSeparator();
+
         String nummer = m.getProjektLogProjekt();
         //Service/Projektnummer erstellen und Tabs einfügen
         if (nummer.length() < 8)
-            text = nummer + "\t\t\t";
+            text += nummer + "\t\t\t";
         else if (nummer.length() < 16)
-            text = nummer + "\t\t";
+            text += nummer + "\t\t";
         else
-            text = nummer + "\t";
+            text += nummer + "\t";
         //Das gewählte Datum einfügen
         text += m.getProjektLogDatum() + "\t";
         //Den Mitarbeiter einfügen
@@ -92,17 +92,11 @@ public class Logbuch {
             text += mitarbeiter;
         //Den Anlagenteil/Ort einfügen
         String anlagenteil = m.getProjektLogAnlagenteil();
-        if (anlagenteil.length() < 8)
-            text += anlagenteil + "\t\t\t";
-        else if (anlagenteil.length() < 16)
-            text += anlagenteil + "\t\t";
-        else if (anlagenteil.length() < 24)
-            text += anlagenteil + "\t";
-        else
-            text += anlagenteil + "\t";
+        text += anlagenteil + System.lineSeparator();
 
         //Projektbeschreibung einfügen
-        text += m.getProjektLogBeschreibung().replace("\n", System.lineSeparator() + "\t\t\t\t\t\t\t\t\t\t");
+        text += "Beschreibung / Auftrag" + System.lineSeparator();
+        text += m.getProjektLogBeschreibung().replace("\n", System.lineSeparator());
         text += System.lineSeparator();
 
         //Und das ganze versuchen ans Logbuch anzuhängen
