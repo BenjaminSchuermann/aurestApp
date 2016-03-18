@@ -29,19 +29,29 @@ public class Generator {
         m.setProjektNummer(projektnummer);
         String pfad = m.getProjektNummer();
 
+        String qprojekt = m.getProjektNummer().substring(0, 2) + "_";
+        File qprojektordner = new File("Q:/" + qprojekt);
+        if (!qprojektordner.exists()) {
+            qprojektordner.mkdir();
+            System.out.println(qprojektordner.getAbsolutePath() + " wurde erstellt");
+        }
+
+        System.out.println(qprojekt);
+
         if (!kunde.isEmpty())
             pfad = pfad + " " + kunde.replaceAll("[\\/:*?\"<>|]", "-");
         if (!projektname.isEmpty())
             pfad = pfad + ", " + projektname.replaceAll("[\\/:*?\"<>|]", "-");
 
-        File ziel = new File("P:/" + pfad);
+
+        File ziel = new File(qprojektordner + "/" + pfad);
         if (ziel.exists()) {
             Dialoge.DialogAnzeigeBox("warnung", "Projekt ist bereits angelegt");
             return "Projekt ist bereits angelegt";
         }
 
         try {
-            copyDir(new File(m.getVorlagenProjekt() + "/" + art), new File("P:/" + pfad), m.getProjektNummer());
+            copyDir(new File(m.getVorlagenProjekt() + "/" + art), new File(qprojektordner + "/" + pfad), m.getProjektNummer());
         } catch (Exception e) {
             Dialoge.exceptionDialog(e, "Fehler beim Kopieren der Vorlage");
             e.printStackTrace();
@@ -72,9 +82,9 @@ public class Generator {
             // Ausgabedatei öffnen
 
             //Link im Projektordner zur Offerte
-            File link1 = createVBS(pfadoff + "\\Projekt " + pfad + ".lnk", "P:\\" + pfad, "link1");
-            File link2 = createVBS("P:\\" + pfad + "\\Offerte " + offkomplett + ".lnk", pfadoff, "link2");
-
+            //ziel, quelle, name
+            File link1 = createVBS(pfadoff + "\\Projekt " + pfad + ".lnk", qprojektordner + "\\" + pfad, "link1");
+            File link2 = createVBS(qprojektordner + "\\" + pfad + "\\Offerte " + offkomplett + ".lnk", pfadoff, "link2");
             try {
                 Desktop.getDesktop().open(link1);
                 Desktop.getDesktop().open(link2);
@@ -83,7 +93,7 @@ public class Generator {
                 Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei für das Logbuch");
             }
 
-            while (!new File(pfadoff + "\\Projekt " + pfad + ".lnk").exists() && !new File("P:\\" + pfad + "\\Offerte " + offkomplett + ".lnk").exists()) {
+            while (!new File(pfadoff + "\\Projekt " + pfad + ".lnk").exists() && !new File(qprojektordner + "\\" + pfad + "\\Offerte " + offkomplett + ".lnk").exists()) {
                 //Warteschleife
             }
 
@@ -112,8 +122,8 @@ public class Generator {
             // Ausgabedatei öffnen
             status = "Projektlinkdatei wird erstellt";
 
-            File link1 = createVBS("P:\\" + pfad + "\\UrProjekt " + spkomplett + ".lnk", pfadsp, "link1");
-            File link2 = createVBS(pfadsp + "\\Projekt " + pfad + ".lnk", "P:\\" + pfad, "link2");
+            File link1 = createVBS(qprojektordner + "\\" + pfad + "\\UrProjekt " + spkomplett + ".lnk", pfadsp, "link1");
+            File link2 = createVBS(pfadsp + "\\Projekt " + pfad + ".lnk", qprojektordner + "\\" + pfad, "link2");
 
             Desktop desktop = Desktop.getDesktop();
             try {
@@ -125,7 +135,7 @@ public class Generator {
                 return "Fehler beim öffnen der Linkdatei für das Ursprungsprojekt";
             }
             status = "UrProjekt wird verlinkt";
-            while (!new File("P:\\" + pfad + "\\UrProjekt " + spkomplett + ".lnk").exists() && !new File(pfadsp + "\\Projekt " + pfad + ".lnk").exists()) {
+            while (!new File(qprojektordner + "\\" + pfad + "\\UrProjekt " + spkomplett + ".lnk").exists() && !new File(pfadsp + "\\Projekt " + pfad + ".lnk").exists()) {
                 //Warteschleife
             }
 
@@ -344,15 +354,8 @@ public class Generator {
             projekt.setProjektlaufwerk("Q:\\");
             projekt.setProjektname(projektname);
             projekt.setProjektpfad(new File(archivpfad.getAbsolutePath() + "\\" + projektname));
-        } else {
-            projektname = searchFile(new File("P:\\"), projektnummer);
-            if (!projektname.isEmpty()) {
-                projekt.setGefunden(true);
-                projekt.setProjektlaufwerk("P:\\");
-                projekt.setProjektname(projektname);
-                projekt.setProjektpfad(new File("P:\\" + projektname));
-            }
         }
+
         System.out.println(projekt.isGefunden());
         System.out.println(projekt.getProjektlaufwerk());
         System.out.println(projekt.getProjektname());
@@ -384,8 +387,8 @@ public class Generator {
 
         File ziel = new File("O:/" + pfad);
         if (ziel.exists()) {
-            Dialoge.DialogAnzeigeBox("fehler", "Service ist bereits angelegt");
-            return "Service ist bereits angelegt";
+            Dialoge.DialogAnzeigeBox("fehler", "Offerte ist bereits angelegt");
+            return "Offerte ist bereits angelegt";
         }
         status = "Vorlage wird kopiert";
         try {
