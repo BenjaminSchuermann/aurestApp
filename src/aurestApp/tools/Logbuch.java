@@ -243,12 +243,13 @@ public class Logbuch {
     private static String getProjektordner(Model m) {
 
         //Das Projekt suchen
-        String spkomplett = Generator.searchFile(new File("P:/"), m.getProjektLogProjekt());
+        String qprojekt = "Q:/" + m.getProjektLogProjekt().substring(0, 2) + "_";
+        String spkomplett = Generator.searchFile(new File(qprojekt + "/"), m.getProjektLogProjekt());
         if (spkomplett.isEmpty()) {
             return "";
         }
         //noinspection UnnecessaryLocalVariable
-        String pfadsp = ("P:\\" + spkomplett).replace("/", "\\");
+        String pfadsp = (qprojekt + "\\" + spkomplett).replace("/", "\\");
         //System.out.println("der pfadsp:" + pfadsp);
         //System.out.println("der spkomplett:" + spkomplett);
 
