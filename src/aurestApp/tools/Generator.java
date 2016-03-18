@@ -90,7 +90,7 @@ public class Generator {
                 Desktop.getDesktop().open(link2);
             } catch (IOException e) {
                 e.printStackTrace();
-                Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei für das Logbuch");
+                Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei für die Offerte");
             }
 
             while (!new File(pfadoff + "\\Projekt " + pfad + ".lnk").exists() && !new File(qprojektordner + "\\" + pfad + "\\Offerte " + offkomplett + ".lnk").exists()) {
@@ -149,7 +149,7 @@ public class Generator {
             Desktop.getDesktop().open(link1);
         } catch (IOException e) {
             e.printStackTrace();
-            Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei für das Logbuch");
+            Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei für den Link von Q nach P");
         }
         return "Projekt angelegt";
     }
