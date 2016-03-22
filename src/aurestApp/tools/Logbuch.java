@@ -2,6 +2,7 @@ package aurestApp.tools;
 
 import aurestApp.Model;
 import aurestApp.tools.eigeneklassen.Suchprojekt;
+import org.apache.commons.lang3.text.WordUtils;
 import org.controlsfx.control.Notifications;
 
 import java.awt.*;
@@ -96,7 +97,7 @@ public class Logbuch {
 
         //Projektbeschreibung einfügen
         text += "Beschreibung / Auftrag" + System.lineSeparator();
-        text += m.getProjektLogBeschreibung().replace("\n", System.lineSeparator());
+        text += WordUtils.wrap(m.getProjektLogBeschreibung().replace("\n", System.lineSeparator()), 114);
         text += System.lineSeparator();
 
         //Und das ganze versuchen ans Logbuch anzuhängen
@@ -162,17 +163,17 @@ public class Logbuch {
             text += System.lineSeparator() + System.lineSeparator();
         }
         //Service Problem einfügen
-        text += "Problem: " + m.getServiceLogProblem().replace("\n", System.lineSeparator());
+        text += "Problem: " + WordUtils.wrap(m.getServiceLogProblem().replace("\n", System.lineSeparator()), 114);
         text += System.lineSeparator() + System.lineSeparator();
         //Service Ursache einfügen
-        text += "Ursache: " + m.getServiceLogUrsache().replace("\n", System.lineSeparator());
+        text += "Ursache: " + WordUtils.wrap(m.getServiceLogUrsache().replace("\n", System.lineSeparator()), 114);
         text += System.lineSeparator() + System.lineSeparator();
         //Service Lösung einfügen
-        text += "Lösung:" + System.lineSeparator() + m.getServiceLogLösung().replace("\n", System.lineSeparator());
+        text += "Lösung:" + WordUtils.wrap(System.lineSeparator() + m.getServiceLogLösung().replace("\n", System.lineSeparator()), 114);
         text += System.lineSeparator() + System.lineSeparator();
         //Service Bermerkung einfügen
         if (!m.getServiceLogBemerkung().isEmpty()) {
-            text += "Bemerkung / Hardware Austausch: " + m.getServiceLogBemerkung().replace("\n", System.lineSeparator());
+            text += "Bemerkung / Hardware Austausch: " + WordUtils.wrap(m.getServiceLogBemerkung().replace("\n", System.lineSeparator()), 114);
             text += System.lineSeparator() + System.lineSeparator();
         }
 
@@ -292,6 +293,5 @@ public class Logbuch {
             e.printStackTrace();
             Dialoge.exceptionDialog(e, "Fehler beim öffnen der Linkdatei für das Logbuch");
         }
-
     }
 }
