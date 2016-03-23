@@ -18,7 +18,7 @@ public class Logbuch {
         PrintWriter pWriter;
         try {
             pWriter = new PrintWriter(urProjektOrdner + "\\Logbuch.txt", "UTF-8");
-            //erst in eine String Var schreiben, um das Kodierungsproblem mit den Umlauten zu umgehen
+            //das umwandeln kann entfallen, da wir kein Sonderzeichen mehr in dem Satz
             String ts = "Projekt-/Servicenr.\tDatum\t\tMA\t\tAnlagenteil";
             pWriter.println(ts);
             pWriter.close();

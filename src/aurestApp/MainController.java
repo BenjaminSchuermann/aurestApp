@@ -79,12 +79,6 @@ class MainController implements Seiten, Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if (!m.isadmin()) {
-            ebt1.setVisible(false);
-            ebt2.setVisible(false);
-            ebt3.setVisible(false);
-            ebt4.setVisible(false);
-        }
 
 //Hauptleiste anlegen
         bt1.setUserData("Projekt");
@@ -172,8 +166,15 @@ class MainController implements Seiten, Initializable {
         ebt4.setUserData("Kunden");
 
         ebt5.setUserData("Logindaten");
-
-        sb2.getButtons().addAll(ebt1, ebt2, ebt3, ebt4, ebt5);
+        if (!m.isadmin()) {
+            ebt1.setVisible(false);
+            ebt2.setVisible(false);
+            ebt3.setVisible(false);
+            ebt4.setVisible(false);
+            sb2.getButtons().addAll(ebt5);
+        } else {
+            sb2.getButtons().addAll(ebt1, ebt2, ebt3, ebt4, ebt5);
+        }
         sb2.getStyleClass().add(SegmentedButton.STYLE_CLASS_DARK);
 
     }
