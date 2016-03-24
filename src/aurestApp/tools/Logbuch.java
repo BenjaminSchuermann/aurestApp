@@ -18,7 +18,6 @@ public class Logbuch {
         PrintWriter pWriter;
         try {
             pWriter = new PrintWriter(urProjektOrdner + "\\Logbuch.txt", "UTF-8");
-            //das umwandeln kann entfallen, da wir kein Sonderzeichen mehr in dem Satz
             String ts = "Projekt-/Servicenr.\tDatum\t\tMA\t\tAnlagenteil";
             pWriter.println(ts);
             pWriter.close();
@@ -59,12 +58,16 @@ public class Logbuch {
             projektOrdner = projektPfad;
             erweiterProjekteintrag(m);
         } else {
-            String servicePfad = getServiceordner(m);
-            if (servicePfad.isEmpty()) {
-                Dialoge.DialogAnzeigeBox("fehler", "Der Service konnte nicht gefunden werden");
-                return;
+            if (m.isServiceLogCheckBox()) {
+                serviceOrdner = "";
+            } else {
+                String servicePfad = getServiceordner(m);
+                if (servicePfad.isEmpty()) {
+                    Dialoge.DialogAnzeigeBox("fehler", "Der Service konnte nicht gefunden werden");
+                    return;
+                }
+                serviceOrdner = servicePfad;
             }
-            serviceOrdner = servicePfad;
             erweiterServiceeintrag(m);
         }
 
