@@ -247,7 +247,7 @@ public class Logbuch {
     private static String getServiceordner(Model m) {
 
         //Den Service suchen
-        String serviceJahrOrdner = "Q:/" + "Service_" + m.getServicejahr().substring(2, 4) + "/";
+        String serviceJahrOrdner = "Q:/" + "Service_" + m.getServiceLogJahr().substring(2, 4) + "/";
         File serviceordner = new File(serviceJahrOrdner);
         System.out.println(serviceordner);
         if (!serviceordner.exists()) {

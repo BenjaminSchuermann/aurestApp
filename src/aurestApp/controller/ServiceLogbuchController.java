@@ -92,11 +92,11 @@ public class ServiceLogbuchController implements Initializable {
         m.setServiceLogKontakt(slkontakt.getText());
         m.setServiceLogCheckBox(checkbox.isSelected());
 
-        if (servicejahr.getText().isEmpty())
+        if (servicejahr.getText().isEmpty()) {
             m.setServiceLogJahr(servicejahr.getPromptText());
-        else
+        } else {
             m.setServiceLogJahr(servicejahr.getText());
-
+        }
         LocalDate date = sldatum.getValue();
         if (date == null) {
             date = LocalDate.now();
